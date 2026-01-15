@@ -82,7 +82,7 @@ export function BlogPostPage({ slug, onBack, onBlogClick }: BlogPostPageProps) {
 
   // Get related posts (same category, excluding current post)
   const relatedPosts = BLOG_POSTS.filter(
-    (p) => p.category === post.category && p.id !== post.id
+    (p) => p.category === post.category && p.id !== post.id,
   ).slice(0, 3);
 
   // Format content with proper styling
@@ -178,7 +178,7 @@ export function BlogPostPage({ slug, onBack, onBlogClick }: BlogPostPageProps) {
   const shareText = post.title;
 
   return (
-    <div className="min-h-screen bg-[#0a0f1e] pt-24 pb-16">
+    <div className="min-h-screen bg-[#0a0f1e] pt-8 pb-16">
       <div className="container mx-auto px-4 lg:px-32">
         {/* Back Button */}
         <button
@@ -261,7 +261,7 @@ export function BlogPostPage({ slug, onBack, onBlogClick }: BlogPostPageProps) {
               <div className="flex gap-3">
                 <a
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                    shareText
+                    shareText,
                   )}&url=${encodeURIComponent(shareUrl)}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -272,7 +272,7 @@ export function BlogPostPage({ slug, onBack, onBlogClick }: BlogPostPageProps) {
                 </a>
                 <a
                   href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                    shareUrl
+                    shareUrl,
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -283,7 +283,7 @@ export function BlogPostPage({ slug, onBack, onBlogClick }: BlogPostPageProps) {
                 </a>
                 <a
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                    shareUrl
+                    shareUrl,
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

@@ -11,6 +11,7 @@ import {
 import Slider from "react-slick";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { BLOG_POSTS, type BlogPost } from "../utils/blogData";
+import { useEffect, useState } from "react";
 
 interface BlogCardProps {
   post: BlogPost;
@@ -96,9 +97,12 @@ function BlogCard({ post, onReadMore }: BlogCardProps) {
   );
 }
 
-// Custom Arrow Components
-function PrevArrow(props: any) {
-  const { onClick } = props;
+// Custom Arrow Components (react-slick passes onClick and other props)
+interface SliderArrowProps {
+  onClick?: () => void;
+}
+
+function PrevArrow({ onClick }: SliderArrowProps) {
   return (
     <button
       onClick={onClick}
@@ -110,8 +114,7 @@ function PrevArrow(props: any) {
   );
 }
 
-function NextArrow(props: any) {
-  const { onClick } = props;
+function NextArrow({ onClick }: SliderArrowProps) {
   return (
     <button
       onClick={onClick}
@@ -129,47 +132,74 @@ interface BlogsSectionProps {
 }
 
 export function BlogsSection({ onBlogClick, onViewAll }: BlogsSectionProps) {
+  const [slidesToShow, setSlidesToShow] = useState(1);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setSlidesToShow(mq.matches ? 3 : 1);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: true,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: true,
-        },
-      },
-    ],
     dotsClass: "slick-dots !bottom-[-40px]",
     customPaging: () => (
       <div className="w-3 h-3 bg-[#1d293d] hover:bg-[#5cdfff] transition-colors" />
     ),
   };
+
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 5000,
+  //   pauseOnHover: true,
+  //   prevArrow: <PrevArrow />,
+  //   nextArrow: <NextArrow />,
+  //   responsive: [
+  //     {
+  //       breakpoint: 1024,
+  //       settings: {
+  //         slidesToShow: 2,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 768,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //         arrows: true,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 640,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //         arrows: true,
+  //       },
+  //     },
+  //   ],
+  //   dotsClass: "slick-dots !bottom-[-40px]",
+  //   customPaging: () => (
+  //     <div className="w-3 h-3 bg-[#1d293d] hover:bg-[#5cdfff] transition-colors" />
+  //   ),
+  // };
 
   // Get the first 6 blog posts
   const featuredBlogs = BLOG_POSTS.slice(0, 6);
