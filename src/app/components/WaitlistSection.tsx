@@ -7,15 +7,51 @@ import { StarIcon } from "../components/shared/StarIcon";
 export function WaitlistSection() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    setError(null);
+    if (!email.trim()) return;
+
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          type: "waitlist",
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(
+          (data as { message?: string }).message ?? "Something went wrong"
+        );
+      }
+
+      setSuccessMessage(
+        (data as { message?: string }).message ?? "You're on the list!"
+      );
       setIsSubmitted(true);
+      setEmail("");
       setTimeout(() => {
         setIsSubmitted(false);
-        setEmail("");
-      }, 3000);
+        setSuccessMessage(null);
+      }, 5000);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to join waitlist. Try again."
+      );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -50,27 +86,38 @@ export function WaitlistSection() {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError(null);
+                }}
                 placeholder="Enter your email"
                 required
-                className="flex-1 bg-[#0f172b] border-2 border-[#1A1F2E] px-6 py-4 text-white placeholder-[#6B7A8F] focus:border-[#5cdfff] focus:outline-none transition-colors font-jakarta"
+                disabled={isLoading}
+                className="flex-1 bg-[#0f172b] border-2 border-[#1A1F2E] px-6 py-4 text-white placeholder-[#6B7A8F] focus:border-[#5cdfff] focus:outline-none transition-colors font-jakarta disabled:opacity-60"
               />
               <button
                 type="submit"
-                className="bg-linear-to-r from-[#9810fa] to-[#e60076] border-2 border-[#ad46ff] px-8 py-4 flex items-center justify-center gap-2 hover:scale-105 transition-transform whitespace-nowrap"
+                disabled={isLoading}
+                className="bg-linear-to-r from-[#9810fa] to-[#e60076] border-2 border-[#ad46ff] px-8 py-4 flex items-center justify-center gap-2 hover:scale-105 transition-transform whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 <Rocket className="w-5 h-5 text-white" />
                 <span className="font-onest font-black text-base text-white tracking-wider uppercase">
-                  Join Now
+                  {isLoading ? "Joining…" : "Join Now"}
                 </span>
               </button>
             </form>
           ) : (
             <div className="bg-linear-to-r from-[#00a63e] to-[#096] border-2 border-[#00ff66] px-8 py-4 w-full max-w-lg">
               <p className="font-jakarta font-bold text-white text-center">
-                🎉 You&apos;re on the list! Check your email for confirmation.
+                🎉 {successMessage}
               </p>
             </div>
+          )}
+
+          {error && (
+            <p className="font-jakarta text-red-400 text-sm max-w-lg">
+              {error}
+            </p>
           )}
 
           <p className="font-jakarta text-[#90a1b9] text-sm">

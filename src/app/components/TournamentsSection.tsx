@@ -22,17 +22,51 @@ function TournamentCard({
   const [showInput, setShowInput] = useState(false);
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const linearFromTo = tournament.gradient;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    setError(null);
+    if (!email.trim()) return;
+
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          type: `get-notified-${tournament.title}`,
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(
+          (data as { message?: string }).message ?? "Something went wrong"
+        );
+      }
+
+      setSuccessMessage(
+        (data as { message?: string }).message ?? "You're on the list!"
+      );
       setIsSubmitted(true);
+      setEmail("");
       setTimeout(() => {
         setIsSubmitted(false);
         setShowInput(false);
-        setEmail("");
-      }, 3000);
+        setSuccessMessage(null);
+      }, 5000);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to join. Try again."
+      );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -134,20 +168,29 @@ function TournamentCard({
                 <input
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError(null);
+                  }}
                   placeholder="Enter your email"
                   required
                   autoFocus
-                  className="flex-1 px-4 py-3 bg-[rgba(29,41,61,0.8)] border-2 border-[rgba(124,134,255,0.3)] text-white font-orbitron text-sm placeholder:text-[#8b95a5] focus:border-[rgba(124,134,255,0.8)] focus:outline-none transition-colors"
+                  disabled={isLoading}
+                  className="flex-1 px-4 py-3 bg-[rgba(29,41,61,0.8)] border-2 border-[rgba(124,134,255,0.3)] text-white font-orbitron text-sm placeholder:text-[#8b95a5] focus:border-[rgba(124,134,255,0.8)] focus:outline-none transition-colors disabled:opacity-60"
                 />
                 <button
                   type="submit"
-                  className={`inline-flex items-center justify-center gap-2 bg-linear-to-r ${linearFromTo} px-6 py-3 font-orbitron text-white text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(124,134,255,0.5)] transition-all duration-300 whitespace-nowrap`}
+                  disabled={isLoading}
+                  className={`inline-flex items-center justify-center gap-2 bg-linear-to-r ${linearFromTo} px-6 py-3 font-orbitron text-white text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(124,134,255,0.5)] transition-all duration-300 whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed`}
                 >
                   <Zap className="w-4 h-4" />
-                  Submit
+                  {isLoading ? "Joining…" : "Submit"}
                 </button>
               </form>
+            )}
+
+            {error && (
+              <p className="font-jakarta text-red-400 text-sm mt-2">{error}</p>
             )}
 
             {isSubmitted && (
@@ -168,7 +211,7 @@ function TournamentCard({
                   </svg>
                 </div>
                 <span className="font-orbitron text-sm font-bold uppercase tracking-wider">
-                  You&apos;re on the list!
+                  {successMessage ?? "You're on the list!"}
                 </span>
               </div>
             )}
