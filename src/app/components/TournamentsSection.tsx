@@ -7,9 +7,9 @@ import { useState } from "react";
 
 // Tournament images - Different trophy for each tournament
 const TOURNAMENT_IMAGES = [
-  "https://images.unsplash.com/photo-1700700736009-d81a41e850a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxUMjAlMjBjcmlja2V0JTIwd29ybGQlMjBjdXAlMjB0cm9waHklMjAyMDI0fGVufDF8fHx8MTc2OTg2NTEwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // T20 Cricket Trophy
-  "https://images.unsplash.com/photo-1580831800257-f83135932664?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxJUEwlMjBjcmlja2V0JTIwdHJvcGh5JTIwZ29sZGVufGVufDF8fHx8MTc2OTg2NTEwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // IPL Trophy
-  "https://images.unsplash.com/photo-1620756634852-2190ad694c8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxGSUZBJTIwd29ybGQlMjBjdXAlMjB0cm9waHklMjBnb2xkZW4lMjBmb290YmFsbHxlbnwxfHx8fDE3Njk4NjUxMDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // FIFA World Cup Trophy
+  "/it20.png", // T20 Cricket Trophy
+  "/iplt20.png", // IPL Trophy
+  "/fifa2026.png", // FIFA World Cup Trophy
 ] as const;
 
 function TournamentCard({
@@ -47,12 +47,12 @@ function TournamentCard({
 
       if (!res.ok) {
         throw new Error(
-          (data as { message?: string }).message ?? "Something went wrong"
+          (data as { message?: string }).message ?? "Something went wrong",
         );
       }
 
       setSuccessMessage(
-        (data as { message?: string }).message ?? "You're on the list!"
+        (data as { message?: string }).message ?? "You're on the list!",
       );
       setIsSubmitted(true);
       setEmail("");
@@ -63,7 +63,7 @@ function TournamentCard({
       }, 5000);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Failed to join. Try again."
+        err instanceof Error ? err.message : "Failed to join. Try again.",
       );
     } finally {
       setIsLoading(false);
