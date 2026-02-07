@@ -1,13 +1,41 @@
-import { Twitter, Instagram, Youtube, Facebook } from "lucide-react";
+import {
+  Twitter,
+  Instagram,
+  Youtube,
+  Facebook,
+  X,
+  XIcon,
+  XSquareIcon,
+} from "lucide-react";
 
 import { scrollToSection } from "../utils/helpers";
 import { Logo } from "./shared/Logo";
 
+const WhatsAppIcon = (props: any) => (
+  <img src="/whatsapp.svg" alt="WhatsApp" {...props} />
+);
+
+const XSocialIcon = (props: any) => (
+  <img src="/x.svg" alt="X" {...props} />
+);
+
 const socialLinks = [
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Youtube, href: "#", label: "Youtube" },
-  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: XSocialIcon, href: "https://x.com/StatOzindia", label: "x" },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/statozindia/",
+    label: "Instagram",
+  },
+  {
+    icon: WhatsAppIcon,
+    href: "https://chat.whatsapp.com/IQV7FSn106e6zbbEV9kOU3",
+    label: "WhatsApp",
+  },
+  {
+    icon: Facebook,
+    href: "https://www.facebook.com/profile.php?id=61587267737793",
+    label: "Facebook",
+  },
 ];
 
 const quickLinks = [
@@ -106,8 +134,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-[#1A1F2E] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-jakarta text-[#6B7A8F] text-sm text-center md:text-left">
-            © 2026 Statoz. All rights reserved. Built with ❤️ for sports
-            prediction enthusiasts.
+            © 2026 Statoz. All rights reserved. Built with ❤️ for statoz.in
           </p>
           <div className="flex gap-6">
             <a
