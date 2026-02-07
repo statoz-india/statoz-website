@@ -6,6 +6,8 @@ import {
   Plus_Jakarta_Sans,
 } from "next/font/google";
 import "./globals.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +33,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "Statoz",
-  description: "Free to play prediction game",
+  description:
+    "Think you know sports? STATOZ offers daily skill-based prediction, games, live /future events bets, and leaderboards — all powered by sports knowledge.",
+  icons: {
+    icon: "/statoz%20logo.png",
+  },
 };
 
 export default function RootLayout({
