@@ -149,11 +149,19 @@ export function BlogsSection({ onBlogClick, onViewAll }: BlogsSectionProps) {
         },
       },
       {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+        },
+      },
+      {
         breakpoint: 640,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false,
+          arrows: true,
         },
       },
     ],
