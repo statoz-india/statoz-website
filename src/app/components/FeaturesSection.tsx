@@ -15,7 +15,7 @@ export function FeaturesSection() {
   return (
     <section
       id="features"
-      className="container mx-auto px-4 lg:px-32 py-12 lg:py-24"
+      className="w-full bg-[#0D111A] px-4 lg:px-32 py-12 lg:py-24"
     >
       <div className="text-center mb-12 lg:mb-16">
         <h2 className="font-orbitron font-extrabold text-4xl lg:text-5xl text-white uppercase mb-4">

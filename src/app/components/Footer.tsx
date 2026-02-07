@@ -1,12 +1,4 @@
-import {
-  Twitter,
-  Instagram,
-  Youtube,
-  Facebook,
-  X,
-  XIcon,
-  XSquareIcon,
-} from "lucide-react";
+import { Instagram, Facebook, X, XIcon, XSquareIcon } from "lucide-react";
 
 import { scrollToSection } from "../utils/helpers";
 import { Logo } from "./shared/Logo";
@@ -15,9 +7,7 @@ const WhatsAppIcon = (props: any) => (
   <img src="/whatsapp.svg" alt="WhatsApp" {...props} />
 );
 
-const XSocialIcon = (props: any) => (
-  <img src="/x.svg" alt="X" {...props} />
-);
+const XSocialIcon = (props: any) => <img src="/x.svg" alt="X" {...props} />;
 
 const socialLinks = [
   { icon: XSocialIcon, href: "https://x.com/StatOzindia", label: "x" },
@@ -42,6 +32,7 @@ const quickLinks = [
   { label: "Features", id: "features" },
   { label: "How It Works", id: "how-it-works" },
   { label: "Join Waitlist", id: "waitlist" },
+  { label: "Blog", href: "/allblogs" },
 ];
 
 const legalLinks = [
@@ -77,13 +68,22 @@ export function Footer() {
             </h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
-                <li key={link.id}>
-                  <button
-                    onClick={() => scrollToSection(link.id)}
-                    className="font-jakarta text-[#B8C5D6] text-sm hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </button>
+                <li key={link.id || link.href}>
+                  {link.href ? (
+                    <a
+                      href={link.href}
+                      className="font-jakarta text-[#B8C5D6] text-sm hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => scrollToSection(link.id!)}
+                      className="font-jakarta text-[#B8C5D6] text-sm hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -120,6 +120,8 @@ export function Footer() {
                   <a
                     key={index}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={social.label}
                     className="bg-[#1A1F2E] w-10 h-10 flex items-center justify-center hover:bg-[#5cdfff] transition-colors group"
                   >
