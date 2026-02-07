@@ -9,6 +9,7 @@ import { TournamentsSection } from "./components/TournamentsSection";
 import { HowItWorks } from "./components/HowItWorks";
 import { BlogListingPage } from "./components/BlogListingPage";
 import { BlogPostPage } from "./components/BlogPostPage";
+import { BlogsSection } from "./components/BlogsSection";
 import { WaitlistSection } from "./components/WaitlistSection";
 import { Footer } from "./components/Footer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
@@ -56,6 +57,10 @@ export default function App() {
               <TournamentsSection />
               <HowItWorks />
               <WaitlistSection />
+              <BlogsSection
+                onBlogClick={showBlogPost}
+                onViewAll={showBlogList}
+              />
             </main>
             <Footer />
           </>

@@ -1,322 +1,240 @@
-import { ArrowRight } from "lucide-react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import svgPaths from "../../imports/svg-0swqsrs9fz";
-import stadiumSvgPaths from "../../imports/svg-xs8igyqenl";
-import { useNavigate } from "react-router-dom";
+"use client";
+
+import {
+  Calendar,
+  Clock,
+  Tag,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import Slider from "react-slick";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { BLOG_POSTS, type BlogPost } from "../utils/blogData";
 
 interface BlogCardProps {
-  title: string;
-  image: string;
-  dark?: boolean;
-  onClick?: () => void;
+  post: BlogPost;
+  onReadMore: (slug: string) => void;
 }
 
-// Desktop Blog Card - Horizontal Layout
-function DesktopBlogCard({ title, image, onClick }: BlogCardProps) {
+function BlogCard({ post, onReadMore }: BlogCardProps) {
   return (
-    <div
-      onClick={onClick}
-      className="bg-[#191919] relative border-3 border-[#04080b] border-solid p-4 w-full cursor-pointer group hover:border-[#5cdfff]/30 transition-all duration-300"
+    <article
+      onClick={() => onReadMore(post.slug)}
+      className="group bg-[rgba(15,23,43,0.8)] border-2 border-[#1d293d] hover:border-[#5cdfff] transition-all duration-300 overflow-hidden flex flex-col mx-3 h-[580px] cursor-pointer"
     >
-      {/* Content Container */}
-      <div className="flex flex-col gap-8">
-        {/* Image and Arrow Row */}
-        <div className="flex items-start justify-between w-full">
-          {/* Image */}
-          <div className="bg-[#bababa] h-[172px] w-[154px] overflow-hidden relative">
-            <ImageWithFallback
-              src={image}
-              alt={title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-          </div>
-
-          {/* Arrow Icon */}
-          <div className="flex items-center justify-center size-[31px]">
-            <div className="rotate-90 text-[#5cdfff] group-hover:text-white transition-colors duration-300">
-              <svg
-                className="block size-full"
-                fill="none"
-                preserveAspectRatio="none"
-                viewBox="0 0 31 31"
-              >
-                <path d={svgPaths.p51a800} fill="currentColor" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        {/* Title */}
-        <p className="font-jakarta font-extrabold leading-none text-[#5cdfff] text-lg xl:text-xl 2xl:text-2xl line-clamp-2">
-          {title}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-// Tablet/Mobile Blog Card - Vertical Layout
-function ResponsiveBlogCard({ title, image, onClick }: BlogCardProps) {
-  return (
-    <div
-      onClick={onClick}
-      className="bg-[#191919] relative border-3 border-[#04080b] border-solid p-4 cursor-pointer group hover:border-[#5cdfff]/30 transition-all duration-300"
-    >
-      {/* Content Container */}
-      <div className="flex flex-col gap-8">
-        {/* Image and Arrow Row */}
-        <div className="flex items-start justify-between w-full">
-          {/* Image */}
-          <div className="bg-[#bababa] h-[172px] w-[154px] overflow-hidden relative">
-            <ImageWithFallback
-              src={image}
-              alt={title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-          </div>
-
-          {/* Arrow Icon */}
-          <div className="flex items-center justify-center size-[31px]">
-            <div className="rotate-90 text-[#5cdfff] group-hover:text-white transition-colors duration-300">
-              <svg
-                className="block size-full"
-                fill="none"
-                preserveAspectRatio="none"
-                viewBox="0 0 31 31"
-              >
-                <path d={svgPaths.p51a800} fill="currentColor" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        {/* Title */}
-        <p className="font-orbitron font-extrabold leading-none text-[#5cdfff] text-base sm:text-lg md:text-xl uppercase line-clamp-2">
-          {title}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-// Featured Stadium Image Component
-function FeaturedStadiumImage() {
-  return (
-    <div className="relative w-full h-full">
-      <svg
-        className="absolute inset-0 w-full h-full"
-        fill="none"
-        preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 574 508.502"
-      >
-        <defs>
-          <clipPath id="stadium-clip">
-            <path d={stadiumSvgPaths.p12211f80} />
-          </clipPath>
-        </defs>
-        <g clipPath="url(#stadium-clip)">
-          <image
-            href="https://images.unsplash.com/photo-1679391029864-d46f366a456b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb290YmFsbCUyMHN0YWRpdW0lMjBuaWdodHxlbnwxfHx8fDE3Njk4NDAxOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            x="0"
-            y="0"
-            width="574"
-            height="508.502"
-            preserveAspectRatio="xMidYMid slice"
-          />
-        </g>
-        <path
-          d={stadiumSvgPaths.p12211f80}
-          fill="none"
-          stroke="#00d3f2"
-          strokeWidth="2"
-          opacity="0.4"
+      {/* Image */}
+      <div className="relative h-48 overflow-hidden flex-shrink-0">
+        <ImageWithFallback
+          src={post.imageUrl}
+          alt={post.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-      </svg>
-    </div>
+        <div className="absolute top-4 left-4">
+          <span className="inline-block bg-[#5cdfff] px-3 py-1 font-orbitron text-[#0a0f1e] text-xs font-bold uppercase tracking-wider">
+            {post.category}
+          </span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-5 flex-1 flex flex-col min-h-0">
+        {/* Meta */}
+        <div className="flex items-center gap-4 mb-3 text-[#8b95a5] text-xs flex-shrink-0">
+          <div className="flex items-center gap-1">
+            <Calendar className="w-3 h-3" />
+            <span className="font-orbitron">
+              {new Date(post.publishDate).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Clock className="w-3 h-3" />
+            <span className="font-orbitron">{post.readTime} min read</span>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3
+          className="font-orbitron font-bold text-lg text-white mb-3 group-hover:text-[#5cdfff] transition-colors line-clamp-2 flex-shrink-0 overflow-hidden"
+          style={{ lineHeight: "1.4", height: "3.92rem" }}
+        >
+          {post.title}
+        </h3>
+
+        {/* Excerpt */}
+        <p
+          className="font-jakarta text-[#cad5e2] text-sm mb-4 line-clamp-3 flex-shrink-0 overflow-hidden"
+          style={{ lineHeight: "1.5", height: "4.5rem" }}
+        >
+          {post.excerpt}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0 h-[28px] overflow-hidden">
+          {post.tags.slice(0, 2).map((tag) => (
+            <span
+              key={tag}
+              className="inline-flex items-center gap-1 bg-[rgba(92,223,255,0.1)] border border-[rgba(92,223,255,0.3)] px-2 py-1 text-[#5cdfff] font-orbitron text-xs"
+            >
+              <Tag className="w-3 h-3" />
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Read More */}
+        <div className="inline-flex items-center gap-2 text-[#5cdfff] font-orbitron text-sm font-bold uppercase tracking-wider group-hover:gap-3 transition-all mt-auto">
+          Read Article
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </div>
+      </div>
+    </article>
   );
 }
 
-export default function BlogsSection({
-  onBlogClick,
-}: {
-  onBlogClick?: () => void;
-}) {
-  const navigate = useNavigate();
+// Custom Arrow Components
+function PrevArrow(props: any) {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-[#5cdfff] hover:bg-[#4ac9eb] text-[#0a0f1e] p-3 transition-colors shadow-lg hover:shadow-[0_0_20px_rgba(92,223,255,0.5)]"
+      aria-label="Previous"
+    >
+      <ChevronLeft className="w-6 h-6" />
+    </button>
+  );
+}
 
-  const leftBlogs = [
-    {
-      title: "The Future of Football Predictions",
-      image:
-        "https://images.unsplash.com/photo-1730933900185-6bf7eeefe23f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb290YmFsbCUyMHByZWRpY3Rpb24lMjBhbmFseXRpY3N8ZW58MXx8fHwxNzY5ODQwMTk1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      dark: true,
-    },
-    {
-      title: "Inside Gaming Generation",
-      image:
-        "https://images.unsplash.com/photo-1767455471543-055dbc6c6700?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlc3BvcnRzJTIwZ2FtaW5nJTIwY29tcGV0aXRpb258ZW58MXx8fHwxNzY5Nzg5NDE4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      dark: false,
-    },
-  ];
+function NextArrow(props: any) {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-[#5cdfff] hover:bg-[#4ac9eb] text-[#0a0f1e] p-3 transition-colors shadow-lg hover:shadow-[0_0_20px_rgba(92,223,255,0.5)]"
+      aria-label="Next"
+    >
+      <ChevronRight className="w-6 h-6" />
+    </button>
+  );
+}
 
-  const rightBlogs = [
-    {
-      title: "Match Analytics This Year",
-      image:
-        "https://images.unsplash.com/photo-1603683180670-89e591ecf86a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb290YmFsbCUyMHRhY3RpY3MlMjBzdHJhdGVneXxlbnwxfHx8fDE3Njk4NDAxOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      dark: false,
-    },
-    {
-      title: "Premier League Insights",
-      image:
-        "https://images.unsplash.com/photo-1701363539457-875b9bc9bbc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVtaWVyJTIwbGVhZ3VlJTIwZm9vdGJhbGwlMjBtYXRjaHxlbnwxfHx8fDE3Njk4NDAxOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      dark: true,
-    },
-  ];
+interface BlogsSectionProps {
+  onBlogClick: (slug: string) => void;
+  onViewAll: () => void;
+}
 
-  const allBlogs = [...leftBlogs, ...rightBlogs];
+export function BlogsSection({ onBlogClick, onViewAll }: BlogsSectionProps) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
+    dotsClass: "slick-dots !bottom-[-40px]",
+    customPaging: () => (
+      <div className="w-3 h-3 bg-[#1d293d] hover:bg-[#5cdfff] transition-colors" />
+    ),
+  };
+
+  // Get the first 6 blog posts
+  const featuredBlogs = BLOG_POSTS.slice(0, 6);
 
   return (
-    <section className="relative py-12 lg:py-24 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[#0D111A]" />
+    <section className="bg-[#0D111A] py-16 lg:py-24 relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#5cdfff] blur-[100px]"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#9810fa] blur-[100px]"></div>
+      </div>
 
-      <div className="container relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-32">
-        {/* Desktop Layout - 3 Column Grid (lg and up) */}
-        <div className="hidden lg:block">
-          <div className="flex flex-col gap-6">
-            {/* Header */}
-            <div className="flex items-center justify-between w-full">
-              <h2 className="font-orbitron font-extrabold text-2xl xl:text-3xl 2xl:text-4xl text-white uppercase">
-                StatOz News
-              </h2>
-              <button
-                onClick={() => navigate("/blogs")}
-                className="font-orbitron text-white/65 text-base xl:text-lg 2xl:text-xl hover:text-[#5cdfff] transition-colors whitespace-nowrap"
-              >
-                View All
-              </button>
-            </div>
-
-            {/* Three Column Layout */}
-            <div className="flex items-start gap-6 xl:gap-10 2xl:gap-[50px]">
-              {/* Left Column */}
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-col gap-4 xl:gap-6 2xl:gap-[25px]">
-                  {leftBlogs.map((blog, index) => (
-                    <DesktopBlogCard
-                      key={`left-${index}`}
-                      {...blog}
-                      onClick={onBlogClick}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Center Featured Image */}
-              <div className="shrink-0 w-[280px] xl:w-[400px] 2xl:w-[574px]">
-                <div className="w-full aspect-[574/508.502]">
-                  <FeaturedStadiumImage />
-                </div>
-              </div>
-
-              {/* Right Column */}
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-col gap-4 xl:gap-6 2xl:gap-[27px]">
-                  {rightBlogs.map((blog, index) => (
-                    <DesktopBlogCard
-                      key={`right-${index}`}
-                      {...blog}
-                      onClick={onBlogClick}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
+      <div className="container mx-auto px-4 lg:px-32 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#7C86FF] to-[#5cdfff] px-4 py-2 mb-6">
+            <span className="font-orbitron text-white text-sm font-bold tracking-wider">
+              LATEST INSIGHTS
+            </span>
           </div>
+          <h2 className="font-orbitron font-extrabold text-3xl lg:text-5xl text-white uppercase mb-4">
+            From The Blog
+          </h2>
+          <p className="font-jakarta text-[#B8C5D6] text-base lg:text-lg max-w-2xl mx-auto">
+            Expert guides, tournament previews, and winning strategies to
+            dominate your predictions.
+          </p>
         </div>
 
-        {/* Tablet Layout - 2 Column Grid (md to lg) */}
-        <div className="hidden md:block lg:hidden">
-          <div className="flex items-center justify-between w-full mb-8 md:mb-10">
-            <h2 className="font-orbitron font-extrabold text-2xl md:text-3xl text-white uppercase tracking-wider">
-              StatOz News
-            </h2>
-            <button
-              onClick={() => navigate("/blogs")}
-              className="font-orbitron text-white/65 text-base md:text-lg hover:text-[#5cdfff] transition-all duration-300 whitespace-nowrap hover:scale-105 flex items-center gap-2 group"
-            >
-              View All
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
-          </div>
-
-          {/* Featured Image with Enhanced Frame */}
-          <div className="mb-8 md:mb-12 max-w-3xl mx-auto">
-            <div className="relative p-4 md:p-6 bg-linear-to-br from-[#5cdfff]/10 to-transparent rounded-lg border-2 border-[#5cdfff]/20 hover:border-[#5cdfff]/40 transition-all duration-500 group">
-              <div className="w-full aspect-[574/508.502] overflow-hidden rounded-md">
-                <div className="w-full h-full group-hover:scale-105 transition-transform duration-700">
-                  <FeaturedStadiumImage />
-                </div>
-              </div>
-              {/* Decorative corner accents */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#5cdfff] opacity-60"></div>
-              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#5cdfff] opacity-60"></div>
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#5cdfff] opacity-60"></div>
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#5cdfff] opacity-60"></div>
-            </div>
-          </div>
-
-          {/* Blog Grid - 2 columns with enhanced spacing */}
-          <div className="grid grid-cols-2 gap-6 md:gap-8">
-            {allBlogs.map((blog, index) => (
-              <div
-                key={`tablet-${index}`}
-                className="transform hover:scale-[1.02] transition-transform duration-300"
-              >
-                <ResponsiveBlogCard {...blog} onClick={onBlogClick} />
+        {/* Carousel */}
+        <div className="relative pb-16 px-8">
+          <Slider {...settings}>
+            {featuredBlogs.map((post) => (
+              <div key={post.id} className="px-2">
+                <BlogCard post={post} onReadMore={onBlogClick} />
               </div>
             ))}
-          </div>
+          </Slider>
         </div>
 
-        {/* Mobile Layout - Single Column (below md) */}
-        <div className="md:hidden">
-          <div className="flex items-center justify-between w-full mb-6">
-            <h2 className="font-orbitron font-extrabold text-lg sm:text-xl text-white uppercase">
-              StatOz News
-            </h2>
-            <button
-              onClick={() => navigate("/blogs")}
-              className="font-orbitron text-white/65 text-sm sm:text-base hover:text-[#5cdfff] transition-colors whitespace-nowrap"
-            >
-              View All
-            </button>
-          </div>
-
-          {/* Featured Image */}
-          <div className="mb-6">
-            <div className="relative w-full aspect-square overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-linear-to-br from-purple-500/20 via-cyan-500/20 to-orange-500/20 z-10" />
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1679391029864-d46f366a456b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb290YmFsbCUyMHN0YWRpdW0lMjBuaWdodHxlbnwxfHx8fDE3Njk4NDAxOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Featured article"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Blog Cards - Stacked */}
-          <div className="flex flex-col gap-3 sm:gap-4">
-            {allBlogs.map((blog, index) => (
-              <ResponsiveBlogCard
-                key={`mobile-${index}`}
-                {...blog}
-                onClick={onBlogClick}
-              />
-            ))}
-          </div>
+        {/* View All Button */}
+        <div className="text-center mt-8">
+          <button
+            onClick={onViewAll}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#9810fa] to-[#155dfc] px-8 py-4 font-orbitron text-white text-base font-bold uppercase tracking-wider hover:shadow-[0_0_30px_rgba(92,223,255,0.6)] transition-all duration-300 group"
+          >
+            View All Articles
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </div>
+
+      {/* Custom Slick Carousel Styles */}
+      <style>{`
+        .slick-dots li button:before {
+          display: none;
+        }
+        .slick-dots li div {
+          background: #1d293d;
+          transition: background 0.3s;
+        }
+        .slick-dots li.slick-active div {
+          background: #5cdfff;
+        }
+        .slick-slide > div {
+          display: flex;
+          height: 100%;
+        }
+        .slick-track {
+          display: flex;
+          align-items: stretch;
+        }
+      `}</style>
     </section>
   );
 }
