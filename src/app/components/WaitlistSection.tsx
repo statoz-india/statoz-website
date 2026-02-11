@@ -31,12 +31,12 @@ export function WaitlistSection() {
 
       if (!res.ok) {
         throw new Error(
-          (data as { message?: string }).message ?? "Something went wrong"
+          (data as { message?: string }).message ?? "Something went wrong",
         );
       }
 
       setSuccessMessage(
-        (data as { message?: string }).message ?? "You're on the list!"
+        (data as { message?: string }).message ?? "You're on the list!",
       );
       setIsSubmitted(true);
       setEmail("");
@@ -48,7 +48,7 @@ export function WaitlistSection() {
       setError(
         err instanceof Error
           ? err.message
-          : "Failed to join waitlist. Try again."
+          : "Failed to join waitlist. Try again.",
       );
     } finally {
       setIsLoading(false);
@@ -63,9 +63,9 @@ export function WaitlistSection() {
       <div className="container mx-auto px-4 lg:px-32">
         <div className="flex flex-col items-center text-center gap-6">
           {/* Icon */}
-          <div className="w-24 h-24 rounded-full bg-linear-to-br from-[#9810fa] to-[#e60076] flex items-center justify-center animate-pulse">
+          {/* <div className="w-24 h-24 rounded-full bg-linear-to-br from-[#9810fa] to-[#e60076] flex items-center justify-center animate-pulse">
             <StarIcon />
-          </div>
+          </div> */}
 
           <div>
             <h2 className="font-orbitron font-extrabold text-4xl lg:text-5xl text-white uppercase mb-4">
