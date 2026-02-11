@@ -197,7 +197,7 @@ export function BlogPostPage({
   const shareText = post.title;
 
   return (
-    <div className="min-h-screen bg-[#0a0f1e] pt-24 pb-16">
+    <div className="min-h-screen bg-[#0a0f1e] pt-8 pb-16">
       <div className="container mx-auto px-4 lg:px-32">
         {/* Back Button */}
         {onBack ? (

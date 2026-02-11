@@ -13,6 +13,7 @@ import Slider, { type CustomArrowProps } from "react-slick";
 import { useEffect, useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { BLOG_POSTS, type BlogPost } from "../utils/blogData";
+import { useEffect, useState } from "react";
 
 interface BlogCardProps {
   post: BlogPost;
@@ -177,6 +178,48 @@ export function BlogsSection({
       <div className="w-3 h-3 bg-[#1d293d] hover:bg-[#5cdfff] transition-colors" />
     ),
   };
+
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 5000,
+  //   pauseOnHover: true,
+  //   prevArrow: <PrevArrow />,
+  //   nextArrow: <NextArrow />,
+  //   responsive: [
+  //     {
+  //       breakpoint: 1024,
+  //       settings: {
+  //         slidesToShow: 2,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 768,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //         arrows: true,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 640,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //         arrows: true,
+  //       },
+  //     },
+  //   ],
+  //   dotsClass: "slick-dots !bottom-[-40px]",
+  //   customPaging: () => (
+  //     <div className="w-3 h-3 bg-[#1d293d] hover:bg-[#5cdfff] transition-colors" />
+  //   ),
+  // };
 
   // Get the first 6 blog posts
   const featuredBlogs = BLOG_POSTS.slice(0, 6);
