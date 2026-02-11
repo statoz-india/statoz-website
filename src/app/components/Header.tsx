@@ -1,19 +1,36 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "../components/shared/Logo";
 import { scrollToSection } from "../utils/helpers";
 
 interface HeaderProps {
   onBlogClick?: () => void;
   onHomeClick?: () => void;
+  blogHref?: string;
+  homeHref?: string;
 }
 
-export function Header({ onBlogClick, onHomeClick }: HeaderProps = {}) {
+export function Header({
+  onBlogClick,
+  onHomeClick,
+  blogHref,
+  homeHref,
+}: HeaderProps = {}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const handleScrollToSection = (id: string) => {
+    if (pathname !== "/" && homeHref) {
+      router.push(`${homeHref}#${id}`);
+      setIsMenuOpen(false);
+      return;
+    }
+
     scrollToSection(id, () => setIsMenuOpen(false));
   };
 
@@ -31,17 +48,30 @@ export function Header({ onBlogClick, onHomeClick }: HeaderProps = {}) {
     }
   };
 
+  const showBlogLink = Boolean(onBlogClick || blogHref);
+
   return (
     <header className="bg-[#08090F] sticky top-0 z-50 w-full border-b border-[#1A1F2E]">
       <div className="container mx-auto px-4 lg:px-32 py-6">
         <div className="flex items-center justify-between">
-          <button
-            onClick={handleLogoClick}
-            className="cursor-pointer"
-            aria-label="Go to home"
-          >
-            <Logo />
-          </button>
+          {homeHref ? (
+            <Link
+              href={homeHref}
+              onClick={() => setIsMenuOpen(false)}
+              className="cursor-pointer"
+              aria-label="Go to home"
+            >
+              <Logo />
+            </Link>
+          ) : (
+            <button
+              onClick={handleLogoClick}
+              className="cursor-pointer"
+              aria-label="Go to home"
+            >
+              <Logo />
+            </button>
+          )}
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
@@ -57,20 +87,29 @@ export function Header({ onBlogClick, onHomeClick }: HeaderProps = {}) {
             >
               How It Works
             </button>
-            <button
+            {/* <button
               onClick={() => handleScrollToSection("games")}
               className="font-orbitron font-bold text-sm text-[#B8C5D6] uppercase hover:text-white transition-colors"
             >
               Games
-            </button>
-            {onBlogClick && (
-              <button
-                onClick={handleBlogClick}
-                className="font-orbitron font-bold text-sm text-[#B8C5D6] uppercase hover:text-white transition-colors"
-              >
-                Blog
-              </button>
-            )}
+            </button> */}
+            {showBlogLink &&
+              (blogHref ? (
+                <Link
+                  href={blogHref}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="font-orbitron font-bold text-sm text-[#B8C5D6] uppercase hover:text-white transition-colors"
+                >
+                  Blog
+                </Link>
+              ) : (
+                <button
+                  onClick={handleBlogClick}
+                  className="font-orbitron font-bold text-sm text-[#B8C5D6] uppercase hover:text-white transition-colors"
+                >
+                  Blog
+                </button>
+              ))}
             <button
               onClick={() => handleScrollToSection("waitlist")}
               className="bg-[#5cdfff] hover:bg-[#4dcfef] border-2 border-[#5cdfff] px-8 py-3 hover:scale-105 transition-transform"
@@ -112,14 +151,23 @@ export function Header({ onBlogClick, onHomeClick }: HeaderProps = {}) {
             >
               Games
             </button>
-            {onBlogClick && (
-              <button
-                onClick={handleBlogClick}
-                className="font-orbitron font-bold text-sm text-[#B8C5D6] uppercase hover:text-white transition-colors text-left"
-              >
-                Blog
-              </button>
-            )}
+            {showBlogLink &&
+              (blogHref ? (
+                <Link
+                  href={blogHref}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="font-orbitron font-bold text-sm text-[#B8C5D6] uppercase hover:text-white transition-colors text-left"
+                >
+                  Blog
+                </Link>
+              ) : (
+                <button
+                  onClick={handleBlogClick}
+                  className="font-orbitron font-bold text-sm text-[#B8C5D6] uppercase hover:text-white transition-colors text-left"
+                >
+                  Blog
+                </button>
+              ))}
             <button
               onClick={() => handleScrollToSection("waitlist")}
               className="bg-[#5cdfff] hover:bg-[#4dcfef] border-2 border-[#5cdfff] px-6 py-3 hover:scale-105 transition-transform w-full"
