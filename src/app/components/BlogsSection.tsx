@@ -8,6 +8,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import Link from "next/link";
+import Slider, { type CustomArrowProps } from "react-slick";
 import Slider from "react-slick";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { BLOG_POSTS, type BlogPost } from "../utils/blogData";
