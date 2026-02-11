@@ -1,7 +1,4 @@
-"use client";
-
 import { useEffect } from "react";
-import Link from "next/link";
 import {
   ArrowLeft,
   Calendar,
@@ -17,17 +14,11 @@ import { getBlogBySlug, BLOG_POSTS } from "../utils/blogData";
 
 interface BlogPostPageProps {
   slug: string;
-  onBack?: () => void;
-  onBlogClick?: (slug: string) => void;
-  blogBasePath?: string;
+  onBack: () => void;
+  onBlogClick: (slug: string) => void;
 }
 
-export function BlogPostPage({
-  slug,
-  onBack,
-  onBlogClick,
-  blogBasePath = "/allblogs",
-}: BlogPostPageProps) {
+export function BlogPostPage({ slug, onBack, onBlogClick }: BlogPostPageProps) {
   const post = getBlogBySlug(slug);
 
   // Scroll to top when post changes
@@ -60,7 +51,7 @@ export function BlogPostPage({
 
       // Cleanup: restore default title when component unmounts
       return () => {
-        document.title = "Statoz - F2P Skill-Based Sports Prediction Gaming";
+        document.title = "Statoz - Skill-Based Sports Prediction Gaming";
       };
     }
   }, [post]);
@@ -76,23 +67,13 @@ export function BlogPostPage({
             <p className="font-jakarta text-[#cad5e2] mb-6">
               The article you&apos;re looking for doesn&apos;t exist.
             </p>
-            {onBack ? (
-              <button
-                onClick={onBack}
-                className="inline-flex items-center gap-2 bg-linear-to-r from-[#7C86FF] to-[#5cdfff] px-6 py-3 font-orbitron text-white text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(92,223,255,0.6)] transition-all duration-300"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Blog
-              </button>
-            ) : (
-              <Link
-                href={blogBasePath}
-                className="inline-flex items-center gap-2 bg-linear-to-r from-[#7C86FF] to-[#5cdfff] px-6 py-3 font-orbitron text-white text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(92,223,255,0.6)] transition-all duration-300"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Blog
-              </Link>
-            )}
+            <button
+              onClick={onBack}
+              className="inline-flex items-center gap-2 bg-linear-to-r from-[#7C86FF] to-[#5cdfff] px-6 py-3 font-orbitron text-white text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(92,223,255,0.6)] transition-all duration-300"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Blog
+            </button>
           </div>
         </div>
       </div>
@@ -200,23 +181,13 @@ export function BlogPostPage({
     <div className="min-h-screen bg-[#0a0f1e] pt-8 pb-16">
       <div className="container mx-auto px-4 lg:px-32">
         {/* Back Button */}
-        {onBack ? (
-          <button
-            onClick={onBack}
-            className="inline-flex items-center gap-2 text-[#5cdfff] font-orbitron text-sm font-bold uppercase tracking-wider hover:gap-3 transition-all mb-8 group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to All Articles
-          </button>
-        ) : (
-          <Link
-            href={blogBasePath}
-            className="inline-flex items-center gap-2 text-[#5cdfff] font-orbitron text-sm font-bold uppercase tracking-wider hover:gap-3 transition-all mb-8 group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to All Articles
-          </Link>
-        )}
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 text-[#5cdfff] font-orbitron text-sm font-bold uppercase tracking-wider hover:gap-3 transition-all mb-8 group"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          Back to All Articles
+        </button>
 
         {/* Article Header */}
         <article className="max-w-4xl mx-auto">
@@ -334,11 +305,10 @@ export function BlogPostPage({
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPosts.map((relatedPost) => (
-                <Link
+                <article
                   key={relatedPost.id}
-                  href={`${blogBasePath}/${relatedPost.slug}`}
-                  onClick={() => onBlogClick?.(relatedPost.slug)}
                   className="group bg-[rgba(15,23,43,0.8)] border-2 border-[#1d293d] hover:border-[#5cdfff] transition-all duration-300 overflow-hidden cursor-pointer"
+                  onClick={() => onBlogClick(relatedPost.slug)}
                 >
                   <div className="relative h-48 overflow-hidden">
                     <ImageWithFallback
@@ -355,7 +325,7 @@ export function BlogPostPage({
                       {relatedPost.excerpt}
                     </p>
                   </div>
-                </Link>
+                </article>
               ))}
             </div>
           </div>
