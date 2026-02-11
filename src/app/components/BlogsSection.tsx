@@ -8,26 +8,20 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import Link from "next/link";
-import Slider, { type CustomArrowProps } from "react-slick";
-import { useEffect, useState } from "react";
+import Slider from "react-slick";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { BLOG_POSTS, type BlogPost } from "../utils/blogData";
 import { useEffect, useState } from "react";
 
 interface BlogCardProps {
   post: BlogPost;
-  onReadMore?: (slug: string) => void;
-  blogBasePath: string;
+  onReadMore: (slug: string) => void;
 }
 
-function BlogCard({ post, onReadMore, blogBasePath }: BlogCardProps) {
-  const href = `${blogBasePath}/${post.slug}`;
-
+function BlogCard({ post, onReadMore }: BlogCardProps) {
   return (
-    <Link
-      href={href}
-      onClick={() => onReadMore?.(post.slug)}
+    <article
+      onClick={() => onReadMore(post.slug)}
       className="group bg-[rgba(15,23,43,0.8)] border-2 border-[#1d293d] hover:border-[#5cdfff] transition-all duration-300 overflow-hidden flex flex-col mx-3 h-[580px] cursor-pointer"
     >
       {/* Image */}
@@ -99,12 +93,16 @@ function BlogCard({ post, onReadMore, blogBasePath }: BlogCardProps) {
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
-    </Link>
+    </article>
   );
 }
 
-// Custom Arrow Components
-function PrevArrow({ onClick }: CustomArrowProps) {
+// Custom Arrow Components (react-slick passes onClick and other props)
+interface SliderArrowProps {
+  onClick?: () => void;
+}
+
+function PrevArrow({ onClick }: SliderArrowProps) {
   return (
     <button
       onClick={onClick}
@@ -116,7 +114,7 @@ function PrevArrow({ onClick }: CustomArrowProps) {
   );
 }
 
-function NextArrow({ onClick }: CustomArrowProps) {
+function NextArrow({ onClick }: SliderArrowProps) {
   return (
     <button
       onClick={onClick}
@@ -129,37 +127,19 @@ function NextArrow({ onClick }: CustomArrowProps) {
 }
 
 interface BlogsSectionProps {
-  onBlogClick?: (slug: string) => void;
-  onViewAll?: () => void;
-  viewAllHref?: string;
-  blogBasePath?: string;
+  onBlogClick: (slug: string) => void;
+  onViewAll: () => void;
 }
 
-export function BlogsSection({
-  onBlogClick,
-  onViewAll,
-  viewAllHref,
-  blogBasePath = "/allblogs",
-}: BlogsSectionProps) {
-  const [slidesToShow, setSlidesToShow] = useState(3);
+export function BlogsSection({ onBlogClick, onViewAll }: BlogsSectionProps) {
+  const [slidesToShow, setSlidesToShow] = useState(1);
 
   useEffect(() => {
-    const updateSlides = () => {
-      const width = window.innerWidth;
-      if (width < 768) {
-        setSlidesToShow(1);
-        return;
-      }
-      if (width < 1024) {
-        setSlidesToShow(2);
-        return;
-      }
-      setSlidesToShow(3);
-    };
-
-    updateSlides();
-    window.addEventListener("resize", updateSlides);
-    return () => window.removeEventListener("resize", updateSlides);
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setSlidesToShow(mq.matches ? 3 : 1);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
   const settings = {
@@ -225,8 +205,14 @@ export function BlogsSection({
   const featuredBlogs = BLOG_POSTS.slice(0, 6);
 
   return (
-    <section className="bg-[#0D111A] py-16 lg:py-24">
-      <div className="container mx-auto px-4 lg:px-32">
+    <section className="bg-[#0D111A] py-16 lg:py-24 relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#5cdfff] blur-[100px]"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#9810fa] blur-[100px]"></div>
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-32 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#7C86FF] to-[#5cdfff] px-4 py-2 mb-6">
@@ -248,11 +234,7 @@ export function BlogsSection({
           <Slider {...settings}>
             {featuredBlogs.map((post) => (
               <div key={post.id} className="px-2">
-                <BlogCard
-                  post={post}
-                  onReadMore={onBlogClick}
-                  blogBasePath={blogBasePath}
-                />
+                <BlogCard post={post} onReadMore={onBlogClick} />
               </div>
             ))}
           </Slider>
@@ -260,23 +242,13 @@ export function BlogsSection({
 
         {/* View All Button */}
         <div className="text-center mt-8">
-          {viewAllHref ? (
-            <Link
-              href={viewAllHref}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#9810fa] to-[#155dfc] px-8 py-4 font-orbitron text-white text-base font-bold uppercase tracking-wider hover:shadow-[0_0_30px_rgba(92,223,255,0.6)] transition-all duration-300 group"
-            >
-              View All Articles
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          ) : (
-            <button
-              onClick={onViewAll}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#9810fa] to-[#155dfc] px-8 py-4 font-orbitron text-white text-base font-bold uppercase tracking-wider hover:shadow-[0_0_30px_rgba(92,223,255,0.6)] transition-all duration-300 group"
-            >
-              View All Articles
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-          )}
+          <button
+            onClick={onViewAll}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#9810fa] to-[#155dfc] px-8 py-4 font-orbitron text-white text-base font-bold uppercase tracking-wider hover:shadow-[0_0_30px_rgba(92,223,255,0.6)] transition-all duration-300 group"
+          >
+            View All Articles
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </div>
 

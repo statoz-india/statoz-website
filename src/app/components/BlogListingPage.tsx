@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Calendar, Clock, Tag, ArrowRight, Search, Filter } from "lucide-react";
-import Link from "next/link";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import {
   BLOG_POSTS,
@@ -12,19 +11,12 @@ import {
 
 interface BlogCardProps {
   post: BlogPost;
-  onReadMore?: (slug: string) => void;
-  blogBasePath: string;
+  onReadMore: (slug: string) => void;
 }
 
-function BlogCard({ post, onReadMore, blogBasePath }: BlogCardProps) {
-  const href = `${blogBasePath}/${post.slug}`;
-
+function BlogCard({ post, onReadMore }: BlogCardProps) {
   return (
-    <Link
-      href={href}
-      onClick={() => onReadMore?.(post.slug)}
-      className="group bg-[rgba(15,23,43,0.8)] border-2 border-[#1d293d] hover:border-[#5cdfff] transition-all duration-300 overflow-hidden flex flex-col cursor-pointer"
-    >
+    <article className="group bg-[rgba(15,23,43,0.8)] border-2 border-[#1d293d] hover:border-[#5cdfff] transition-all duration-300 overflow-hidden flex flex-col">
       {/* Image */}
       <div className="relative h-64 overflow-hidden">
         <ImageWithFallback
@@ -83,24 +75,23 @@ function BlogCard({ post, onReadMore, blogBasePath }: BlogCardProps) {
         </div>
 
         {/* Read More */}
-        <div className="inline-flex items-center gap-2 text-[#5cdfff] font-orbitron text-sm font-bold uppercase tracking-wider hover:gap-3 transition-all group/btn">
+        <button
+          onClick={() => onReadMore(post.slug)}
+          className="inline-flex items-center gap-2 text-[#5cdfff] font-orbitron text-sm font-bold uppercase tracking-wider hover:gap-3 transition-all group/btn"
+        >
           Read Article
           <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-        </div>
+        </button>
       </div>
-    </Link>
+    </article>
   );
 }
 
 interface BlogListingPageProps {
-  onBlogClick?: (slug: string) => void;
-  blogBasePath?: string;
+  onBlogClick: (slug: string) => void;
 }
 
-export function BlogListingPage({
-  onBlogClick,
-  blogBasePath = "/allblogs",
-}: BlogListingPageProps) {
+export function BlogListingPage({ onBlogClick }: BlogListingPageProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -218,12 +209,7 @@ export function BlogListingPage({
         {filteredBlogs.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredBlogs.map((post) => (
-              <BlogCard
-                key={post.id}
-                post={post}
-                onReadMore={onBlogClick}
-                blogBasePath={blogBasePath}
-              />
+              <BlogCard key={post.id} post={post} onReadMore={onBlogClick} />
             ))}
           </div>
         ) : (

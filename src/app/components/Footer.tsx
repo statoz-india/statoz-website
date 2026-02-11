@@ -1,29 +1,15 @@
-"use client";
-
-import { Instagram, Facebook } from "lucide-react";
-import Image from "next/image";
-import React from "react";
+import { Instagram, Facebook, X, XIcon, XSquareIcon } from "lucide-react";
 
 import { scrollToSection } from "../utils/helpers";
 import { Logo } from "./shared/Logo";
 
-type SocialIcon = React.ComponentType<{ className?: string }>;
-
-const WhatsAppIcon: SocialIcon = ({ className }) => (
-  <Image
-    src="/whatsapp.svg"
-    alt="WhatsApp"
-    width={20}
-    height={20}
-    className={className}
-  />
+const WhatsAppIcon = (props: any) => (
+  <img src="/whatsapp.svg" alt="WhatsApp" {...props} />
 );
 
-const XSocialIcon: SocialIcon = ({ className }) => (
-  <Image src="/x.svg" alt="X" width={20} height={20} className={className} />
-);
+const XSocialIcon = (props: any) => <img src="/x.svg" alt="X" {...props} />;
 
-const socialLinks: Array<{ icon: SocialIcon; href: string; label: string }> = [
+const socialLinks = [
   { icon: XSocialIcon, href: "https://x.com/StatOzindia", label: "x" },
   {
     icon: Instagram,
