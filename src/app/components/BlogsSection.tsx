@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Slider, { type CustomArrowProps } from "react-slick";
-import { useEffect, useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { BLOG_POSTS, type BlogPost } from "../utils/blogData";
 import { useEffect, useState } from "react";
