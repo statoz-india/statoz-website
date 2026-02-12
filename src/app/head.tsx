@@ -1,7 +1,6 @@
 export default function Head() {
   return (
     <>
-      <link rel="icon" href="/statoz%20logo.png" />
       <script
         dangerouslySetInnerHTML={{
           __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,6 +10,7 @@ export default function Head() {
           })(window,document,'script','dataLayer','GTM-T436Z2PL');`,
         }}
       />
+      <link rel="icon" href="/statoz%20logo.png" />
     </>
   );
 }
