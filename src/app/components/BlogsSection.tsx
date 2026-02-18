@@ -224,7 +224,7 @@ export function BlogsSection({
   const featuredBlogs = BLOG_POSTS.slice(0, 6);
 
   return (
-    <section className="bg-[#0D111A] py-16 lg:py-24">
+    <section className="bg-[#0D111A] overflow-x-hidden py-16 lg:py-24">
       <div className="container mx-auto px-4 lg:px-32">
         {/* Section Header */}
         <div className="text-center mb-12">
