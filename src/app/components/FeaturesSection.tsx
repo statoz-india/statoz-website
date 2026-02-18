@@ -88,7 +88,10 @@ export function FeaturesSection() {
   }, []);
 
   return (
-    <section id="features" className="relative pb-0 pt-14 lg:pb-0 lg:pt-24">
+    <section
+      id="features"
+      className="relative overflow-hidden scrollbar-hide pb-0 pt-14 lg:pb-0 lg:pt-24"
+    >
       <div className="pointer-events-none absolute -left-24 top-24 h-80 w-80 rounded-full bg-[#7C86FF]/15 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 bottom-20 h-80 w-80 rounded-full bg-[#5cdfff]/15 blur-3xl" />
 
@@ -117,10 +120,10 @@ export function FeaturesSection() {
                 cardRefs.current[index] = element;
               }}
               data-index={index}
-              className="w-full lg:min-h-screen"
+              className="w-full"
             >
               <article
-                className={`group flex w-full flex-col transition-all duration-500 lg:h-screen lg:flex-row lg:items-stretch ${
+                className={`group flex w-full flex-col transition-all duration-500 lg:flex-row lg:items-stretch ${
                   visibleCards[index]
                     ? CARD_ANIMATION_CLASSES[index]
                     : "translate-y-4 opacity-0"
