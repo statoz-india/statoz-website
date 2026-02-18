@@ -33,7 +33,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Statoz",
+  title: "StatOz",
   description:
     "Think you know sports? STATOZ offers F2P daily skill-based prediction, games, live /future events bets, and leaderboards — all powered by sports knowledge.",
   icons: {

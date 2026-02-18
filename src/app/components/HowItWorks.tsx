@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { UserPlus, Target, Trophy, Crown } from "lucide-react";
 import { HOW_IT_WORKS_STEPS } from "../utils/constants";
 
@@ -9,6 +12,39 @@ const iconMap = {
 };
 
 export function HowItWorks() {
+  const [visibleSteps, setVisibleSteps] = useState<boolean[]>(
+    HOW_IT_WORKS_STEPS.map(() => false),
+  );
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const indexAttr = (entry.target as HTMLElement).dataset.index;
+          const index = Number(indexAttr);
+          if (Number.isNaN(index)) return;
+
+          setVisibleSteps((prev) => {
+            if (prev[index]) return prev;
+            return prev.map((item, i) => (i === index ? true : item));
+          });
+
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.35 },
+    );
+
+    stepRefs.current.forEach((step) => {
+      if (step) observer.observe(step);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="how-it-works"
@@ -34,7 +70,20 @@ export function HowItWorks() {
           return (
             <div
               key={index}
-              className="relative flex flex-col items-center text-center group"
+              ref={(element) => {
+                stepRefs.current[index] = element;
+              }}
+              data-index={index}
+              className={`relative flex flex-col items-center text-center group transition-all duration-500 ${
+                visibleSteps[index]
+                  ? [
+                      "animate-fade-in-0",
+                      "animate-fade-in-250",
+                      "animate-fade-in-500",
+                      "animate-fade-in-750",
+                    ][index]
+                  : "translate-y-4 opacity-0"
+              }`}
             >
               {/* Step Number */}
               <div className="absolute -top-4 -left-4 font-orbitron font-black text-6xl text-[rgba(255,255,255,0.05)] group-hover:text-[rgba(255,255,255,0.1)] transition-colors">
