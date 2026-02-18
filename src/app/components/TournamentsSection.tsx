@@ -3,7 +3,7 @@
 import { Calendar, MapPin, Trophy, Zap } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { TOURNAMENTS_DATA } from "../utils/constants";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Tournament images - Different trophy for each tournament
 const TOURNAMENT_IMAGES = [
@@ -223,10 +223,43 @@ function TournamentCard({
 }
 
 export function TournamentsSection() {
+  const [visibleCards, setVisibleCards] = useState<boolean[]>(
+    TOURNAMENTS_DATA.map(() => false),
+  );
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const indexAttr = (entry.target as HTMLElement).dataset.index;
+          const index = Number(indexAttr);
+          if (Number.isNaN(index)) return;
+
+          setVisibleCards((prev) => {
+            if (prev[index]) return prev;
+            return prev.map((item, i) => (i === index ? true : item));
+          });
+
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.35 },
+    );
+
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="tournaments"
-      className="container mx-auto px-4 lg:px-32 py-12 lg:py-24 relative overflow-hidden"
+      className="container mx-auto px-4 pb-0 pt-12 lg:px-32 lg:pb-0 lg:pt-24 relative overflow-hidden"
     >
       {/* Background gradient effects */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#7C86FF] opacity-10 blur-[150px] rounded-full pointer-events-none"></div>
@@ -251,11 +284,27 @@ export function TournamentsSection() {
 
       <div className="space-y-8 relative z-10">
         {TOURNAMENTS_DATA.map((tournament, index) => (
-          <TournamentCard
+          <div
             key={tournament.id}
-            tournament={tournament}
-            imageUrl={TOURNAMENT_IMAGES[index % TOURNAMENT_IMAGES.length]}
-          />
+            ref={(element) => {
+              cardRefs.current[index] = element;
+            }}
+            data-index={index}
+            className={`transition-all duration-500 ${
+              visibleCards[index]
+                ? [
+                    "animate-fade-in-0",
+                    "animate-fade-in-250",
+                    "animate-fade-in-500",
+                  ][index % 3]
+                : "translate-y-4 opacity-0"
+            }`}
+          >
+            <TournamentCard
+              tournament={tournament}
+              imageUrl={TOURNAMENT_IMAGES[index % TOURNAMENT_IMAGES.length]}
+            />
+          </div>
         ))}
       </div>
 
