@@ -6,6 +6,7 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "../components/shared/Logo";
 import { scrollToSection } from "../utils/helpers";
+import { APP_DOWNLOAD_URL } from "../utils/constants";
 
 interface HeaderProps {
   onBlogClick?: () => void;
@@ -110,14 +111,16 @@ export function Header({
                   Blog
                 </button>
               ))}
-            <button
-              onClick={() => handleScrollToSection("waitlist")}
+            <a
+              href={APP_DOWNLOAD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#5cdfff] hover:bg-[#4dcfef] border-2 border-[#5cdfff] px-8 py-3 hover:scale-105 transition-transform"
             >
               <span className="font-onest font-black text-sm text-[#0d1b4b] tracking-wider uppercase">
-                Join Waitlist
+                Download Now
               </span>
-            </button>
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -168,14 +171,16 @@ export function Header({
                   Blog
                 </button>
               ))}
-            <button
-              onClick={() => handleScrollToSection("waitlist")}
-              className="bg-[#5cdfff] hover:bg-[#4dcfef] border-2 border-[#5cdfff] px-6 py-3 hover:scale-105 transition-transform w-full"
+            <a
+              href={APP_DOWNLOAD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#5cdfff] hover:bg-[#4dcfef] border-2 border-[#5cdfff] px-6 py-3 hover:scale-105 transition-transform w-full text-center"
             >
               <span className="font-onest font-black text-sm text-[#0d1b4b] tracking-wider uppercase">
-                Join Waitlist
+                Download Now
               </span>
-            </button>
+            </a>
           </nav>
         )}
       </div>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 
 import { scrollToSection } from "../utils/helpers";
+import { APP_DOWNLOAD_URL } from "../utils/constants";
 import { Logo } from "./shared/Logo";
 
 type SocialIcon = React.ComponentType<{ className?: string }>;
@@ -45,7 +46,7 @@ const socialLinks: Array<{ icon: SocialIcon; href: string; label: string }> = [
 const quickLinks = [
   { label: "Features", id: "features" },
   { label: "How It Works", id: "how-it-works" },
-  { label: "Join Waitlist", id: "waitlist" },
+  { label: "Download Now", href: APP_DOWNLOAD_URL, external: true },
   { label: "Blog", href: "/allblogs" },
 ];
 
@@ -86,6 +87,8 @@ export function Footer() {
                   {link.href ? (
                     <a
                       href={link.href}
+                      target={link.external ? "_blank" : undefined}
+                      rel={link.external ? "noopener noreferrer" : undefined}
                       className="font-jakarta text-[#B8C5D6] text-sm hover:text-white transition-colors"
                     >
                       {link.label}

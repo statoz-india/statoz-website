@@ -256,7 +256,7 @@ IPL 2026 on Statoz is your chance to showcase cricket knowledge and win big. Use
 
 Join Statoz today and turn your cricket expertise into victories. The IPL 2026 season awaits!
 
-**Ready to start predicting? Sign up for early access and get exclusive IPL 2026 insights.**
+**Ready to start predicting? Download Statoz now and get exclusive IPL 2026 insights.**
     `
   },
   {
@@ -1112,7 +1112,7 @@ Top performers earn recognition, exclusive perks, and exciting prizes.
 
 **Creating Your Account:**
 1. Visit Statoz website or download the app
-2. Click "Join Waitlist" or "Sign Up"
+2. Tap "Download Now" or "Sign Up"
 3. Enter email and create password
 4. Verify your email address
 5. Complete your profile
@@ -1456,7 +1456,7 @@ Statoz transforms passive sports watching into active, engaging competition. Whe
 
 Start with sports you love, make informed predictions, learn continuously, and most importantly - enjoy the journey. Welcome to Statoz, where your sports knowledge matters!
 
-**Ready to start? Join the waitlist now and be among the first to compete when we launch!**
+**Ready to start? Download Statoz now and be among the first to compete!**
     `
   },
   {
