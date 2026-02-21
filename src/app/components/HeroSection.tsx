@@ -27,8 +27,9 @@ export function HeroSection() {
           </div>
 
           <p className="font-jakarta text-[#B8C5D6] text-lg lg:text-xl leading-relaxed max-w-xl animate-fade-in-250">
-            Where skill meets strategy. Make predictions, earn XP, climb
-            leaderboards, and win real prizes.
+            Join Statoz, the free-to-play sports prediction market where skill
+            meets strategy. Predict outcomes, play daily sports games, climb
+            leaderboards, and win real rewards.
           </p>
 
           {/* Feature Pills */}
@@ -75,7 +76,7 @@ export function HeroSection() {
           <div className="relative flex items-center justify-center h-full">
             <img
               src={epicImage}
-              alt="Statoz cover"
+              alt="Statoz free-to-play sports prediction market app experience"
               className="w-full h-full object-cover"
             />
           </div>

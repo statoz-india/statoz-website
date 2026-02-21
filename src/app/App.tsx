@@ -11,15 +11,13 @@ import { BlogsSection } from "./components/BlogsSection";
 import { DownloadSection } from "./components/DownloadSection";
 import { Footer } from "./components/Footer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
-import { initializeSEO } from "./utils/seo";
 import { initializeErrorHandler } from "./utils/errorHandler";
 
 export default function App() {
-  // Initialize SEO and error handler on app mount
   useEffect(() => {
     initializeErrorHandler();
-    initializeSEO();
   }, []);
+
   return (
     <ErrorBoundary>
       <div className="min-h-screen bg-[#0D111A] flex flex-col">
