@@ -8,10 +8,7 @@ export async function POST(request: NextRequest) {
     const { email, type } = body;
 
     if (!email || typeof email !== "string" || !email.trim()) {
-      return NextResponse.json(
-        { message: "Email is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "Email is required" }, { status: 400 });
     }
 
     const res = await fetch(`${API_BASE_URL}/waitlist/createWaitlist`, {
@@ -28,16 +25,13 @@ export async function POST(request: NextRequest) {
     if (!res.ok) {
       return NextResponse.json(
         { message: (data as { message?: string }).message ?? "Request failed" },
-        { status: res.status }
+        { status: res.status },
       );
     }
 
     return NextResponse.json(data);
   } catch (err) {
     console.error("[waitlist] proxy error:", err);
-    return NextResponse.json(
-      { message: "Something went wrong" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
   }
 }

@@ -38,8 +38,10 @@ export const GRADIENTS = {
   orange: 'from-[#d08700] to-[#f54900]',
   green: 'from-[#00a63e] to-[#096]',
   stats: 'from-[rgba(89,22,139,0.2)] to-[rgba(28,57,142,0.2)]',
-  waitlist: 'from-[rgba(89,22,139,0.5)] to-[rgba(28,57,142,0.5)]',
 } as const;
+
+export const APP_DOWNLOAD_URL =
+  "https://play.google.com/store/apps/details?id=com.statoz.app";
 
 // Feature Pills Data
 export const HERO_FEATURES = [

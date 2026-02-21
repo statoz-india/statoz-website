@@ -9,7 +9,6 @@ import { TournamentsSection } from "./components/TournamentsSection";
 import { HowItWorks } from "./components/HowItWorks";
 import { BlogsSection } from "./components/BlogsSection";
 import { DownloadSection } from "./components/DownloadSection";
-import { WaitlistSection } from "./components/WaitlistSection";
 import { Footer } from "./components/Footer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { initializeSEO } from "./utils/seo";
@@ -31,7 +30,6 @@ export default function App() {
           <FeaturesSection />
           <TournamentsSection />
           <HowItWorks />
-          <WaitlistSection />
           <DownloadSection />
           <BlogsSection viewAllHref="/allblogs" />
         </main>

@@ -4,6 +4,7 @@ import { Calendar, MapPin, Trophy, Zap } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { TOURNAMENTS_DATA } from "../utils/constants";
 import { useEffect, useRef, useState } from "react";
+import { APP_DOWNLOAD_URL } from "../utils/constants";
 
 // Tournament images - Different trophy for each tournament
 const TOURNAMENT_IMAGES = [
@@ -19,13 +20,14 @@ function TournamentCard({
   tournament: (typeof TOURNAMENTS_DATA)[number];
   imageUrl: string;
 }) {
+  const linearFromTo = tournament.gradient;
+  const isWaitlistOnly = tournament.id === "fifa-2026";
   const [showInput, setShowInput] = useState(false);
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const linearFromTo = tournament.gradient;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,9 +64,7 @@ function TournamentCard({
         setSuccessMessage(null);
       }, 5000);
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to join. Try again.",
-      );
+      setError(err instanceof Error ? err.message : "Failed to join. Try again.");
     } finally {
       setIsLoading(false);
     }
@@ -150,70 +150,84 @@ function TournamentCard({
 
           {/* Call to action */}
           <div className="mt-6">
-            {!showInput && !isSubmitted && (
-              <button
-                onClick={() => setShowInput(true)}
+            {isWaitlistOnly ? (
+              <>
+                {!showInput && !isSubmitted && (
+                  <button
+                    onClick={() => setShowInput(true)}
+                    className={`group/btn inline-flex items-center gap-2 bg-linear-to-r ${linearFromTo} px-6 py-3 font-orbitron text-white text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(124,134,255,0.5)] transition-all duration-300`}
+                  >
+                    <Zap className="w-4 h-4 group-hover/btn:animate-pulse" />
+                    Join Waitlist
+                  </button>
+                )}
+
+                {showInput && !isSubmitted && (
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col sm:flex-row gap-2 animate-[slideIn_0.3s_ease-out]"
+                  >
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setError(null);
+                      }}
+                      placeholder="Enter your email"
+                      required
+                      autoFocus
+                      disabled={isLoading}
+                      className="flex-1 px-4 py-3 bg-[rgba(29,41,61,0.8)] border-2 border-[rgba(124,134,255,0.3)] text-white font-orbitron text-sm placeholder:text-[#8b95a5] focus:border-[rgba(124,134,255,0.8)] focus:outline-none transition-colors disabled:opacity-60"
+                    />
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className={`inline-flex items-center justify-center gap-2 bg-linear-to-r ${linearFromTo} px-6 py-3 font-orbitron text-white text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(124,134,255,0.5)] transition-all duration-300 whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed`}
+                    >
+                      <Zap className="w-4 h-4" />
+                      {isLoading ? "Joining..." : "Submit"}
+                    </button>
+                  </form>
+                )}
+
+                {error && (
+                  <p className="font-jakarta text-red-400 text-sm mt-2">{error}</p>
+                )}
+
+                {isSubmitted && (
+                  <div className="flex items-center gap-3 text-[#5cdfff] animate-[bounce_0.5s_ease-in-out]">
+                    <div className="w-8 h-8 rounded-full border-4 border-[#5cdfff] flex items-center justify-center animate-[scaleIn_0.5s_ease-out]">
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={3}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <span className="font-orbitron text-sm font-bold uppercase tracking-wider">
+                      {successMessage ?? "You're on the list!"}
+                    </span>
+                  </div>
+                )}
+              </>
+            ) : (
+              <a
+                href={APP_DOWNLOAD_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`group/btn inline-flex items-center gap-2 bg-linear-to-r ${linearFromTo} px-6 py-3 font-orbitron text-white text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(124,134,255,0.5)] transition-all duration-300`}
               >
-                <Zap className="w-4 h-4 group-hover/btn:animate-pulse" />
-                Get Notified
-              </button>
-            )}
-
-            {showInput && !isSubmitted && (
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row gap-2 animate-[slideIn_0.3s_ease-out]"
-              >
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setError(null);
-                  }}
-                  placeholder="Enter your email"
-                  required
-                  autoFocus
-                  disabled={isLoading}
-                  className="flex-1 px-4 py-3 bg-[rgba(29,41,61,0.8)] border-2 border-[rgba(124,134,255,0.3)] text-white font-orbitron text-sm placeholder:text-[#8b95a5] focus:border-[rgba(124,134,255,0.8)] focus:outline-none transition-colors disabled:opacity-60"
-                />
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className={`inline-flex items-center justify-center gap-2 bg-linear-to-r ${linearFromTo} px-6 py-3 font-orbitron text-white text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(124,134,255,0.5)] transition-all duration-300 whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed`}
-                >
-                  <Zap className="w-4 h-4" />
-                  {isLoading ? "Joining…" : "Submit"}
-                </button>
-              </form>
-            )}
-
-            {error && (
-              <p className="font-jakarta text-red-400 text-sm mt-2">{error}</p>
-            )}
-
-            {isSubmitted && (
-              <div className="flex items-center gap-3 text-[#5cdfff] animate-[bounce_0.5s_ease-in-out]">
-                <div className="w-8 h-8 rounded-full border-4 border-[#5cdfff] flex items-center justify-center animate-[scaleIn_0.5s_ease-out]">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={3}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <span className="font-orbitron text-sm font-bold uppercase tracking-wider">
-                  {successMessage ?? "You're on the list!"}
-                </span>
-              </div>
+                <Trophy className="w-4 h-4" />
+                Download Now
+              </a>
             )}
           </div>
         </div>
@@ -308,28 +322,6 @@ export function TournamentsSection() {
         ))}
       </div>
 
-      {/* Bottom CTA */}
-      <div className="mt-12 lg:mt-16 text-center relative z-10">
-        <div className="bg-[rgba(20,25,35,0.8)] border-2 border-[#1A1F2E] p-8 lg:p-12 relative overflow-hidden">
-          <div className="absolute inset-0 bg-linear-to-r from-[#7C86FF] to-[#00d4ff] opacity-5"></div>
-          <div className="relative z-10">
-            <h3 className="font-orbitron font-extrabold text-2xl lg:text-3xl text-white uppercase mb-4">
-              Don&apos;t Miss Out
-            </h3>
-            <p className="font-jakarta text-[#B8C5D6] text-base lg:text-lg max-w-2xl mx-auto mb-6">
-              Join the waitlist to get early access before these tournaments
-              begin. Be among the first to predict, compete, and win.
-            </p>
-            <a
-              href="#waitlist"
-              className="inline-flex items-center gap-2 bg-linear-to-r from-[#7C86FF] to-[#ad46ff] px-8 py-4 font-orbitron text-white text-base font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(124,134,255,0.6)] transition-all duration-300"
-            >
-              <Trophy className="w-5 h-5" />
-              Join Waitlist
-            </a>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

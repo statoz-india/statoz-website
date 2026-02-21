@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { getBlogBySlug, BLOG_POSTS } from "../utils/blogData";
+import { APP_DOWNLOAD_URL } from "../utils/constants";
 
 interface BlogPostPageProps {
   slug: string;
@@ -374,10 +375,12 @@ export function BlogPostPage({
                 prediction experts today.
               </p>
               <a
-                href="#waitlist"
+                href={APP_DOWNLOAD_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-linear-to-r from-[#7C86FF] to-[#5cdfff] px-8 py-4 font-orbitron text-white text-base font-bold tracking-wider uppercase hover:shadow-[0_0_30px_rgba(92,223,255,0.6)] transition-all duration-300"
               >
-                Join Waitlist Now
+                Download Now
               </a>
             </div>
           </div>
