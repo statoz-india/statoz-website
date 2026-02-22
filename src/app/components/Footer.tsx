@@ -155,7 +155,13 @@ export function Footer() {
           <p className="font-jakarta text-[#6B7A8F] text-sm text-center md:text-left">
             © 2026 Statoz. All rights reserved. Built with ❤️ for statoz.in
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center md:justify-end items-center gap-6">
+            <a
+              href="mailto:support@statoz.in"
+              className="font-jakarta text-[#6B7A8F] text-sm hover:text-white transition-colors"
+            >
+              support@statoz.in
+            </a>
             <a
               href="#"
               className="font-jakarta text-[#6B7A8F] text-sm hover:text-white transition-colors"

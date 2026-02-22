@@ -1,9 +1,8 @@
-import { Trophy, Award, Shield, Radio } from "lucide-react";
+import { Award, Shield, Radio } from "lucide-react";
 import { FeaturePill } from "../components/shared/FeaturePill";
 import { APP_DOWNLOAD_URL } from "../utils/constants";
 
 const heroFeatures = [
-  { icon: Trophy, label: "Real Prizes" },
   { icon: Award, label: "Epic Rewards" },
   { icon: Shield, label: "Free to Play" },
   { icon: Radio, label: "Live Matches" },
@@ -27,9 +26,9 @@ export function HeroSection() {
           </div>
 
           <p className="font-jakarta text-[#B8C5D6] text-lg lg:text-xl leading-relaxed max-w-xl animate-fade-in-250">
-            Join Statoz, the free-to-play sports prediction market where skill
-            meets strategy. Predict outcomes, play daily sports games, climb
-            leaderboards, and win real rewards.
+            The free-to-play sports prediction market where skill meets
+            strategy. Predict outcomes, play daily sports games & climb
+            leaderboards.
           </p>
 
           {/* Feature Pills */}

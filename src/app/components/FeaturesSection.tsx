@@ -16,7 +16,7 @@ const FEATURES_DATA: FeatureItem[] = [
     tag: "01",
     title: "PREDICT & WIN",
     description:
-      "Call match outcomes before kickoff and prove your football IQ. Each correct pick boosts your XP, rank, and reward potential.",
+      "Call match outcomes before kickoff and prove your Sports IQ. Each correct pick boosts your XP, rank, and reward potential.",
     highlights: ["Live Match Picks", "XP Multipliers", "Skill-Based Rewards"],
     imageUrl: "/PREDICT%20%26%20WIN.png",
   },
@@ -25,7 +25,11 @@ const FEATURES_DATA: FeatureItem[] = [
     title: "DYNAMIC ODDS",
     description:
       "Live odds keep shifting with game momentum, injuries, and key moments. Adapt fast and outsmart the crowd with pure strategy.",
-    highlights: ["Real-Time Updates", "Smart Risk Decisions", "No Deposit Play"],
+    highlights: [
+      "Real-Time Updates",
+      "Smart Risk Decisions",
+      "No Deposit Play",
+    ],
     imageUrl: "/DYNAMIC%20ODDS.png",
   },
   {

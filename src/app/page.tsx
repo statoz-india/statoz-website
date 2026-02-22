@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import App from "./App";
 
 export const metadata: Metadata = {
-  title: "F2P Sports Prediction Market & Play-to-Win Games",
+  title: "F2P Sports Prediction Market & Sports based Games",
   description:
-    "Discover Statoz, the free-to-play sports prediction market for cricket and football fans. Play skill-based sports games, predict outcomes, track live odds, and win rewards.",
+    "Discover StatOz, the free-to-play sports prediction market for cricket and football fans. Play future-based sports games, predict outcomes, track live odds, and win rewards.",
   alternates: {
     canonical: "/",
   },
