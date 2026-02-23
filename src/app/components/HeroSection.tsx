@@ -12,13 +12,13 @@ const epicImage = "/StatOz%20Cover%20Image.webp";
 
 export function HeroSection() {
   return (
-    <section className="container mx-auto px-4 lg:px-32 py-12 lg:py-24">
+    <section className="container mx-auto px-4 lg:px-32 py-8 lg:py-20">
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-12">
         {/* Left Content */}
         <div className="flex-1 flex flex-col gap-9">
           {/* Main Headline */}
           <div className="flex flex-col gap-2 animate-fade-in-0">
-            <h1 className="font-orbitron font-black text-5xl sm:text-6xl lg:text-7xl leading-tight tracking-tight uppercase">
+            <h1 className="font-orbitron font-black text-[40px] sm:text-6xl lg:text-7xl leading-tight tracking-tight uppercase">
               <div className="text-[#c27aff]">Predict.</div>
               <div className="text-[#00d3f2]">Play.</div>
               <div className="text-white">Dominate.</div>
@@ -26,19 +26,19 @@ export function HeroSection() {
           </div>
 
           <p className="font-jakarta text-[#B8C5D6] text-lg lg:text-xl leading-relaxed max-w-xl animate-fade-in-250">
-            The free-to-play sports prediction market where skill meets
-            strategy. Predict outcomes, play daily sports games & climb
-            leaderboards.
+            The free-to-play sports prediction market. Predict outcomes, play
+            daily sports games & climb leaderboards.
           </p>
 
           {/* Feature Pills */}
-          <div className="flex flex-wrap gap-2 animate-fade-in-500">
+          <div className="flex flex-nowrap sm:flex-wrap gap-2 animate-fade-in-500">
             {heroFeatures.map((feature, index) => (
-              <FeaturePill
+              <div
                 key={index}
-                icon={feature.icon}
-                label={feature.label}
-              />
+                className={feature.label === "Live Matches" ? "hidden sm:block" : ""}
+              >
+                <FeaturePill icon={feature.icon} label={feature.label} />
+              </div>
             ))}
           </div>
 
@@ -84,3 +84,4 @@ export function HeroSection() {
     </section>
   );
 }
+
