@@ -1,6 +1,6 @@
 "use client";
 
-import { Instagram, Facebook } from "lucide-react";
+import { Instagram, Linkedin, Play, Youtube } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -24,22 +24,48 @@ const XSocialIcon: SocialIcon = ({ className }) => (
   <Image src="/x.svg" alt="X" width={20} height={20} className={className} />
 );
 
+const RedditIcon: SocialIcon = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    className={className}
+  >
+    <path d="M14.2 15.3a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0Zm-2.6 3.1c-1.9 0-3.2-.9-3.3-2.1a.6.6 0 0 1 1.1-.3c.3.6 1.1 1.1 2.2 1.1s1.9-.4 2.2-1.1a.6.6 0 1 1 1.1.3c-.1 1.2-1.4 2.1-3.3 2.1Zm-2.8-2.2a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Zm11.2-4.2a1.9 1.9 0 0 0-3.1-1.5 6.8 6.8 0 0 0-4.7-1.8l1-3 2.5.6a1.5 1.5 0 1 0 .3-1.2l-3.1-.7a.6.6 0 0 0-.7.4l-1.2 3.7a6.8 6.8 0 0 0-4.8 1.8A1.9 1.9 0 1 0 5 13.7c0 .2 0 .4.1.6 0 2.8 3 5.1 6.9 5.1s6.9-2.3 6.9-5.1v-.6c.7-.3 1.1-1 1.1-1.7Z" />
+  </svg>
+);
+
 const socialLinks: Array<{ icon: SocialIcon; href: string; label: string }> = [
-  { icon: XSocialIcon, href: "https://x.com/StatOzindia", label: "x" },
+  {
+    icon: Play,
+    href: "https://play.google.com/store/apps/details?id=com.statoz.app",
+    label: "Play Store",
+  },
+  {
+    icon: Youtube,
+    href: "https://www.youtube.com/@StatozIndia",
+    label: "YouTube",
+  },
   {
     icon: Instagram,
     href: "https://www.instagram.com/statozindia/",
     label: "Instagram",
   },
   {
-    icon: WhatsAppIcon,
-    href: "https://chat.whatsapp.com/IQV7FSn106e6zbbEV9kOU3",
-    label: "WhatsApp",
+    icon: RedditIcon,
+    href: "https://www.reddit.com/r/f2p__predictionmarket/",
+    label: "Reddit",
   },
   {
-    icon: Facebook,
-    href: "https://www.facebook.com/profile.php?id=61587267737793",
-    label: "Facebook",
+    icon: Linkedin,
+    href: "https://www.linkedin.com/company/statoz/",
+    label: "LinkedIn",
+  },
+  { icon: XSocialIcon, href: "https://x.com/StatOzindia", label: "X" },
+  {
+    icon: WhatsAppIcon,
+    href: "https://chat.whatsapp.com/JxKL3sVI7S88qNe0pYXo77",
+    label: "WhatsApp",
   },
 ];
 
@@ -130,7 +156,26 @@ export function Footer() {
             <h3 className="font-orbitron font-bold text-white text-sm uppercase mb-4">
               Follow Us
             </h3>
-            <div className="flex gap-3">
+            <ul className="md:hidden space-y-2">
+              {socialLinks.map((social, index) => {
+                const Icon = social.icon;
+                return (
+                  <li key={index}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="font-jakarta text-[#B8C5D6] text-sm hover:text-white transition-colors flex items-center gap-2"
+                    >
+                      <Icon className="w-4 h-4 text-[#B8C5D6]" />
+                      <span>{social.label}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="hidden md:flex gap-3">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
                 return (
