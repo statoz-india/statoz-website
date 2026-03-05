@@ -1,4 +1,5 @@
 import { Smartphone } from "lucide-react";
+import Link from "next/link";
 import { APP_DOWNLOAD_URL } from "../utils/constants";
 
 export function DownloadSection() {
@@ -28,7 +29,7 @@ export function DownloadSection() {
         </div>
 
         {/* Download Buttons */}
-        <div className="flex items-center justify-center gap-4 lg:gap-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-6">
           {/* Google Play Button */}
           <a
             href={APP_DOWNLOAD_URL}
@@ -54,6 +55,14 @@ export function DownloadSection() {
               </p>
             </div>
           </a>
+          <Link
+            href="/downlaod"
+            className="group relative bg-[rgba(15,23,43,0.8)] border-2 border-[#1d293d] hover:border-[#7C86FF] transition-all duration-300 px-8 py-4 flex items-center justify-center min-w-[240px] hover:scale-105"
+          >
+            <span className="font-orbitron text-[#B8C5D6] group-hover:text-white text-sm font-bold uppercase tracking-wider transition-colors">
+              Open Download Page
+            </span>
+          </Link>
         </div>
 
         {/* Additional Info */}
