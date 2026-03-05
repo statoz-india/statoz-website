@@ -11,6 +11,8 @@ import {
   Youtube,
 } from "lucide-react";
 import Image from "next/image";
+import Script from "next/script";
+import { createElement } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { APP_DOWNLOAD_URL } from "../utils/constants";
@@ -58,50 +60,69 @@ export default function DownlaodPage() {
         <div className="absolute bottom-24 right-[-60px] w-56 h-56 rounded-full bg-[#00d3f2] opacity-20 blur-[100px] pointer-events-none" />
 
         <section className="container mx-auto px-4 lg:px-32 pt-10 pb-12 lg:pt-16 lg:pb-20">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-linear-to-r from-[#7C86FF] to-[#ad46ff] px-4 py-2 mb-5">
-              <Sparkles className="w-4 h-4 text-white" />
-              <span className="font-orbitron text-white text-xs font-bold tracking-wider">
-                FREE TO PLAY
-              </span>
+          <Script
+            src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+            strategy="afterInteractive"
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(320px,460px)] gap-8 lg:gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-linear-to-r from-[#7C86FF] to-[#ad46ff] px-4 py-2 mb-5">
+                <Sparkles className="w-4 h-4 text-white" />
+                <span className="font-orbitron text-white text-xs font-bold tracking-wider">
+                  FREE TO PLAY
+                </span>
+              </div>
+
+              <h1 className="font-orbitron font-black text-3xl sm:text-4xl lg:text-6xl leading-tight uppercase text-white">
+                Sports Prediction Game. 100% Free.
+              </h1>
+
+              <p className="font-jakarta text-[#B8C5D6] text-base sm:text-lg mt-4">
+                Predict matches, climb leaderboards, earn rewards.
+              </p>
+
+              <div className="mt-8 flex justify-center lg:justify-start items-stretch sm:items-center">
+                <a
+                  href={APP_DOWNLOAD_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative bg-[#5cdfff] border-2 border-[#5cdfff] hover:bg-[#4dcfef] hover:border-[#4dcfef] transition-all duration-300 px-6 py-4 flex items-center justify-center gap-4 w-full sm:w-auto sm:min-w-[300px] hover:scale-[1.02]"
+                >
+                  <div className="bg-[#0d1b4b] p-2.5 group-hover:bg-[#102465] transition-colors">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-7 h-7 text-[#5cdfff]"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                    </svg>
+                  </div>
+                  <div className="text-left">
+                    <p className="font-orbitron text-[#0d1b4b] text-[11px] uppercase tracking-wider opacity-80">
+                      Get it on
+                    </p>
+                    <p className="font-orbitron text-[#0d1b4b] text-lg sm:text-xl font-bold">
+                      Google Play
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
 
-            <h1 className="font-orbitron font-black text-3xl sm:text-4xl lg:text-6xl leading-tight uppercase text-white">
-              Sports Prediction Game. 100% Free.
-            </h1>
-
-            <p className="font-jakarta text-[#B8C5D6] text-base sm:text-lg mt-4">
-              Predict matches, climb leaderboards, earn rewards.
-            </p>
-
-            <div className="mt-8 flex justify-center items-stretch sm:items-center">
-              <a
-                href={APP_DOWNLOAD_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative bg-[#5cdfff] border-2 border-[#5cdfff] hover:bg-[#4dcfef] hover:border-[#4dcfef] transition-all duration-300 px-6 py-4 flex items-center justify-center gap-4 w-full sm:w-auto sm:min-w-[300px] hover:scale-[1.02]"
-              >
-                <div className="bg-[#0d1b4b] p-2.5 group-hover:bg-[#102465] transition-colors">
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="w-7 h-7 text-[#5cdfff]"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                  </svg>
-                </div>
-                <div className="text-left">
-                  <p className="font-orbitron text-[#0d1b4b] text-[11px] uppercase tracking-wider opacity-80">
-                    Get it on
-                  </p>
-                  <p className="font-orbitron text-[#0d1b4b] text-lg sm:text-xl font-bold">
-                    Google Play
-                  </p>
-                </div>
-              </a>
+            <div className="w-full max-w-[460px] mx-auto lg:mx-0 lg:justify-self-end">
+              <div className="aspect-square w-full">
+                {createElement("lottie-player", {
+                  src: "/download home.json",
+                  background: "transparent",
+                  speed: "1",
+                  loop: true,
+                  autoplay: true,
+                  style: { width: "100%", height: "100%" },
+                })}
+              </div>
             </div>
-
           </div>
         </section>
 
