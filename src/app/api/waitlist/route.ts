@@ -5,19 +5,25 @@ const API_BASE_URL = process.env.API_BASE_URL;
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, type } = body;
+    const { email, type, message } = body;
 
     if (!email || typeof email !== "string" || !email.trim()) {
       return NextResponse.json({ message: "Email is required" }, { status: 400 });
     }
 
+    const payload: { email: string; type: string; message?: string } = {
+      email: email.trim(),
+      type: type ?? "waitlist",
+    };
+
+    if (typeof message === "string" && message.trim()) {
+      payload.message = message.trim();
+    }
+
     const res = await fetch(`${API_BASE_URL}/waitlist/createWaitlist`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email.trim(),
-        type: type ?? "waitlist",
-      }),
+      body: JSON.stringify(payload),
     });
 
     const data = await res.json().catch(() => ({}));
