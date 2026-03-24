@@ -10,7 +10,7 @@ const heroFeatures = [
 
 const epicImage = "/StatOz%20Cover%20Image.webp";
 
-export function HeroSection() {
+export function HeroSectionOld() {
   return (
     <section className="container mx-auto px-4 lg:px-32 py-12 lg:py-24">
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-12">
