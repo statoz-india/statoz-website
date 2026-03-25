@@ -102,33 +102,33 @@ function HeroSection() {
 
       {/* IPL Players */}
       <div className="relative w-[800px] h-[692px] mx-auto mt-10">
-        {/* Top title text, now part of same stack */}
+        {/* 1. StatOz text — fades in from top first */}
         <Image
           src="/revamped/statoz_text.png"
           alt="Statoz Text"
           width={800}
           height={137}
-          className="absolute top-0 left-1/2 -translate-x-1/2 object-contain"
+          className="absolute top-0 left-1/2 -translate-x-1/2 object-contain hero-text-enter"
           priority
         />
 
-        {/* Base image */}
+        {/* 2. Background arch — fades in second */}
         <Image
           src="/revamped/exclude.png"
           alt="Exclude"
           width={800}
           height={544}
-          className="absolute top-[120px] left-1/2 -translate-x-1/2 object-contain"
+          className="absolute top-[120px] left-1/2 -translate-x-1/2 object-contain hero-bg-enter"
           priority
         />
 
-        {/* Player overlays (sizes kept exactly as provided) */}
+        {/* 3–7. Players slide up one by one */}
         <Image
           src="/revamped/sg.png"
           alt="SG"
           width={461}
           height={692}
-          className="absolute -top-[15px] left-[48px] z-10 object-contain"
+          className="absolute -top-[15px] left-[48px] z-10 object-contain player-enter player-enter-1"
           priority
         />
         <Image
@@ -136,7 +136,7 @@ function HeroSection() {
           alt="SS"
           width={412}
           height={616}
-          className="absolute left-[370px] top-[5px] z-20 object-contain"
+          className="absolute left-[370px] top-[5px] z-20 object-contain player-enter player-enter-2"
           priority
         />
         <Image
@@ -144,25 +144,23 @@ function HeroSection() {
           alt="AS"
           width={416}
           height={625}
-          className="absolute -left-[15px] top-[52px] z-30 object-contain"
+          className="absolute -left-[15px] top-[52px] z-30 object-contain player-enter player-enter-3"
           priority
         />
-
         <Image
           src="/revamped/rs.png"
           alt="RS"
           width={360}
           height={538}
-          className="absolute left-[480px] top-[138px] z-40 object-contain"
+          className="absolute left-[480px] top-[138px] z-40 object-contain player-enter player-enter-4"
           priority
         />
-
         <Image
           src="/revamped/vk.png"
           alt="VK"
           width={677}
           height={677}
-          className="absolute  left-[0px] z-50 object-contain"
+          className="absolute z-50 object-contain player-enter player-enter-5"
           priority
         />
       </div>
