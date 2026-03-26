@@ -229,7 +229,7 @@ function HeroSection() {
           target="_blank"
           rel="noreferrer"
         >
-          <div className=" absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[361px] md:w-[300px] aspect-361/78 md:aspect-300/65 z-70">
+          <div className=" absolute bottom-[30%] left-1/2 -translate-x-1/2 w-[361px] md:w-[300px] aspect-361/78 md:aspect-300/65 z-70">
             <Image
               src="/revamped/playstore.png"
               alt="Playstore"

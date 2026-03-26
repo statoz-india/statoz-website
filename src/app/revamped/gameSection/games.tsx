@@ -21,7 +21,9 @@ function MakeSportsRow({
         className="h-[47px] rounded-[98px] px-[14px] py-[10px] flex items-center justify-center gap-[10px] bg-[linear-gradient(135deg,#1D293D_0%,#0F172B_100%)] shrink-0"
         style={{ width: innerContainerWidth }}
       >
-        <span className="font-onest text-[20px] text-white">{sportName}</span>
+        <span className="font-onest text-[20px] text-white font-bold">
+          {sportName}
+        </span>
       </div>
       <div className="w-[48px] h-[48px] rounded-[100px] bg-[#FFFFFFAB] border border-[#FFFFFF] flex items-center justify-center z-30">
         <Image

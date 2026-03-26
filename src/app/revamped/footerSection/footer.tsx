@@ -93,7 +93,7 @@ function FooterSection() {
       <div className="h-px bg-[#333E4F] mt-16"></div>
       <div className="flex mt-8">
         <span className="font-onest text-[16px] font-medium text-white">
-          © Copyright 2025, All Rights Reserved
+          © Copyright 2026, All Rights Reserved
         </span>
       </div>
     </div>
