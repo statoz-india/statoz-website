@@ -1,7 +1,9 @@
 "use client";
+import FAQSection from "./revamped/faqSection/faqs";
 import GameSection from "./revamped/gameSection/games";
 import HeroSection from "./revamped/heroSection/hero";
 import ImageAsset from "./revamped/imageSection/imageAsset";
+import QuotesSection from "./revamped/quoteSection/quotes";
 import TeamsScetion from "./revamped/teamSection/teams";
 
 // export default function App() {
@@ -35,6 +37,8 @@ export default function App() {
       <GameSection />
       <ImageAsset />
       <TeamsScetion />
+      <QuotesSection />
+      <FAQSection />
     </main>
   );
 }
