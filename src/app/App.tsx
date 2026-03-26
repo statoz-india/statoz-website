@@ -1,4 +1,5 @@
 "use client";
+import GameSection from "./revamped/gameSection/games";
 import HeroSection from "./revamped/heroSection/hero";
 
 // export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
   return (
     <main className="flex-1">
       <HeroSection />
+      <GameSection />
     </main>
   );
 }

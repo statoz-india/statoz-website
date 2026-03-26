@@ -101,7 +101,7 @@ function HeroSection() {
       </div>
 
       {/* IPL Players */}
-      <div className="relative w-[800px] h-[692px] mx-auto mt-10">
+      <div className="relative w-[800px] h-[680px] mx-auto mt-10">
         {/* 1. StatOz text — fades in from top first */}
         <Image
           src="/revamped/statoz_text.png"
@@ -114,11 +114,11 @@ function HeroSection() {
 
         {/* 2. Background arch — fades in second */}
         <Image
-          src="/revamped/exclude.png"
+          src="/revamped/excluded.png"
           alt="Exclude"
           width={800}
           height={544}
-          className="absolute top-[120px] left-1/2 -translate-x-1/2 object-contain hero-bg-enter"
+          className="absolute top-[120px] left-1/2 -translate-x-1/2 object-contain hero-bg-enter mt-4"
           priority
         />
 
