@@ -63,7 +63,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogDetailRoute({ params }: BlogDetailRouteProps) {
+export default async function BlogDetailRoute({
+  params,
+}: BlogDetailRouteProps) {
   const { slug } = await params;
   const post = getBlogBySlug(slug);
 

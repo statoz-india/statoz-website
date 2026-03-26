@@ -1,19 +1,14 @@
-"use client";
+import type { Metadata } from "next";
+import DownloadRedirectClient from "./DownloadRedirectClient";
 
-import { useEffect } from "react";
+export const metadata: Metadata = {
+  title: "Statoz | Download Now",
+};
 
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.statoz.app";
 
 export default function DownloadNowPage() {
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      window.location.replace(PLAY_STORE_URL);
-    }, 1000);
-
-    return () => window.clearTimeout(timer);
-  }, []);
-
   return (
     <main
       style={{
@@ -38,7 +33,11 @@ export default function DownloadNowPage() {
           animation: "statoz-spin 0.8s linear infinite",
         }}
       />
-      <p style={{ margin: 0, fontSize: "16px" }}>Redirecting to Google Play...</p>
+      <p style={{ margin: 0, fontSize: "16px" }}>
+        Redirecting to Google Play...
+      </p>
+
+      <DownloadRedirectClient playStoreUrl={PLAY_STORE_URL} />
 
       <noscript>
         <meta httpEquiv="refresh" content={`1;url=${PLAY_STORE_URL}`} />
@@ -46,12 +45,16 @@ export default function DownloadNowPage() {
 
       <a
         href={PLAY_STORE_URL}
-        style={{ color: "#86efac", fontSize: "14px", textDecoration: "underline" }}
+        style={{
+          color: "#86efac",
+          fontSize: "14px",
+          textDecoration: "underline",
+        }}
       >
         Continue manually
       </a>
 
-      <style jsx>{`
+      <style>{`
         @keyframes statoz-spin {
           to {
             transform: rotate(360deg);
