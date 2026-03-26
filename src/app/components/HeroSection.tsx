@@ -1,6 +1,7 @@
 import { Award, Shield, Radio } from "lucide-react";
 import { FeaturePill } from "../components/shared/FeaturePill";
 import { APP_DOWNLOAD_URL } from "../utils/constants";
+import Image from "next/image";
 
 const heroFeatures = [
   { icon: Award, label: "Epic Rewards" },
