@@ -1,6 +1,8 @@
 "use client";
 import GameSection from "./revamped/gameSection/games";
 import HeroSection from "./revamped/heroSection/hero";
+import ImageAsset from "./revamped/imageSection/imageAsset";
+import TeamsScetion from "./revamped/teamSection/teams";
 
 // export default function App() {
 //   useEffect(() => {
@@ -31,6 +33,8 @@ export default function App() {
     <main className="flex-1">
       <HeroSection />
       <GameSection />
+      <ImageAsset />
+      <TeamsScetion />
     </main>
   );
 }
