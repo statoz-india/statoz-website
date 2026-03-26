@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function faqRow({
   title,
@@ -57,13 +58,16 @@ function FAQSection() {
         title: "Can users win real money on StatOz?",
         data: `No. StatOz does not allow real-money wagering or cash withdrawal. The platform is designed so users compete for virtual rewards, status, and leaderboard progression instead of cash winnings.`,
       })}
-      <div className="w-full h-[68px] opacity-100 gap-[10px] bg-white border-solid border-t border-r border-l border-b-2 border-t-[#90A1B9] border-r-[#90A1B9] border-l-[#90A1B9] border-b-[#90A1B9]">
-        <div className="h-full flex justify-center items-center">
+      <Link
+        href="/faq"
+        className="w-full h-[68px] opacity-100 gap-[10px] bg-white border-solid border-t border-r border-l border-b-2 border-t-[#90A1B9] border-r-[#90A1B9] border-l-[#90A1B9] border-b-[#90A1B9] hover:bg-[#F6F7F9] transition-colors"
+      >
+        <div className="h-full flex justify-center items-center cursor-pointer">
           <span className="font-onest font-bold text-[24px] text-[#0D111A]">
             {`View all FAQ's`}
           </span>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

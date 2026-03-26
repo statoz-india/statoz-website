@@ -1,97 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import HeaderSection from "../headerSection/header";
 
 function HeroSection() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <div className="bg-[linear-gradient(180deg,#000000_0%,#131D31_25%,#1D293D_50%,#131D31_75%,#000000_100%)]">
       {/* Top Nav Bar */}
-      <div className="w-full px-6 md:px-10 py-10 md:py-5 flex items-center justify-between">
-        {/* Left: Logo */}
-        <div className="flex items-center ">
-          <Image
-            src="/revamped/logo_text.png"
-            alt="StatOz logo"
-            width={78}
-            height={24}
-            className="h-auto w-auto"
-            priority
-          />
-        </div>
-
-        {/* Center: nav buttons */}
-        <div className="hidden md:flex items-center gap-8 text-white">
-          <button className="font-onest font-[16px] text-white">Game</button>
-          {/* <button className="font-onest font-[16px] text-white">Blogs</button> */}
-          <button className="font-onest font-[16px] text-white">FAQ</button>
-        </div>
-        {/* Right: CTA (desktop) + hamburger menu (mobile) */}
-        <div className="relative">
-          <a
-            href="https://play.google.com/store/apps/details?id=com.statoz.app"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden md:flex w-[176px] h-[56px] border-[1.5px] border-[rgba(15,23,43,0.95)] bg-[rgba(15,23,43,0.95)] opacity-100 gap-2 py-4 px-8 text-white font-medium transition-colors hover:bg-[rgba(15,23,43,1)] items-center justify-center"
-          >
-            Download Now
-          </a>
-
-          <button
-            type="button"
-            className="md:hidden flex h-10 w-10 items-center justify-center "
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label="Open menu"
-            aria-expanded={menuOpen}
-          >
-            <span className="relative block h-4 w-5">
-              <span className="absolute left-0 top-0 h-[2px] w-5 bg-white" />
-              <span className="absolute left-0 top-[6px] h-[2px] w-5 bg-white" />
-              <span className="absolute left-0 top-[12px] h-[2px] w-5 bg-white" />
-            </span>
-          </button>
-
-          <div
-            className={[
-              "fixed z-50 left-5 right-5 bg-[#0D111A] p-2 shadow-lg ring-1 ring-white/15 overflow-hidden transition-all duration-300 ease-out",
-              menuOpen
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-2 pointer-events-none",
-            ].join(" ")}
-          >
-            <button
-              className="block w-full rounded px-3 py-2 text-left font-onest text-[20px] font-bold text-white hover:bg-white/10"
-              onClick={() => setMenuOpen(false)}
-            >
-              Game
-            </button>
-            {/* <button
-              className="block w-full rounded px-3 py-2 text-left font-onest text-[20px] font-bold text-white hover:bg-white/10"
-              onClick={() => setMenuOpen(false)}
-            >
-              Blogs
-            </button> */}
-            <button
-              className="block w-full rounded px-3 py-2 text-left font-onest text-[20px] font-bold text-white hover:bg-white/10"
-              onClick={() => setMenuOpen(false)}
-            >
-              FAQ
-            </button>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.statoz.app"
-              target="_blank"
-              rel="noreferrer"
-              className="w-full h-[56px] mt-5 mb-2 border-[1.5px] border-[rgba(15,23,43,0.95)] bg-[rgba(15,23,43,0.95)] opacity-100 gap-2 py-4 px-8 text-white font-medium transition-colors hover:bg-[rgba(15,23,43,1)] flex items-center justify-center"
-              onClick={() => setMenuOpen(false)}
-            >
-              Download Now
-            </a>
-          </div>
-        </div>
-      </div>
-
+      <HeaderSection />
       {/* Ipl Arena Image */}
       <div className="flex items-center justify-center">
         <div className="h-[64px] w-[16px] bg-[#005A70] [clip-path:polygon(25%_0%,75%_0%,100%_12%,100%_88%,75%_100%,25%_100%,0%_88%,0%_12%)]" />
