@@ -1,5 +1,32 @@
 import Image from "next/image";
 
+function DownloadButton() {
+  return (
+    <a
+      href="https://play.google.com/store/apps/details?id=com.statoz.app"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <div className="w-[249] h-[56] rounded-[100px] p-1 flex items-center gap-1 bg-[#FFFFFF4D] backdrop-blur-xs mb-4 md:mr-6 shrink-0">
+        <div className="w-[190px] h-[48px] rounded-[98px] px-[14px] py-[10px] flex items-center justify-center gap-[10px] bg-[#5CDFFF] shrink-0">
+          <span className="font-onest text-[18px] font-extrabold text-[#1A253A] uppercase">
+            Download Now
+          </span>
+        </div>
+        <div className="w-[47px] h-[47px] rounded-[100px] bg-[#000000] border border-[#FFFFFF] flex items-center justify-center z-30">
+          <Image
+            src="/revamped/download.png"
+            alt="download"
+            width={28}
+            height={28}
+            className="object-contain"
+          />
+        </div>
+      </div>
+    </a>
+  );
+}
+
 function ImageAsset() {
   return (
     <div className=" flex flex-col mt-10 ">
@@ -14,6 +41,9 @@ function ImageAsset() {
             fill
             className="object-contain"
           />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <DownloadButton />
+          </div>
         </div>
 
         <div className="relative md:w-full aspect-65/54 mx-4 my-2 md:my-0">

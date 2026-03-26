@@ -8,18 +8,20 @@ function SocialMediaRow({
   link: string;
 }) {
   return (
-    <div className="flex flex-row mr-6">
-      <span className="font-onest text-[16px] font-regular text-white">
-        {socialMedia}
-      </span>
-      <Image
-        src={"/revamped/down_arrow_white.png"}
-        alt={"arrow"}
-        width={10}
-        height={10}
-        className="object-contain ml-[2px]"
-      />
-    </div>
+    <a href={link} target="_blank" rel="noreferrer">
+      <div className="flex flex-row mr-6">
+        <span className="font-onest text-[16px] font-regular text-white">
+          {socialMedia}
+        </span>
+        <Image
+          src={"/revamped/down_arrow_white.png"}
+          alt={"arrow"}
+          width={10}
+          height={10}
+          className="object-contain ml-[2px]"
+        />
+      </div>
+    </a>
   );
 }
 
@@ -41,13 +43,32 @@ function FooterSection() {
               Social Media
             </span>
             <div className="flex mt-6">
-              <SocialMediaRow socialMedia={"Instagram"} link={""} />
-              <SocialMediaRow socialMedia={"Twitter"} link={""} />
-              <SocialMediaRow socialMedia={"Youtube"} link={""} />
+              <SocialMediaRow
+                socialMedia={"Instagram"}
+                link={`https://www.instagram.com/statozindia/`}
+              />
+              <SocialMediaRow
+                socialMedia={"Twitter"}
+                link={"https://x.com/StatOzindia"}
+              />
+              <SocialMediaRow
+                socialMedia={"Youtube"}
+                link={"https://www.youtube.com/@StatozIndia"}
+              />
             </div>
             <div className="flex mt-2">
-              <SocialMediaRow socialMedia={"Facebbok"} link={""} />
-              <SocialMediaRow socialMedia={"Linkedin"} link={""} />
+              <SocialMediaRow
+                socialMedia={"WhatsApp"}
+                link={"https://chat.whatsapp.com/JxKL3sVI7S88qNe0pYXo77"}
+              />
+              <SocialMediaRow
+                socialMedia={"Linkedin"}
+                link={"https://www.linkedin.com/company/statoz/"}
+              />
+              <SocialMediaRow
+                socialMedia={"Reddit"}
+                link={"https://www.reddit.com/r/f2p__predictionmarket/"}
+              />
             </div>
           </div>
         </div>

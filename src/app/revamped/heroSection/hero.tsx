@@ -30,9 +30,14 @@ function HeroSection() {
         </div>
         {/* Right: CTA (desktop) + hamburger menu (mobile) */}
         <div className="relative">
-          <button className="hidden md:flex w-[176px] h-[56px] border-[1.5px] border-[rgba(15,23,43,0.95)] bg-[rgba(15,23,43,0.95)] opacity-100 gap-2 py-4 px-8 text-white font-medium transition-colors hover:bg-[rgba(15,23,43,1)]">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.statoz.app"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:flex w-[176px] h-[56px] border-[1.5px] border-[rgba(15,23,43,0.95)] bg-[rgba(15,23,43,0.95)] opacity-100 gap-2 py-4 px-8 text-white font-medium transition-colors hover:bg-[rgba(15,23,43,1)] items-center justify-center"
+          >
             Download Now
-          </button>
+          </a>
 
           <button
             type="button"
@@ -74,9 +79,15 @@ function HeroSection() {
             >
               FAQ
             </button>
-            <button className="w-full h-[56px] mt-5 mb-2 border-[1.5px] border-[rgba(15,23,43,0.95)] bg-[rgba(15,23,43,0.95)] opacity-100 gap-2 py-4 px-8 text-white font-medium transition-colors hover:bg-[rgba(15,23,43,1)]">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.statoz.app"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full h-[56px] mt-5 mb-2 border-[1.5px] border-[rgba(15,23,43,0.95)] bg-[rgba(15,23,43,0.95)] opacity-100 gap-2 py-4 px-8 text-white font-medium transition-colors hover:bg-[rgba(15,23,43,1)] flex items-center justify-center"
+              onClick={() => setMenuOpen(false)}
+            >
               Download Now
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -213,6 +224,21 @@ function HeroSection() {
             priority
           />
         </div>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.statoz.app"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div className=" absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[361px] md:w-[300px] aspect-361/78 md:aspect-300/65 z-70">
+            <Image
+              src="/revamped/playstore.png"
+              alt="Playstore"
+              fill
+              className="object-contain hero-text-enter"
+              priority
+            />
+          </div>
+        </a>
 
         {/* 2. Background arch — fades in second */}
         <div className="absolute md:top-[120px] left-1/2 -translate-x-1/2 md:mt-4 w-screen md:w-[800px] aspect-370/527 md:aspect-800/544">
