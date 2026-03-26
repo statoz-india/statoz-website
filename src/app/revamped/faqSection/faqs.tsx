@@ -10,12 +10,12 @@ export function faqRow({
   data: string;
 }) {
   return (
-    <div className="flex mb-12">
+    <div className="flex flex-col md:flex-row  mb-12">
       <span className=" flex-1 font-onest font-bold text-[24px] leading-[150%] text-[#0D111A] align-middle">
         {title}
       </span>
       <div
-        className={`h-15 w-15 p-4 mx-10 ${
+        className={`h-15 w-15 p-4 my-4 md:mx-10  md:my-0 ${
           arrowBackgroundColor ? "bg-[#5CDFFF]" : "bg-transparent"
         }`}
       >
@@ -37,7 +37,9 @@ export function faqRow({
 function FAQSection() {
   return (
     <div className="flex flex-col my-20 mx-6">
-      <span className="font-orbitron text-[64px] font-black">FAQs</span>
+      <span className="font-orbitron text-[64px] font-black mb-10  md:mb-0">
+        FAQs
+      </span>
       {faqRow({
         title: "What is StatOz?",
         arrowBackgroundColor: true,

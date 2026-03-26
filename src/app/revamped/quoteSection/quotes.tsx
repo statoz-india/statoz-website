@@ -8,7 +8,7 @@ function QuotesSection() {
         strokeWidth={0}
         fill="#1F20231A"
       />
-      <span className="font-onest text-[40px] font-black ml-4 uppercase mr-20">
+      <span className="font-onest text-[24px] md:text-[40px] font-black ml-4 uppercase mr-4 md:mr-20">
         Turn every match into structured participation & reward player Without
         Gambling.
       </span>

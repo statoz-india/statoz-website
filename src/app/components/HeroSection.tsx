@@ -72,7 +72,7 @@ export function HeroSectionOld() {
         {/* Right Content - Cover Image */}
         <div className="flex-1 w-full max-w-[616px] -mr-4 -mb-12 lg:-mr-32 lg:-mb-24 animate-fade-in-0">
           <div className="relative flex items-center justify-center h-full">
-            <img
+            <Image
               src={epicImage}
               alt="Statoz free-to-play sports prediction market app experience"
               className="w-full h-full object-cover"

@@ -26,7 +26,7 @@ function SocialMediaRow({
 function FooterSection() {
   return (
     <div className="bg-[#0D111A] py-16 px-4 flex flex-col">
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <div className="flex-1 ">
           <span className="font-onest text-[16px] font-regular text-white">
             StatOz is India’s sports prediction gaming platform. Users predict
@@ -35,7 +35,7 @@ function FooterSection() {
             economy. 100% free to play. No real money. Ever.
           </span>
         </div>
-        <div className="flex-1 mx-16">
+        <div className="flex-1 mt-10 md:mt-0 md:mx-16 mx-0">
           <div className="flex flex-col">
             <span className="font-orbitron text-[24px] font-bold text-white uppercase">
               Social Media
@@ -51,7 +51,7 @@ function FooterSection() {
             </div>
           </div>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 mt-10 md:mt-0 md:mx-16 mx-0">
           <div className="flex flex-col">
             <span className="font-orbitron text-[24px] font-bold text-white uppercase">
               Phone
@@ -64,7 +64,7 @@ function FooterSection() {
               Email
             </span>
             <span className="font-onest text-[18px] font-medium text-white">
-              founder@statoz.in
+              founders@statoz.in
             </span>
           </div>
         </div>
