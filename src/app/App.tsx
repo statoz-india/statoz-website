@@ -1,38 +1,46 @@
 "use client";
+import FAQSection from "./revamped/faqSection/faqs";
+import FooterSection from "./revamped/footerSection/footer";
+import GameSection from "./revamped/gameSection/games";
+import HeroSection from "./revamped/heroSection/hero";
+import ImageAsset from "./revamped/imageSection/imageAsset";
+import QuotesSection from "./revamped/quoteSection/quotes";
+import TeamsScetion from "./revamped/teamSection/teams";
 
-import { useEffect } from "react";
-import { Header } from "./components/Header";
-import { HeroSection } from "./components/HeroSection";
-import { StatsSection } from "./components/StatsSection";
-import { FeaturesSection } from "./components/FeaturesSection";
-import { TournamentsSection } from "./components/TournamentsSection";
-import { HowItWorks } from "./components/HowItWorks";
-import { BlogsSection } from "./components/BlogsSection";
-import { DownloadSection } from "./components/DownloadSection";
-import { Footer } from "./components/Footer";
-import { ErrorBoundary } from "./components/ErrorBoundary";
-import { initializeErrorHandler } from "./utils/errorHandler";
+// export default function App() {
+//   useEffect(() => {
+//     initializeErrorHandler();
+//   }, []);
+
+//   return (
+//     <ErrorBoundary>
+//       <div className="min-h-screen bg-[#0D111A] flex flex-col">
+//         <Header blogHref="/allblogs" homeHref="/" />
+//         <main className="flex-1">
+//           <HeroSection />
+//           <StatsSection />
+//           <FeaturesSection />
+//           <TournamentsSection />
+//           <HowItWorks />
+//           <DownloadSection />
+//           <BlogsSection viewAllHref="/allblogs" />
+//         </main>
+//         <Footer />
+//       </div>
+//     </ErrorBoundary>
+//   );
+// }
 
 export default function App() {
-  useEffect(() => {
-    initializeErrorHandler();
-  }, []);
-
   return (
-    <ErrorBoundary>
-      <div className="min-h-screen bg-[#0D111A] flex flex-col">
-        <Header blogHref="/allblogs" homeHref="/" />
-        <main className="flex-1">
-          <HeroSection />
-          <StatsSection />
-          <FeaturesSection />
-          <TournamentsSection />
-          <HowItWorks />
-          <DownloadSection />
-          <BlogsSection viewAllHref="/allblogs" />
-        </main>
-        <Footer />
-      </div>
-    </ErrorBoundary>
+    <main className="flex-1">
+      <HeroSection />
+      <GameSection />
+      <ImageAsset />
+      <TeamsScetion />
+      <QuotesSection />
+      <FAQSection />
+      <FooterSection />
+    </main>
   );
 }
