@@ -1,14 +1,26 @@
-import React from "react";
 import FooterSection from "../revamped/footerSection/footer";
 import HeaderSection from "../revamped/headerSection/header";
 import { faqRow } from "../revamped/faqSection/faqs";
 
-function FAQPage() {
+interface FAQPageProps {
+  searchParams?: Promise<{
+    layout?: string | string[];
+  }>;
+}
+
+async function FAQPage({ searchParams }: FAQPageProps) {
+  const resolvedSearchParams = await searchParams;
+  const rawLayout = resolvedSearchParams?.layout;
+  const layoutParam = Array.isArray(rawLayout) ? rawLayout[0] : rawLayout;
+  const showLayout = layoutParam?.toLowerCase() !== "false";
+
   return (
     <div className="flex flex-col">
-      <div className="bg-[linear-gradient(180deg,#000000_0%,#131D31_25%,#1D293D_50%,#131D31_75%,#000000_100%)]">
-        <HeaderSection />
-      </div>
+      {showLayout && (
+        <div className="bg-[linear-gradient(180deg,#000000_0%,#131D31_25%,#1D293D_50%,#131D31_75%,#000000_100%)]">
+          <HeaderSection />
+        </div>
+      )}
       <div className="bg-[#F7F7F7] py-20 px-6">
         {faqRow({
           title: "What is StatOz?",
@@ -60,7 +72,7 @@ function FAQPage() {
           data: `StatOz focuses on prediction, quizzes, rewards, and leaderboard competition without real-money risk. It is meant to be a safe, skill-based entertainment product rather than a fantasy cash game or gambling app.`,
         })}
       </div>
-      <FooterSection />
+      {showLayout && <FooterSection />}
     </div>
   );
 }

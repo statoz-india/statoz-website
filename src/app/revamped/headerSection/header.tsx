@@ -29,8 +29,17 @@ function HeaderSection({ isBlack = false }: { isBlack?: boolean }) {
           Game
         </Link>
         {/* <button className="font-onest font-[16px] text-white">Blogs</button> */}
-        <Link href="/faq" className={`font-onest font-[16px] ${textColorClass}`}>
+        <Link
+          href="/faq"
+          className={`font-onest font-[16px] ${textColorClass}`}
+        >
           FAQ
+        </Link>
+        <Link
+          href="/termsAndConditions"
+          className={`font-onest font-[16px] ${textColorClass}`}
+        >
+          Terms and Conditions
         </Link>
       </div>
       {/* Right: CTA (desktop) + hamburger menu (mobile) */}
@@ -91,6 +100,14 @@ function HeaderSection({ isBlack = false }: { isBlack?: boolean }) {
             onClick={() => setMenuOpen(false)}
           >
             FAQ
+          </Link>
+
+          <Link
+            href="/termsAndConditions"
+            className="block w-full rounded px-3 py-2 text-left font-onest text-[20px] font-bold text-white hover:bg-white/10"
+            onClick={() => setMenuOpen(false)}
+          >
+            Terms and Conditions
           </Link>
           <a
             href="https://play.google.com/store/apps/details?id=com.statoz.app"
