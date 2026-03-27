@@ -1,4 +1,9 @@
+import { trackPlaystoreClick } from "@/src/lib/analytics/playstoreClick";
 import Image from "next/image";
+
+const handlePlaystoreClick = () => {
+  trackPlaystoreClick({ eventLabel: `virat_image_download_button` });
+};
 
 function DownloadButton() {
   return (
@@ -6,6 +11,7 @@ function DownloadButton() {
       href="https://play.google.com/store/apps/details?id=com.statoz.app"
       target="_blank"
       rel="noreferrer"
+      onClick={() => handlePlaystoreClick()}
     >
       <div className="w-[249] h-[56] rounded-[100px] p-1 flex items-center gap-1 bg-[#FFFFFF4D] backdrop-blur-xs mb-4 md:mr-6 shrink-0">
         <div className="w-[190px] h-[48px] rounded-[98px] px-[14px] py-[10px] flex items-center justify-center gap-[10px] bg-[#5CDFFF] shrink-0">

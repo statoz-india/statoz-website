@@ -2,8 +2,13 @@
 
 import Image from "next/image";
 import HeaderSection from "../headerSection/header";
+import { trackPlaystoreClick } from "../../../lib/analytics/playstoreClick";
 
 function HeroSection() {
+  const handlePlaystoreClick = () => {
+    trackPlaystoreClick({ eventLabel: "download_playstore_button" });
+  };
+
   return (
     <div className="bg-[linear-gradient(180deg,#000000_0%,#131D31_25%,#1D293D_50%,#131D31_75%,#000000_100%)]">
       {/* Top Nav Bar */}
@@ -144,6 +149,7 @@ function HeroSection() {
           href="https://play.google.com/store/apps/details?id=com.statoz.app"
           target="_blank"
           rel="noreferrer"
+          onClick={handlePlaystoreClick}
         >
           <div className=" absolute bottom-[30%] left-1/2 -translate-x-1/2 w-[361px] md:w-[300px] aspect-361/78 md:aspect-300/65 z-70">
             <Image

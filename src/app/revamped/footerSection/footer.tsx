@@ -1,4 +1,9 @@
+import { trackPlaystoreClick } from "../../../lib/analytics/playstoreClick";
 import Image from "next/image";
+
+const handlePlaystoreClick = (eventLabel: string, linkUrl: string) => {
+  trackPlaystoreClick({ eventLabel: eventLabel, link_url: linkUrl });
+};
 
 function SocialMediaRow({
   socialMedia,
@@ -8,7 +13,14 @@ function SocialMediaRow({
   link: string;
 }) {
   return (
-    <a href={link} target="_blank" rel="noreferrer">
+    <a
+      href={link}
+      target="_blank"
+      rel="noreferrer"
+      onClick={() =>
+        handlePlaystoreClick(`${socialMedia.toLowerCase()}_footer_click`, link)
+      }
+    >
       <div className="flex flex-row mr-6">
         <span className="font-onest text-[16px] font-regular text-white">
           {socialMedia}

@@ -1,5 +1,6 @@
 "use client";
 
+import { trackPlaystoreClick } from "@/src/lib/analytics/playstoreClick";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -8,6 +9,10 @@ function HeaderSection({ isBlack = false }: { isBlack?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const textColorClass = isBlack ? "text-black" : "text-white";
   const hamburgerLineClass = isBlack ? "bg-black" : "bg-white";
+
+  const handlePlaystoreClick = (eventLabel: string) => {
+    trackPlaystoreClick({ eventLabel: eventLabel });
+  };
 
   return (
     <div className="w-full px-6 md:px-10 py-10 md:py-5 flex items-center justify-between">
@@ -49,6 +54,7 @@ function HeaderSection({ isBlack = false }: { isBlack?: boolean }) {
           target="_blank"
           rel="noreferrer"
           className="hidden md:flex w-[176px] h-[56px] border-[1.5px] border-[rgba(15,23,43,0.95)] bg-[rgba(15,23,43,0.95)] opacity-100 gap-2 py-4 px-8 text-white font-medium transition-colors hover:bg-[rgba(15,23,43,1)] items-center justify-center"
+          onClick={() => handlePlaystoreClick(`header_desktop_download_button`)}
         >
           Download Now
         </a>
@@ -114,7 +120,10 @@ function HeaderSection({ isBlack = false }: { isBlack?: boolean }) {
             target="_blank"
             rel="noreferrer"
             className="w-full h-[56px] mt-5 mb-2 border-[1.5px] border-[rgba(15,23,43,0.95)] bg-[rgba(15,23,43,0.95)] opacity-100 gap-2 py-4 px-8 text-white font-medium transition-colors hover:bg-[rgba(15,23,43,1)] flex items-center justify-center"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              handlePlaystoreClick(`hamburger_mobile_download_button`);
+              setMenuOpen(false);
+            }}
           >
             Download Now
           </a>
