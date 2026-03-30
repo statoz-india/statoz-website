@@ -98,9 +98,12 @@ function FooterSection() {
             <span className="font-orbitron text-[24px] font-bold text-white uppercase mt-12">
               Email
             </span>
-            <span className="font-onest text-[18px] font-medium text-white">
+            <a
+              href="mailto:founders@statoz.in"
+              className="font-onest text-[18px] font-medium text-white"
+            >
               founders@statoz.in
-            </span>
+            </a>
           </div>
         </div>
       </div>
