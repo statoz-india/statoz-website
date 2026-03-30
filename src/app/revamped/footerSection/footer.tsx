@@ -1,3 +1,5 @@
+"use client";
+
 import { trackPlaystoreClick } from "../../../lib/analytics/playstoreClick";
 import Image from "next/image";
 
