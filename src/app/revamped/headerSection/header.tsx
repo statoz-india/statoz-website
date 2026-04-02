@@ -46,6 +46,12 @@ function HeaderSection({ isBlack = false }: { isBlack?: boolean }) {
         >
           Terms and Conditions
         </Link>
+        <Link
+          href="/privacyPolicySection"
+          className={`font-onest font-[16px] ${textColorClass}`}
+        >
+          Privacy Policy
+        </Link>
       </div>
       {/* Right: CTA (desktop) + hamburger menu (mobile) */}
       <div className="relative">
@@ -114,6 +120,13 @@ function HeaderSection({ isBlack = false }: { isBlack?: boolean }) {
             onClick={() => setMenuOpen(false)}
           >
             Terms and Conditions
+          </Link>
+          <Link
+            href="/privacyPolicySection"
+            className="block w-full rounded px-3 py-2 text-left font-onest text-[20px] font-bold text-white hover:bg-white/10"
+            onClick={() => setMenuOpen(false)}
+          >
+            Privacy Policy
           </Link>
           <a
             href="https://play.google.com/store/apps/details?id=com.statoz.app"

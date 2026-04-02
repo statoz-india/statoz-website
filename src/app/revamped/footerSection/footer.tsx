@@ -2,6 +2,7 @@
 
 import { trackPlaystoreClick } from "../../../lib/analytics/playstoreClick";
 import Image from "next/image";
+import Link from "next/link";
 
 const handlePlaystoreClick = (eventLabel: string, linkUrl: string) => {
   trackPlaystoreClick({ eventLabel: eventLabel, link_url: linkUrl });
@@ -108,6 +109,32 @@ function FooterSection() {
         </div>
       </div>
       <div className="h-px bg-[#333E4F] mt-16"></div>
+      <div className="flex flex-wrap gap-x-6 gap-y-3 mt-8">
+        <Link
+          href="/"
+          className="font-onest text-[16px] font-medium text-white hover:underline underline-offset-4"
+        >
+          Game
+        </Link>
+        <Link
+          href="/faq"
+          className="font-onest text-[16px] font-medium text-white hover:underline underline-offset-4"
+        >
+          FAQ
+        </Link>
+        <Link
+          href="/termsAndConditions"
+          className="font-onest text-[16px] font-medium text-white hover:underline underline-offset-4"
+        >
+          Terms and Conditions
+        </Link>
+        <Link
+          href="/privacyPolicySection"
+          className="font-onest text-[16px] font-medium text-white hover:underline underline-offset-4"
+        >
+          Privacy Policy
+        </Link>
+      </div>
       <div className="flex mt-8">
         <span className="font-onest text-[16px] font-medium text-white">
           © Copyright 2026, All Rights Reserved
