@@ -47,7 +47,7 @@ function HeaderSection({ isBlack = false }: { isBlack?: boolean }) {
           Terms and Conditions
         </Link>
         <Link
-          href="/privacyPolicySection"
+          href="/privacyPolicy"
           className={`font-onest font-[16px] ${textColorClass}`}
         >
           Privacy Policy
@@ -122,7 +122,7 @@ function HeaderSection({ isBlack = false }: { isBlack?: boolean }) {
             Terms and Conditions
           </Link>
           <Link
-            href="/privacyPolicySection"
+            href="/privacyPolicy"
             className="block w-full rounded px-3 py-2 text-left font-onest text-[20px] font-bold text-white hover:bg-white/10"
             onClick={() => setMenuOpen(false)}
           >

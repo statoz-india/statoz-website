@@ -129,7 +129,7 @@ function FooterSection() {
           Terms and Conditions
         </Link>
         <Link
-          href="/privacyPolicySection"
+          href="/privacyPolicy"
           className="font-onest text-[16px] font-medium text-white hover:underline underline-offset-4"
         >
           Privacy Policy
