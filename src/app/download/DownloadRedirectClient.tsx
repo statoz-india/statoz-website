@@ -1,16 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
 import { ANDROID_STORE_URL, IOS_STORE_URL } from "./storeUrls";
 
 function detectPlatform(): "android" | "ios" | "desktop" {
   if (typeof navigator === "undefined") return "desktop";
   const ua = navigator.userAgent || "";
   if (/Android/i.test(ua)) return "android";
-  const isIPadDesktopUA =
-    navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
-  if (/iPhone|iPad|iPod/i.test(ua) || isIPadDesktopUA) return "ios";
+  if (/iPhone|iPad|iPod/i.test(ua)) return "ios";
   return "desktop";
 }
 
@@ -24,9 +21,9 @@ export default function DownloadRedirectClient() {
     const platform = detectPlatform();
 
     if (platform === "android") {
-      window.location.replace(ANDROID_STORE_URL);
+      window.location.href = ANDROID_STORE_URL;
     } else if (platform === "ios") {
-      window.location.replace(IOS_STORE_URL);
+      window.location.href = IOS_STORE_URL;
     }
   }, []);
 

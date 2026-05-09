@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
+import { ANDROID_STORE_URL, IOS_STORE_URL } from "../download/storeUrls";
 
 const APP_DEEP_LINK = "statoz://open";
-const ANDROID_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.statoz.app";
-const IOS_STORE_URL = "https://apps.apple.com/in/app/statoz/id6761310455";
 const WEB_FALLBACK_URL = "https://statoz.in";
 
 export default function OpenAppRedirectClient() {
