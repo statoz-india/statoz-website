@@ -36,7 +36,7 @@ export default function Leaderboard() {
               KNOW WHERE YOU <span className="grad">STAND.</span>
             </h2>
           </div>
-          <p className="sec-head__lead sec-head__lead--right">
+          <p className="sec-head__lead sec-head__lead--left">
             Four boards, one ladder. Match Day XP, tourneys, Oz Coins and game
             wins -with live movement and your rank wherever you land.
           </p>

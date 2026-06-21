@@ -29,7 +29,7 @@ export default function Hero() {
       </span>
 
       <div className="wrap hero__inner">
-        <div className="hero__copy reveal">
+        <div className="hero__copy">
           <span className="kicker">
             <i className="live-dot" />
             FREE TO PLAY · NO CASH · JUST SKILL
@@ -85,7 +85,7 @@ export default function Hero() {
         </div>
 
         {/* HERO CARD FAN */}
-        <div className="hero__stage reveal" data-tilt-scene>
+        <div className="hero__stage" data-tilt-scene>
           <div className="hero-card__ground" aria-hidden="true" />
           <div className="toast toast--xp" aria-hidden="true">
             ✓ +250 XP <small>BEAT 64% OF PREDICTORS</small>
