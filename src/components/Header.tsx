@@ -25,9 +25,12 @@ export default function Header() {
           <Link className="btn btn--ghost btn--sm" href={ROUTES.predict}>
             How It Works
           </Link>
-          <Link className="btn btn--primary btn--sm" href={ROUTES.download}>
+          <a
+            className="btn btn--primary btn--sm"
+            href="https://download.statoz.in"
+          >
             Get the App
-          </Link>
+          </a>
         </div>
 
         <button
@@ -48,13 +51,13 @@ export default function Header() {
             {l.label}
           </Link>
         ))}
-        <Link
+        <a
           className="btn btn--primary"
-          href={ROUTES.download}
+          href="https://download.statoz.in"
           onClick={() => setOpen(false)}
         >
           Get the App
-        </Link>
+        </a>
       </div>
     </header>
   );
