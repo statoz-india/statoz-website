@@ -1,132 +1,119 @@
 import type { Metadata } from "next";
-import {
-  Geist,
-  Geist_Mono,
-  Orbitron,
-  Plus_Jakarta_Sans,
-} from "next/font/google";
-import "./globals.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Script from "next/script";
+import { Orbitron, Onest, Space_Mono } from "next/font/google";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
+import "./globals.css";
 
-const siteName = "Statoz";
-const siteUrl = "https://statoz.in";
-const defaultTitle = "Statoz | F2P Sports Prediction Market & Skill-Based Play";
-const defaultDescription =
-  "Statoz is a free-to-play sports prediction market where fans play skill-based prediction games, track live odds, climb leaderboards, and win rewards across cricket and football.";
-const defaultImage = "/StatOz%20Cover%20Image.webp";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const disp = Orbitron({
   subsets: ["latin"],
+  weight: ["500", "600", "700", "800", "900"],
+  variable: "--font-disp",
+  display: "swap",
+});
+const ui = Onest({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-ui",
+  display: "swap",
+});
+const mono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const GTM_ID = "GTM-T436Z2PL";
+const GA_MEASUREMENT_ID = "G-7KH0GEDEFX";
 
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-});
+const TITLE = "StatOz -Free sports prediction game | World Cup 2026";
+const DESCRIPTION =
+  "Free sports prediction game. Predict World Cup 2026 and EPL fixtures, win Oz Coins, build accuracy streaks and climb the global leaderboard. No cash, not gambling.";
+// TODO: replace with a dedicated 1200×630 social image when one is ready.
+const OG_IMAGE = "/assets/brand/app-icon.png";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: defaultTitle,
-    template: `%s | ${siteName}`,
-  },
-  description: defaultDescription,
-  applicationName: siteName,
+  metadataBase: new URL(SITE_URL),
+  title: { default: TITLE, template: "%s · StatOz" },
+  description: DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
-    "f2p prediction market",
-    "free to play sports game",
+    "sports prediction game",
+    "World Cup 2026 predictions",
+    "soccer prediction game",
+    "free prediction game",
+    "EPL predictions",
+    "match prediction quiz",
     "sports prediction app",
-    "skill-based sports gaming",
-    "cricket prediction game",
-    "football prediction game",
-    "live odds sports game",
-    "Statoz",
   ],
-  alternates: {
-    canonical: "/",
-  },
-  icons: {
-    icon: "/statoz%20logo.png",
-  },
+  alternates: { canonical: "/" },
+  icons: { icon: "/assets/brand/app-icon.png" },
   openGraph: {
-    title: defaultTitle,
-    description: defaultDescription,
-    url: siteUrl,
-    siteName,
     type: "website",
-    images: [
-      {
-        url: defaultImage,
-        width: 1200,
-        height: 630,
-        alt: "Statoz free-to-play sports prediction market",
-      },
-    ],
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "StatOz" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: defaultTitle,
-    description: defaultDescription,
-    images: [defaultImage],
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE],
   },
 };
 
-const websiteSchema = {
+const JSON_LD = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: siteName,
-  url: siteUrl,
-  description: defaultDescription,
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${siteUrl}/allblogs?search={search_term_string}`,
-    "query-input": "required name=search_term_string",
+  "@type": "SoftwareApplication",
+  name: SITE_NAME,
+  description: DESCRIPTION,
+  url: SITE_URL,
+  applicationCategory: "GameApplication",
+  operatingSystem: "Android, iOS",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "5000",
   },
-};
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteName,
-  url: siteUrl,
-  logo: `${siteUrl}/statoz%20logo.png`,
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} ${plusJakartaSans.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={`${disp.variable} ${ui.variable} ${mono.variable}`}
+    >
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-T436Z2PL"
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
+          />
         </noscript>
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
+          `}
+        </Script>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-7KH0GEDEFX"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -134,19 +121,9 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-7KH0GEDEFX');
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
-        <Script
-          id="structured-data-website"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-        <Script
-          id="structured-data-organization"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
         {children}
       </body>
     </html>

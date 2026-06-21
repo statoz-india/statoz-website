@@ -1,30 +1,46 @@
-import { MetadataRoute } from "next";
-import { BLOG_POSTS } from "./old/utils/blogData";
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://statoz.in";
   const now = new Date();
-
-  const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
-    url: `${baseUrl}/allblogs/${post.slug}`,
-    lastModified: new Date(post.publishDate),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
   return [
+    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
     {
-      url: baseUrl,
+      url: `${SITE_URL}/download`,
       lastModified: now,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/allblogs`,
-      lastModified: now,
-      changeFrequency: "weekly",
+      changeFrequency: "monthly",
       priority: 0.8,
     },
-    ...blogEntries,
+    {
+      url: `${SITE_URL}${ROUTES.blog}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.iplJourney}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.predictionQuizGuide}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.terms}`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.privacy}`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }

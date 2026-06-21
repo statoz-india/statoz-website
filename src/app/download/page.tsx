@@ -1,20 +1,29 @@
 import type { Metadata } from "next";
-
-import DownloadRedirectClient from "./DownloadRedirectClient";
+import Download from "@/components/Download";
+import Effects from "@/components/Effects";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "Download StatOz | Get the App",
+  title: "Download StatOz -Free sports prediction game",
   description:
-    "Download StatOz app on iOS or Android. Get real-time sports statistics and insights.",
+    "Get StatOz free on Android and iOS. Predict football fixtures, win Oz Coins, build streaks and climb the global leaderboard. No cash, not gambling.",
+  alternates: { canonical: "/download" },
 };
 
 export default function DownloadPage() {
   return (
-    <main className="min-h-screen bg-[#070b1f] text-white flex items-center justify-center px-6">
-      <div className="max-w-md text-center space-y-4">
-        <h1 className="text-xl font-semibold">Download StatOz</h1>
-        <DownloadRedirectClient />
-      </div>
-    </main>
+    <>
+      <div className="fx-grain" aria-hidden />
+      <div className="fx-scan" aria-hidden />
+      <div className="cursor-glow" aria-hidden />
+
+      <Header />
+
+      <main>
+        <Download />
+      </main>
+
+      <Effects />
+    </>
   );
 }
