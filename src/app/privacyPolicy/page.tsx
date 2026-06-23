@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = {
@@ -29,9 +30,18 @@ const TOC = [
   { id: "contact", t: "Contact Us" },
 ];
 
-export default function PrivacyPolicyPage() {
+type PrivacyPolicyPageProps = {
+  searchParams?: Promise<{ layout?: string | string[] }>;
+};
+
+export default async function PrivacyPolicyPage({
+  searchParams,
+}: PrivacyPolicyPageProps) {
+  const resolvedSearchParams = await searchParams;
+  const showLayout = shouldShowLayout(resolvedSearchParams);
+
   return (
-    <BlogChrome>
+    <BlogChrome showLayout={showLayout}>
       <article className="legal-page">
         <header className="article-hero legal-hero">
           <div className="article-hero__grid" aria-hidden />
