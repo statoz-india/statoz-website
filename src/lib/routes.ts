@@ -15,8 +15,8 @@ export const ROUTES = {
   blog: "/blog",
   iplJourney: "/blog/ipl-2026-prediction-journey",
   predictionQuizGuide: "/blog/how-statoz-prediction-quiz-works",
-  terms: "/terms",
-  privacy: "/privacy-policy",
+  terms: "/termsAndConditions",
+  privacy: "/privacyPolicy",
 } as const;
 
 export const PRIMARY_NAV_LINKS = [
