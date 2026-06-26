@@ -28,6 +28,10 @@ export default function Header() {
           <a
             className="btn btn--primary btn--sm"
             href="https://download.statoz.in"
+            data-analytics-event="download_cta_click"
+            data-analytics-cta-label="Get the App"
+            data-analytics-cta-location="header_desktop"
+            data-analytics-store="app_landing"
           >
             Get the App
           </a>
@@ -54,6 +58,10 @@ export default function Header() {
         <a
           className="btn btn--primary"
           href="https://download.statoz.in"
+          data-analytics-event="download_cta_click"
+          data-analytics-cta-label="Get the App"
+          data-analytics-cta-location="header_mobile"
+          data-analytics-store="app_landing"
           onClick={() => setOpen(false)}
         >
           Get the App

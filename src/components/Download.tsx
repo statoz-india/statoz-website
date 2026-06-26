@@ -53,6 +53,10 @@ export default function Download() {
               href={PLAY_STORE_URL}
               target="_blank"
               rel="noopener"
+              data-analytics-event="download_cta_click"
+              data-analytics-cta-label="Google Play"
+              data-analytics-cta-location="download_section"
+              data-analytics-store="google_play"
             >
               <StoreIcon store="playstore" className="btn__i" />
               <span className="store">
@@ -64,6 +68,10 @@ export default function Download() {
               href={APP_STORE_URL}
               target="_blank"
               rel="noopener"
+              data-analytics-event="download_cta_click"
+              data-analytics-cta-label="App Store"
+              data-analytics-cta-location="download_section"
+              data-analytics-store="app_store"
             >
               <StoreIcon store="apple" className="btn__i" />
               <span className="store">

@@ -40,7 +40,7 @@ const COLS = [
   {
     h: "Company",
     links: [
-      { t: "About StatOz", href: "#" },
+      { t: "About StatOz", href: ROUTES.about },
       { t: "Blog", href: ROUTES.blog },
       { t: "Careers", href: "#" },
       { t: "Contact", href: "#" },

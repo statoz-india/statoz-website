@@ -63,7 +63,13 @@ export default function BlogPage() {
                   <span className="blog-card__eyebrow">{post.eyebrow}</span>
                   <h3>{post.title}</h3>
                   <p>{post.summary}</p>
-                  <Link className="blog-card__link" href={post.href}>
+                  <Link
+                    className="blog-card__link"
+                    href={post.href}
+                    data-analytics-event="blog_post_click"
+                    data-analytics-post-slug={post.slug}
+                    data-analytics-post-title={post.title}
+                  >
                     {post.linkText} <span aria-hidden>→</span>
                   </Link>
                 </div>

@@ -11,6 +11,7 @@ export const ROUTES = {
   shop: "/#shop",
   who: "/#who",
   download: "/download",
+  about: "/about",
   faq: "/faq",
   blog: "/blog",
   iplJourney: "/blog/ipl-2026-prediction-journey",

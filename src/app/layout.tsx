@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Orbitron, Onest, Space_Mono } from "next/font/google";
+import AnalyticsEvents from "@/components/AnalyticsEvents";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
@@ -124,6 +125,7 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
+        <AnalyticsEvents />
         {children}
       </body>
     </html>
