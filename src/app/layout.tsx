@@ -26,6 +26,7 @@ const mono = Space_Mono({
 
 const GTM_ID = "GTM-T436Z2PL";
 const GA_MEASUREMENT_ID = "G-7KH0GEDEFX";
+const ADSENSE_CLIENT = "ca-pub-6501993109896836";
 
 const TITLE = "StatOz -Free sports prediction game | World Cup 2026";
 const DESCRIPTION =
@@ -91,6 +92,13 @@ export default function RootLayout({
       lang="en"
       className={`${disp.variable} ${ui.variable} ${mono.variable}`}
     >
+      <head>
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"
