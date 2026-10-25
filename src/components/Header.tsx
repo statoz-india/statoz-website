@@ -25,16 +25,16 @@ export default function Header() {
           <Link className="btn btn--ghost btn--sm" href={ROUTES.predict}>
             How It Works
           </Link>
-          <a
+          <Link
             className="btn btn--primary btn--sm"
-            href="https://download.statoz.in"
+            href={ROUTES.download}
             data-analytics-event="download_cta_click"
             data-analytics-cta-label="Get the App"
             data-analytics-cta-location="header_desktop"
             data-analytics-store="app_landing"
           >
             Get the App
-          </a>
+          </Link>
         </div>
 
         <button
@@ -55,9 +55,9 @@ export default function Header() {
             {l.label}
           </Link>
         ))}
-        <a
+        <Link
           className="btn btn--primary"
-          href="https://download.statoz.in"
+          href={ROUTES.download}
           data-analytics-event="download_cta_click"
           data-analytics-cta-label="Get the App"
           data-analytics-cta-location="header_mobile"
@@ -65,7 +65,7 @@ export default function Header() {
           onClick={() => setOpen(false)}
         >
           Get the App
-        </a>
+        </Link>
       </div>
     </header>
   );
