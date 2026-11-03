@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
 import { FAQ_ITEMS } from "@/lib/faqData";
 import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
+import { SHARED_OPEN_GRAPH } from "@/lib/site";
+import { faqJsonLd } from "@/lib/structuredData";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -11,6 +14,7 @@ export const metadata: Metadata = {
     "Answers about StatOz — free sports predictions, Oz Coins, XP, and how the game works. No real money, not gambling.",
   alternates: { canonical: ROUTES.faq },
   openGraph: {
+    ...SHARED_OPEN_GRAPH,
     title: "FAQ · StatOz",
     description:
       "Answers about StatOz — free sports predictions, Oz Coins, XP, and how the game works.",
@@ -28,6 +32,7 @@ export default async function FaqPage({ searchParams }: FaqPageProps) {
 
   return (
     <BlogChrome showLayout={showLayout}>
+      <JsonLd data={faqJsonLd(FAQ_ITEMS)} />
       <section className="blog-hero">
         <div className="blog-hero__orb blog-hero__orb--one" aria-hidden />
         <div className="blog-hero__orb blog-hero__orb--two" aria-hidden />

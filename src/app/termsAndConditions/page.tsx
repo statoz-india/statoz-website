@@ -3,6 +3,7 @@ import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
+import { SHARED_OPEN_GRAPH } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     "The Terms & Conditions for StatOz -a 100% free-to-play, skill-based sports prediction gaming platform. No real money, no gambling, virtual coins only.",
   alternates: { canonical: ROUTES.terms },
   openGraph: {
+    ...SHARED_OPEN_GRAPH,
     type: "article",
     title: "Terms & Conditions · StatOz",
     description:

@@ -3,6 +3,7 @@ import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
+import { SHARED_OPEN_GRAPH } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     "Learn about StatOz, a gaming-first company building fun, social, and immersive sports experiences. StatOz is not a gambling platform.",
   alternates: { canonical: ROUTES.about },
   openGraph: {
+    ...SHARED_OPEN_GRAPH,
     type: "article",
     title: "About Us - StatOz",
     description:

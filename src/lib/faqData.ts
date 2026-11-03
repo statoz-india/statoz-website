@@ -1,5 +1,9 @@
 export const FAQ_ITEMS = [
   {
+    q: "What is StatOz?",
+    a: "StatOz is a free-to-play sports prediction game for Android and iOS. Before kickoff you answer a short quiz about a real match, back your strongest calls with free Oz Coins, and earn XP for every correct answer to climb the global leaderboard. It covers FIFA World Cup 2026, the EPL, IPL and more. There is no real money involved, so it is not gambling.",
+  },
+  {
     q: "Is StatOz actually free?",
     a: "Completely. No entry fees, no deposits, ever. You play for XP and back Picks with Oz Coins earned free in-app. Nothing costs real money.",
   },
@@ -22,5 +26,9 @@ export const FAQ_ITEMS = [
   {
     q: "Which tournaments can I predict?",
     a: "FIFA World Cup 2026 is the headliner -all 48 nations, 104 fixtures. Plus daily quizzes and Picks across the EPL, IPL, NBA, La Liga and more, year-round.",
+  },
+  {
+    q: "How do I download StatOz?",
+    a: "StatOz is free on Google Play for Android and on the App Store for iPhone and iPad. Visit download.statoz.in on your phone and it opens the right store for your device.",
   },
 ] as const;

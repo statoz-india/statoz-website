@@ -2,15 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
 import { PREDICTION_QUIZ_POST } from "@/lib/blog";
 import { ROUTES } from "@/lib/routes";
+import { SHARED_OPEN_GRAPH } from "@/lib/site";
+import { articleJsonLd } from "@/lib/structuredData";
+
+const DESCRIPTION =
+  "Learn how StatOz match quizzes work: answer four pre-match questions, lock picks at kickoff, earn XP after automatic settlement, and climb the leaderboards.";
 
 export const metadata: Metadata = {
   title: "How the StatOz Prediction Quiz Works",
-  description:
-    "Learn how StatOz match quizzes work: answer four pre-match questions, lock picks at kickoff, earn XP after automatic settlement, and climb the leaderboards.",
+  description: DESCRIPTION,
   alternates: { canonical: ROUTES.predictionQuizGuide },
   openGraph: {
+    ...SHARED_OPEN_GRAPH,
     type: "article",
     title: "How the StatOz Prediction Quiz Works",
     description: PREDICTION_QUIZ_POST.summary,
@@ -21,6 +27,7 @@ export const metadata: Metadata = {
 export default function PredictionQuizGuidePage() {
   return (
     <BlogChrome>
+      <JsonLd data={articleJsonLd(PREDICTION_QUIZ_POST, DESCRIPTION)} />
       <article className="article-page">
         <header className="article-hero article-hero--quiz">
           <div className="article-hero__grid" aria-hidden />

@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Orbitron, Onest, Space_Mono } from "next/font/google";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_DESCRIPTION,
+  SHARED_OPEN_GRAPH,
+} from "@/lib/site";
+import { SITE_GRAPH } from "@/lib/structuredData";
 import "./globals.css";
 
 const disp = Orbitron({
@@ -28,11 +35,8 @@ const GTM_ID = "GTM-T436Z2PL";
 const GA_MEASUREMENT_ID = "G-7KH0GEDEFX";
 const ADSENSE_CLIENT = "ca-pub-6501993109896836";
 
-const TITLE = "StatOz -Free sports prediction game | World Cup 2026";
-const DESCRIPTION =
-  "Free sports prediction game. Predict World Cup 2026 and EPL fixtures, win Oz Coins, build accuracy streaks and climb the global leaderboard. No cash, not gambling.";
-// TODO: replace with a dedicated 1200×630 social image when one is ready.
-const OG_IMAGE = "/assets/brand/app-icon.png";
+const TITLE = "StatOz – Free Sports Prediction Game";
+const DESCRIPTION = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,36 +53,30 @@ export const metadata: Metadata = {
     "sports prediction app",
   ],
   alternates: { canonical: "/" },
+  category: "games",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: { icon: "/assets/brand/app-icon.png" },
   openGraph: {
+    ...SHARED_OPEN_GRAPH,
     type: "website",
     url: SITE_URL,
-    siteName: SITE_NAME,
     title: TITLE,
     description: DESCRIPTION,
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "StatOz" }],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: [OG_IMAGE],
-  },
-};
-
-const JSON_LD = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: SITE_NAME,
-  description: DESCRIPTION,
-  url: SITE_URL,
-  applicationCategory: "GameApplication",
-  operatingSystem: "Android, iOS",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "5000",
   },
 };
 
@@ -100,10 +98,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
-        />
+        <JsonLd data={SITE_GRAPH} />
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}

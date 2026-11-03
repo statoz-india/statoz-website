@@ -38,14 +38,16 @@ const DOWNLOAD_CARDS = [
 
 const BADGES = ["Free", "No deposits", "Skill-based"];
 
-export default function Download() {
+// The /download page renders this as its main heading.
+export default function Download({ asPageTitle = false }: { asPageTitle?: boolean }) {
+  const Title = asPageTitle ? "h1" : "h2";
   return (
     <section className="section download" id="download">
       <div className="wrap download__inner reveal">
         <div className="download__copy">
-          <h2 className="download__title">
+          <Title className="download__title">
             DOWNLOAD <span className="grad">STATOZ.</span>
-          </h2>
+          </Title>
 
           <div className="download__actions">
             <a

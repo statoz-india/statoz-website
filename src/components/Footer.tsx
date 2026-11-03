@@ -43,7 +43,7 @@ const COLS = [
       { t: "About StatOz", href: ROUTES.about },
       { t: "Blog", href: ROUTES.blog },
       { t: "Careers", href: "#" },
-      { t: "Contact", href: "#" },
+      { t: "Contact", href: "mailto:support@statoz.in" },
     ],
   },
   {

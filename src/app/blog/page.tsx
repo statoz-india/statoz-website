@@ -4,6 +4,7 @@ import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { BLOG_POSTS } from "@/lib/blog";
 import { ROUTES } from "@/lib/routes";
+import { SHARED_OPEN_GRAPH } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     "Stories, community reports, and prediction insights from StatOz.",
   alternates: { canonical: ROUTES.blog },
   openGraph: {
+    ...SHARED_OPEN_GRAPH,
     title: "StatOz Blog",
     description: "Stories and prediction insights from the StatOz community.",
     url: ROUTES.blog,

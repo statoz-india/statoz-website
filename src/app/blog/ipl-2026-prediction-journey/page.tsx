@@ -2,15 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
 import { IPL_JOURNEY_POST } from "@/lib/blog";
 import { ROUTES } from "@/lib/routes";
+import { SHARED_OPEN_GRAPH } from "@/lib/site";
+import { articleJsonLd } from "@/lib/structuredData";
+
+const DESCRIPTION =
+  "How 292 StatOz players made 479 IPL 2026 predictions, submitted 1,137 entries, and placed 80,471 Oz Coins.";
 
 export const metadata: Metadata = {
   title: "Our IPL 2026 Prediction Journey",
-  description:
-    "How 292 StatOz players made 479 IPL 2026 predictions, submitted 1,137 entries, and placed 80,471 Oz Coins.",
+  description: DESCRIPTION,
   alternates: { canonical: ROUTES.iplJourney },
   openGraph: {
+    ...SHARED_OPEN_GRAPH,
     type: "article",
     title: "Our IPL 2026 Prediction Journey",
     description: IPL_JOURNEY_POST.summary,
@@ -21,6 +27,7 @@ export const metadata: Metadata = {
 export default function IplJourneyPage() {
   return (
     <BlogChrome>
+      <JsonLd data={articleJsonLd(IPL_JOURNEY_POST, DESCRIPTION)} />
       <article className="article-page">
         <header className="article-hero">
           <div className="article-hero__grid" aria-hidden />

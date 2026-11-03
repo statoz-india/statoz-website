@@ -3,6 +3,7 @@ import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
+import { SHARED_OPEN_GRAPH } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     "Learn how the Statoz mobile application collects, uses, retains, and protects your information.",
   alternates: { canonical: ROUTES.privacy },
   openGraph: {
+    ...SHARED_OPEN_GRAPH,
     type: "article",
     title: "Privacy Policy · Statoz",
     description:
