@@ -1,24 +1,19 @@
-import type { Metadata } from "next";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
-import { SHARED_OPEN_GRAPH } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Terms & Conditions",
   description:
     "The Terms & Conditions for StatOz -a 100% free-to-play, skill-based sports prediction gaming platform. No real money, no gambling, virtual coins only.",
-  alternates: { canonical: ROUTES.terms },
-  openGraph: {
-    ...SHARED_OPEN_GRAPH,
-    type: "article",
-    title: "Terms & Conditions · StatOz",
-    description:
-      "The Terms & Conditions for StatOz -a 100% free-to-play, skill-based sports prediction gaming platform.",
-    url: ROUTES.terms,
-  },
-};
+  shareDescription:
+    "The Terms & Conditions for StatOz -a 100% free-to-play, skill-based sports prediction gaming platform.",
+  path: ROUTES.terms,
+  type: "article",
+  keywords: ["StatOz terms and conditions", "Oz Coins terms", "virtual coins only"],
+});
 
 const TOC = [
   { id: "about", t: "About StatOz" },

@@ -64,12 +64,31 @@ export default function Footer() {
         <div className="site-foot__brand">
           <BrandMark />
           <p>
-            The free-to-play football prediction arena. Answer the quiz, back
-            your picks, climb the board. No cash, no catch.
+            StatOz is the free sports prediction game for World Cup 2026, EPL,
+            IPL and more. Answer the quiz, back your picks, climb the board.
+            No cash, not gambling.
           </p>
           <div className="socials">
             {SOCIALS.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener" aria-label={s.label}>
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener"
+                aria-label={s.label}
+                {...("store" in s && s.store
+                  ? {
+                      "data-analytics-event": "download_cta_click",
+                      "data-analytics-cta-label": s.label,
+                      "data-analytics-cta-location": "footer",
+                      "data-analytics-store": "google_play",
+                    }
+                  : {
+                      "data-analytics-event": "social_click",
+                      "data-analytics-network": s.label.toLowerCase(),
+                      "data-analytics-location": "footer",
+                    })}
+              >
                 {"store" in s && s.store ? (
                   <StoreIcon store={s.store} />
                 ) : (

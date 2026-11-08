@@ -1,5 +1,16 @@
-import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_DESCRIPTION,
+  SITE_LANGUAGE,
+  BRAND_NAMES,
+  SUPPORT_EMAIL,
+  LOGO_PATH,
+  APP_ICON_PATH,
+  BRAND_IMAGE_SIZE,
+} from "@/lib/site";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
+import { ROUTES } from "@/lib/routes";
 import type { BlogPost } from "@/lib/blog";
 
 /* schema.org JSON-LD shared by every page. Entities reference each other by
@@ -8,7 +19,11 @@ import type { BlogPost } from "@/lib/blog";
 const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 const APP_ID = `${SITE_URL}/#app`;
-const LOGO_URL = `${SITE_URL}/assets/brand/app-icon.png`;
+const BLOG_ID = `${SITE_URL}${ROUTES.blog}#blog`;
+
+export const LOGO_URL = `${SITE_URL}${LOGO_PATH}`;
+export const APP_ICON_URL = `${SITE_URL}${APP_ICON_PATH}`;
+const SHARE_IMAGE_URL = `${SITE_URL}/opengraph-image`;
 
 export const SOCIAL_PROFILES = [
   "https://www.instagram.com/statozindia/",
@@ -23,6 +38,15 @@ const absolute = (href: string) => {
   return url.toString();
 };
 
+const pngImage = (url: string) => ({
+  "@type": "ImageObject",
+  url,
+  contentUrl: url,
+  width: BRAND_IMAGE_SIZE,
+  height: BRAND_IMAGE_SIZE,
+  encodingFormat: "image/png",
+});
+
 export const SITE_GRAPH = {
   "@context": "https://schema.org",
   "@graph": [
@@ -30,12 +54,27 @@ export const SITE_GRAPH = {
       "@type": "Organization",
       "@id": ORG_ID,
       name: SITE_NAME,
-      alternateName: "Statoz",
+      alternateName: BRAND_NAMES.filter((name) => name !== SITE_NAME),
       url: SITE_URL,
-      logo: { "@type": "ImageObject", url: LOGO_URL, width: 1200, height: 1200 },
-      email: "support@statoz.in",
+      logo: { ...pngImage(LOGO_URL), caption: `${SITE_NAME} logo` },
+      image: pngImage(APP_ICON_URL),
+      email: SUPPORT_EMAIL,
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: SUPPORT_EMAIL,
+        availableLanguage: ["English"],
+      },
       description:
         "StatOz is a gaming-first sports entertainment company building free-to-play sports prediction games. It is not a gambling platform.",
+      knowsAbout: [
+        "Sports prediction games",
+        "FIFA World Cup 2026",
+        "Premier League",
+        "Indian Premier League",
+        "Football",
+        "Cricket",
+      ],
       sameAs: [...SOCIAL_PROFILES, PLAY_STORE_URL, APP_STORE_URL],
     },
     {
@@ -43,8 +82,9 @@ export const SITE_GRAPH = {
       "@id": WEBSITE_ID,
       url: SITE_URL,
       name: SITE_NAME,
+      alternateName: BRAND_NAMES.filter((name) => name !== SITE_NAME),
       description: SITE_DESCRIPTION,
-      inLanguage: "en",
+      inLanguage: SITE_LANGUAGE,
       publisher: { "@id": ORG_ID },
     },
     {
@@ -53,11 +93,14 @@ export const SITE_GRAPH = {
       name: SITE_NAME,
       description: SITE_DESCRIPTION,
       url: SITE_URL,
-      image: LOGO_URL,
+      image: APP_ICON_URL,
       applicationCategory: "GameApplication",
       applicationSubCategory: "Sports prediction game",
       operatingSystem: "Android, iOS",
       installUrl: [PLAY_STORE_URL, APP_STORE_URL],
+      inLanguage: SITE_LANGUAGE,
+      contentRating: "18+",
+      isAccessibleForFree: true,
       publisher: { "@id": ORG_ID },
       offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
       // Must match the real store ratings, or Google can issue a manual action.
@@ -95,20 +138,44 @@ export function breadcrumbJsonLd(items: { label: string; href?: string }[]) {
   };
 }
 
-export function articleJsonLd(post: BlogPost, description: string) {
+function postingFields(post: BlogPost) {
   const url = absolute(post.href);
   return {
-    "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${url}#post`,
     headline: post.title,
-    description,
+    description: post.description,
     url,
-    mainEntityOfPage: url,
-    image: absolute("/opengraph-image"),
-    inLanguage: "en",
+    datePublished: post.published,
+    dateModified: post.updated,
+    image: { "@type": "ImageObject", url: SHARE_IMAGE_URL, width: 1200, height: 630 },
+    keywords: post.keywords.join(", "),
+    inLanguage: SITE_LANGUAGE,
     author: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
+  };
+}
+
+export function articleJsonLd(post: BlogPost) {
+  return {
+    "@context": "https://schema.org",
+    ...postingFields(post),
+    mainEntityOfPage: absolute(post.href),
     about: { "@id": APP_ID },
+    isPartOf: { "@id": BLOG_ID },
+  };
+}
+
+export function blogJsonLd(posts: BlogPost[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": BLOG_ID,
+    name: `${SITE_NAME} Blog`,
+    url: absolute(ROUTES.blog),
+    inLanguage: SITE_LANGUAGE,
+    publisher: { "@id": ORG_ID },
     isPartOf: { "@id": WEBSITE_ID },
+    blogPost: posts.map(postingFields),
   };
 }

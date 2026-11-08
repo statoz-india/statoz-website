@@ -1,26 +1,28 @@
-import type { Metadata } from "next";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { FAQ_ITEMS } from "@/lib/faqData";
 import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
-import { SHARED_OPEN_GRAPH } from "@/lib/site";
+import { KEYWORDS, pageMetadata } from "@/lib/seo";
 import { faqJsonLd } from "@/lib/structuredData";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "FAQ",
   description:
     "Answers about StatOz — free sports predictions, Oz Coins, XP, and how the game works. No real money, not gambling.",
-  alternates: { canonical: ROUTES.faq },
-  openGraph: {
-    ...SHARED_OPEN_GRAPH,
-    title: "FAQ · StatOz",
-    description:
-      "Answers about StatOz — free sports predictions, Oz Coins, XP, and how the game works.",
-    url: ROUTES.faq,
-  },
-};
+  shareDescription:
+    "Answers about StatOz — free sports predictions, Oz Coins, XP, and how the game works.",
+  path: ROUTES.faq,
+  keywords: [
+    "is StatOz free",
+    "is StatOz gambling",
+    "what are Oz Coins",
+    ...KEYWORDS.trust,
+    KEYWORDS.core[0],
+    KEYWORDS.worldCup[0],
+  ],
+});
 
 type FaqPageProps = {
   searchParams?: Promise<{ layout?: string | string[] }>;
@@ -61,7 +63,7 @@ export default async function FaqPage({ searchParams }: FaqPageProps) {
           </header>
           <div className="faq__list reveal">
             {FAQ_ITEMS.map((item) => (
-              <details className="qa" key={item.q}>
+              <details className="qa" key={item.q} data-faq-location="faq_page">
                 <summary>
                   {item.q}
                   <i />

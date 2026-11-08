@@ -1,7 +1,10 @@
 export type AnalyticsEventName =
   | "download_cta_click"
   | "section_view"
-  | "blog_post_click";
+  | "blog_post_click"
+  | "faq_open"
+  | "social_click"
+  | "email_click";
 
 export type AnalyticsParams = Record<
   string,

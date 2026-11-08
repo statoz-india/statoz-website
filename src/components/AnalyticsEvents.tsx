@@ -23,6 +23,7 @@ const SECTION_NAMES: Record<string, string> = {
 const TRACKED_CLICK_EVENTS = new Set<AnalyticsEventName>([
   "download_cta_click",
   "blog_post_click",
+  "social_click",
 ]);
 
 function currentPagePath() {
@@ -46,6 +47,16 @@ export default function AnalyticsEvents() {
       const target = event.target;
 
       if (!(target instanceof Element)) {
+        return;
+      }
+
+      const mailLink = target.closest<HTMLAnchorElement>('a[href^="mailto:"]');
+
+      if (mailLink) {
+        trackEvent("email_click", {
+          email: mailLink.href.replace(/^mailto:/, "").split("?")[0],
+          page_path: currentPagePath(),
+        });
         return;
       }
 
@@ -84,11 +95,43 @@ export default function AnalyticsEvents() {
           destination_url: linkDestination(trackedElement),
           page_path: currentPagePath(),
         });
+        return;
+      }
+
+      if (eventName === "social_click") {
+        trackEvent(eventName, {
+          network: trackedElement.dataset.analyticsNetwork,
+          location: trackedElement.dataset.analyticsLocation,
+          link_url: linkDestination(trackedElement),
+          page_path: currentPagePath(),
+        });
       }
     }
 
+    // Which questions fans open tells us what to answer better (AEO).
+    // `toggle` does not bubble, so listen in the capture phase.
+    function onToggle(event: Event) {
+      const details = event.target;
+      if (!(details instanceof HTMLDetailsElement) || !details.open) {
+        return;
+      }
+      if (!details.matches("details.qa")) {
+        return;
+      }
+
+      trackEvent("faq_open", {
+        question: details.querySelector("summary")?.textContent?.trim(),
+        faq_location: details.dataset.faqLocation,
+        page_path: currentPagePath(),
+      });
+    }
+
     document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    document.addEventListener("toggle", onToggle, true);
+    return () => {
+      document.removeEventListener("click", onClick);
+      document.removeEventListener("toggle", onToggle, true);
+    };
   }, []);
 
   useEffect(() => {

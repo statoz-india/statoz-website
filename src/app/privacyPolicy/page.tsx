@@ -1,24 +1,17 @@
-import type { Metadata } from "next";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
-import { SHARED_OPEN_GRAPH } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy",
   description:
-    "Learn how the Statoz mobile application collects, uses, retains, and protects your information.",
-  alternates: { canonical: ROUTES.privacy },
-  openGraph: {
-    ...SHARED_OPEN_GRAPH,
-    type: "article",
-    title: "Privacy Policy · Statoz",
-    description:
-      "Learn how the Statoz mobile application collects, uses, retains, and protects your information.",
-    url: ROUTES.privacy,
-  },
-};
+    "Learn how the StatOz mobile application collects, uses, retains, and protects your information.",
+  path: ROUTES.privacy,
+  type: "article",
+  keywords: ["StatOz privacy policy", "StatOz app data"],
+});
 
 const TOC = [
   { id: "information-collection", t: "Information Collection and Use" },

@@ -3,11 +3,14 @@ import Script from "next/script";
 import { Orbitron, Onest, Space_Mono } from "next/font/google";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import JsonLd from "@/components/JsonLd";
+import { KEYWORDS } from "@/lib/seo";
 import {
   SITE_URL,
   SITE_NAME,
   SITE_DESCRIPTION,
+  SITE_LANGUAGE,
   SHARED_OPEN_GRAPH,
+  APP_ICON_PATH,
 } from "@/lib/site";
 import { SITE_GRAPH } from "@/lib/structuredData";
 import "./globals.css";
@@ -44,15 +47,17 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   applicationName: SITE_NAME,
   keywords: [
-    "sports prediction game",
-    "World Cup 2026 predictions",
-    "soccer prediction game",
-    "free prediction game",
-    "EPL predictions",
-    "match prediction quiz",
-    "sports prediction app",
+    ...KEYWORDS.core,
+    ...KEYWORDS.worldCup.slice(0, 4),
+    ...KEYWORDS.leagues.slice(0, 3),
+    "not gambling",
+    "no real money",
+    ...KEYWORDS.brand,
   ],
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": "/blog/rss.xml" },
+  },
   category: "games",
   robots: {
     index: true,
@@ -65,7 +70,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: { icon: "/assets/brand/app-icon.png" },
+  icons: { icon: APP_ICON_PATH, apple: APP_ICON_PATH },
   openGraph: {
     ...SHARED_OPEN_GRAPH,
     type: "website",
@@ -77,6 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
+    images: SHARED_OPEN_GRAPH.images,
   },
 };
 
@@ -87,7 +93,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang={SITE_LANGUAGE}
       className={`${disp.variable} ${ui.variable} ${mono.variable}`}
     >
       <head>

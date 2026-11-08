@@ -1,27 +1,30 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
 import { BLOG_POSTS } from "@/lib/blog";
 import { ROUTES } from "@/lib/routes";
-import { SHARED_OPEN_GRAPH } from "@/lib/site";
+import { KEYWORDS, pageMetadata } from "@/lib/seo";
+import { blogJsonLd } from "@/lib/structuredData";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Blog",
   description:
-    "Stories, community reports, and prediction insights from StatOz.",
-  alternates: { canonical: ROUTES.blog },
-  openGraph: {
-    ...SHARED_OPEN_GRAPH,
-    title: "StatOz Blog",
-    description: "Stories and prediction insights from the StatOz community.",
-    url: ROUTES.blog,
-  },
-};
+    "Stories, community reports, and prediction insights from StatOz, the free sports prediction game.",
+  shareDescription: "Stories and prediction insights from the StatOz community.",
+  path: ROUTES.blog,
+  keywords: [
+    "sports prediction blog",
+    "prediction game guides",
+    ...BLOG_POSTS.flatMap((post) => post.keywords.slice(0, 2)),
+    KEYWORDS.worldCup[0],
+  ],
+});
 
 export default function BlogPage() {
   return (
     <BlogChrome>
+      <JsonLd data={blogJsonLd(BLOG_POSTS)} />
       <section className="blog-hero">
         <div className="blog-hero__orb blog-hero__orb--one" aria-hidden />
         <div className="blog-hero__orb blog-hero__orb--two" aria-hidden />
