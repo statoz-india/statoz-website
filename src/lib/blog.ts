@@ -41,6 +41,8 @@ export interface BlogPost {
   stats: BlogStat[];
   statsPanel: { label: string; heading: string; note?: string };
   body: ArticleBlock[];
+  /** Shown at the end of the post with FAQPage schema. Facts from the post only. */
+  faq: { q: string; a: string }[];
   cta: string;
 }
 
@@ -113,6 +115,20 @@ export const IPL_JOURNEY_POST: BlogPost = {
     {
       kind: "p",
       text: "This IPL journey is only one chapter. We are carrying everything we learned into the next set of contests, with more ways for fans to make picks, follow their accuracy, and climb together.",
+    },
+  ],
+  faq: [
+    {
+      q: "How many people played IPL 2026 predictions on StatOz?",
+      a: "292 StatOz players took part in IPL 2026 predictions. Together they made 479 predictions and sent in 1,137 submissions.",
+    },
+    {
+      q: "What was the correct prediction rate for IPL 2026 on StatOz?",
+      a: "The StatOz community finished IPL 2026 with a 47.88% correct prediction rate.",
+    },
+    {
+      q: "Did the Oz Coins placed in IPL 2026 have any cash value?",
+      a: "No. Players placed 80,471 Oz Coins across their IPL 2026 picks, and Oz Coins have no cash value. They are a free, virtual way to show confidence in a call.",
     },
   ],
   cta: "Join the next prediction",
@@ -203,6 +219,20 @@ export const PREDICTION_QUIZ_POST: BlogPost = {
       text: "StatOz uses virtual rewards with no cash value. There are no entry fees, deposits, cash stakes, or cash payouts in the Prediction Quiz -just your calls, your XP, and the leaderboard.",
     },
   ],
+  faq: [
+    {
+      q: "When do StatOz predictions lock?",
+      a: "StatOz predictions lock at kickoff. You can edit your answers freely until the match begins.",
+    },
+    {
+      q: "Do wrong answers lose XP in StatOz?",
+      a: "No. A wrong answer scores zero and never removes XP you have already earned. Every correct answer credits XP after automatic settlement at full-time.",
+    },
+    {
+      q: "Are Oz Coins staked on the StatOz Prediction Quiz?",
+      a: "No. The Prediction Quiz uses XP only. Oz Coins are not staked on quiz questions.",
+    },
+  ],
   cta: "Try the prediction quiz",
 };
 
@@ -223,5 +253,6 @@ export function postToMarkdown(post: BlogPost) {
     })
     .join("\n\n");
   const stats = post.stats.map((s) => `- ${s.label}: ${s.value}`).join("\n");
-  return `${body}\n\n${post.statsPanel.heading}:\n${stats}`;
+  const faq = post.faq.map((item) => `**${item.q}** ${item.a}`).join("\n\n");
+  return `${body}\n\n${post.statsPanel.heading}:\n${stats}${faq ? `\n\n${faq}` : ""}`;
 }

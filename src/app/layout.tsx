@@ -39,6 +39,14 @@ const GA_MEASUREMENT_ID = "G-7KH0GEDEFX";
 const ADSENSE_CLIENT = "ca-pub-6501993109896836";
 
 const TITLE = "StatOz – Free Sports Prediction Game";
+
+// iOS Safari shows Apple's "Open in App Store" banner for this app id.
+const APP_STORE_ID = "6761310455";
+
+// Search Console / Bing Webmaster verification. Set these env vars at build
+// time to emit the meta tags; skip them if the domain is verified by DNS.
+const GOOGLE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION;
+const BING_VERIFICATION = process.env.BING_SITE_VERIFICATION;
 const DESCRIPTION = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
@@ -48,8 +56,7 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   keywords: [
     ...KEYWORDS.core,
-    ...KEYWORDS.worldCup.slice(0, 4),
-    ...KEYWORDS.leagues.slice(0, 3),
+    ...KEYWORDS.leagues,
     "not gambling",
     "no real money",
     ...KEYWORDS.brand,
@@ -71,6 +78,11 @@ export const metadata: Metadata = {
     },
   },
   icons: { icon: APP_ICON_PATH, apple: APP_ICON_PATH },
+  itunes: { appId: APP_STORE_ID },
+  verification: {
+    ...(GOOGLE_VERIFICATION && { google: GOOGLE_VERIFICATION }),
+    ...(BING_VERIFICATION && { other: { "msvalidate.01": BING_VERIFICATION } }),
+  },
   openGraph: {
     ...SHARED_OPEN_GRAPH,
     type: "website",

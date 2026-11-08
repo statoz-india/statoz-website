@@ -1,5 +1,5 @@
 type StoreIconProps = {
-  store: "apple" | "playstore";
+  store: "apple" | "playstore" | "web";
   className?: string;
 };
 

@@ -20,7 +20,7 @@ export const metadata = pageMetadata({
     "what are Oz Coins",
     ...KEYWORDS.trust,
     KEYWORDS.core[0],
-    KEYWORDS.worldCup[0],
+    KEYWORDS.leagues[0],
   ],
 });
 

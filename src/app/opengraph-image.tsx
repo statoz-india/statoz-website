@@ -37,7 +37,7 @@ export default async function OpengraphImage() {
             Predict every match.
           </div>
           <div style={{ fontSize: 30, color: "#a9b3c9", maxWidth: 640 }}>
-            The free sports prediction game. World Cup 2026, EPL, IPL & more.
+            The free sports prediction game. EPL, IPL, La Liga, NBA & more.
             No cash. Just skill.
           </div>
         </div>

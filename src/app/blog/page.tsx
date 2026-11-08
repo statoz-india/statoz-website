@@ -17,7 +17,7 @@ export const metadata = pageMetadata({
     "sports prediction blog",
     "prediction game guides",
     ...BLOG_POSTS.flatMap((post) => post.keywords.slice(0, 2)),
-    KEYWORDS.worldCup[0],
+    KEYWORDS.leagues[1],
   ],
 });
 

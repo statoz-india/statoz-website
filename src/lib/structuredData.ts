@@ -9,7 +9,7 @@ import {
   APP_ICON_PATH,
   BRAND_IMAGE_SIZE,
 } from "@/lib/site";
-import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
+import { APP_STORE_URL, PLAY_STORE_URL, WEB_APP_URL } from "@/lib/storeLinks";
 import { ROUTES } from "@/lib/routes";
 import type { BlogPost } from "@/lib/blog";
 
@@ -19,11 +19,11 @@ import type { BlogPost } from "@/lib/blog";
 const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 const APP_ID = `${SITE_URL}/#app`;
+const WEB_APP_ID = `${SITE_URL}/#webapp`;
 const BLOG_ID = `${SITE_URL}${ROUTES.blog}#blog`;
 
 export const LOGO_URL = `${SITE_URL}${LOGO_PATH}`;
 export const APP_ICON_URL = `${SITE_URL}${APP_ICON_PATH}`;
-const SHARE_IMAGE_URL = `${SITE_URL}/opengraph-image`;
 
 export const SOCIAL_PROFILES = [
   "https://www.instagram.com/statozindia/",
@@ -110,6 +110,24 @@ export const SITE_GRAPH = {
         ratingCount: "5000",
       },
     },
+    {
+      // The same game in the browser, so search engines and AI assistants
+      // can point desktop users to it.
+      "@type": "WebApplication",
+      "@id": WEB_APP_ID,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      url: WEB_APP_URL,
+      image: APP_ICON_URL,
+      applicationCategory: "GameApplication",
+      applicationSubCategory: "Sports prediction game",
+      operatingSystem: "Any (web browser)",
+      browserRequirements: "Requires JavaScript. Works in modern desktop and mobile browsers.",
+      inLanguage: SITE_LANGUAGE,
+      isAccessibleForFree: true,
+      publisher: { "@id": ORG_ID },
+      offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+    },
   ],
 };
 
@@ -148,7 +166,12 @@ function postingFields(post: BlogPost) {
     url,
     datePublished: post.published,
     dateModified: post.updated,
-    image: { "@type": "ImageObject", url: SHARE_IMAGE_URL, width: 1200, height: 630 },
+    image: {
+      "@type": "ImageObject",
+      url: `${url}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     keywords: post.keywords.join(", "),
     inLanguage: SITE_LANGUAGE,
     author: { "@id": ORG_ID },

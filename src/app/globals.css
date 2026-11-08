@@ -350,6 +350,14 @@ svg {
   mask-image: url("/assets/icons/apple.svg");
   -webkit-mask-image: url("/assets/icons/apple.svg");
 }
+.store-icon--web {
+  mask-image: url("/assets/icons/web.svg");
+  -webkit-mask-image: url("/assets/icons/web.svg");
+}
+.btn .store-icon--web {
+  width: 21px;
+  height: 21px;
+}
 .btn .store-icon--apple {
   width: 23px;
   height: 23px;
@@ -626,8 +634,13 @@ svg {
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 13px;
+  gap: 10px;
   margin-top: 22px;
+}
+/* Google Play, App Store and Web App share one row on desktop. */
+.hero__actions .btn--lg,
+.download__actions .btn--lg {
+  padding-inline: 16px;
 }
 .btn--store {
   --bcut: 11px;
@@ -905,8 +918,24 @@ svg {
     transform: none;
   }
 }
-.hero__copy > * {
+.hero__copy > *,
+.hero__copy > .hero__h1 > * {
   animation: heroRise 0.7s cubic-bezier(0.16, 0.84, 0.3, 1) backwards;
+}
+/* The h1 wraps the kicker and the title for SEO but draws no box of its
+   own: each child keeps its existing styles and layout. */
+.hero__h1 {
+  display: contents;
+  font: inherit;
+}
+.hero__h1 > .hero__title {
+  display: block;
+}
+/* Drop the kicker's tail where the column is too narrow for one line. */
+@media (max-width: 559px), (min-width: 901px) and (max-width: 1099px) {
+  .kicker__more {
+    display: none;
+  }
 }
 .hero__copy .kicker {
   animation-delay: 0.05s;
@@ -1607,7 +1636,7 @@ svg {
 }
 .download__actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-top: 30px;
   flex-wrap: wrap;
 }
@@ -2031,7 +2060,9 @@ svg {
     padding-top: 34px;
   }
   .hero__inner {
-    grid-template-columns: 1fr;
+    /* minmax(0, …) keeps the column inside the screen; plain 1fr grew to its
+       widest child and pushed the buttons past the right edge on phones. */
+    grid-template-columns: minmax(0, 1fr);
     min-height: 0;
   }
   .hero__stage {
@@ -3320,6 +3351,16 @@ svg {
   .hero__actions .btn--lg .store small {
     font-size: 8px;
   }
+  /* Phones: the two store buttons keep their row; Web App takes a full-width
+     row underneath. */
+  .hero__actions {
+    flex-wrap: wrap;
+  }
+  .hero__actions .btn--web,
+  .download__actions .btn--web {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
   .hero__stage {
     height: clamp(300px, 46vh, 400px);
   }
@@ -3833,6 +3874,15 @@ svg {
 }
 .article-copy p + p {
   margin-top: 14px;
+}
+/* FAQ accordions inside articles keep the homepage FAQ look. */
+.article-copy .faq__list {
+  margin-top: 18px;
+}
+.article-copy .qa p {
+  color: var(--mut);
+  font-size: 15px;
+  line-height: 1.6;
 }
 .article-copy__intro {
   color: var(--txt) !important;

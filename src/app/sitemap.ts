@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { BLOG_POSTS } from "@/lib/blog";
+import { LEAGUE_PAGES } from "@/lib/leagues";
 import { SITE_URL } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
@@ -32,5 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...pages, ...posts];
+  const leagues = LEAGUE_PAGES.map((league) => ({
+    url: `${SITE_URL}${league.href}`,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...pages, ...leagues, ...posts];
 }

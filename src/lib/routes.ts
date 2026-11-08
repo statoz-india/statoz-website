@@ -16,6 +16,8 @@ export const ROUTES = {
   blog: "/blog",
   iplJourney: "/blog/ipl-2026-prediction-journey",
   predictionQuizGuide: "/blog/how-statoz-prediction-quiz-works",
+  eplPredictions: "/predictions/epl",
+  iplPredictions: "/predictions/ipl",
   terms: "/termsAndConditions",
   privacy: "/privacyPolicy",
 } as const;
@@ -36,6 +38,8 @@ export const FOOTER_NAV_LINKS = [
   { t: "Card Pool", href: ROUTES.cards },
   { t: "Games", href: ROUTES.games },
   { t: "Shop", href: ROUTES.shop },
+  { t: "EPL Predictions", href: ROUTES.eplPredictions },
+  { t: "IPL Predictions", href: ROUTES.iplPredictions },
   { t: "Download", href: ROUTES.download },
   { t: "FAQ", href: ROUTES.faq },
 ];

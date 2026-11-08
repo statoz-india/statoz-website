@@ -42,7 +42,6 @@ const COLS = [
     links: [
       { t: "About StatOz", href: ROUTES.about },
       { t: "Blog", href: ROUTES.blog },
-      { t: "Careers", href: "#" },
       { t: "Contact", href: "mailto:support@statoz.in" },
     ],
   },
@@ -51,8 +50,10 @@ const COLS = [
     links: [
       { t: "Terms & Conditions", href: ROUTES.terms },
       { t: "Privacy Policy", href: ROUTES.privacy },
-      { t: "Responsible Play", href: "#" },
-      { t: "18+ Only", href: "#" },
+      // Point at the existing policy sections until a dedicated
+      // Responsible Play page exists.
+      { t: "Responsible Play", href: `${ROUTES.about}#not-gambling` },
+      { t: "18+ Only", href: `${ROUTES.terms}#eligibility` },
     ],
   },
 ];
@@ -64,8 +65,8 @@ export default function Footer() {
         <div className="site-foot__brand">
           <BrandMark />
           <p>
-            StatOz is the free sports prediction game for World Cup 2026, EPL,
-            IPL and more. Answer the quiz, back your picks, climb the board.
+            StatOz is the free sports prediction game for the EPL, IPL, La
+            Liga and more. Answer the quiz, back your picks, climb the board.
             No cash, not gambling.
           </p>
           <div className="socials">

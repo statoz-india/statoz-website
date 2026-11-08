@@ -1,6 +1,7 @@
 import { aboutToMarkdown, ABOUT_LEAD } from "@/lib/about";
 import { BLOG_POSTS, postToMarkdown } from "@/lib/blog";
 import { AI_QUESTIONS, FAQ_ITEMS } from "@/lib/faqData";
+import { LEAGUE_PAGES, leagueToMarkdown } from "@/lib/leagues";
 import { ROUTES } from "@/lib/routes";
 import { KEYWORDS, KEYWORD_GROUP_LABELS } from "@/lib/seo";
 import {
@@ -10,7 +11,7 @@ import {
   BRAND_NAMES,
   SUPPORT_EMAIL,
 } from "@/lib/site";
-import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
+import { APP_STORE_URL, PLAY_STORE_URL, WEB_APP_URL } from "@/lib/storeLinks";
 import { APP_ICON_URL, LOGO_URL, SOCIAL_PROFILES } from "@/lib/structuredData";
 
 /* llms.txt and llms-full.txt (https://llmstxt.org): plain-markdown briefs for
@@ -35,7 +36,7 @@ const INTRO = `# ${SITE_NAME}
 
 > ${SITE_DESCRIPTION}
 
-${SITE_NAME} is a free-to-play sports prediction game for Android and iOS, made by StatOz, a gaming-first sports entertainment company based in India. Players answer a short pre-match quiz on real fixtures, back their best calls with Oz Coins, and earn XP for correct answers to climb a global leaderboard.`;
+${SITE_NAME} is a free-to-play sports prediction game for Android, iOS and the web, made by StatOz, a gaming-first sports entertainment company based in India. Players answer a short pre-match quiz on real fixtures, back their best calls with Oz Coins, and earn XP for correct answers to climb a global leaderboard.`;
 
 const BRAND = `## Brand
 
@@ -51,14 +52,15 @@ const KEY_FACTS = `## Key facts
 
 - Price: free. No deposits, entry fees or cash payouts.
 - Not gambling: Oz Coins and XP are virtual, earned in-app, and have no cash value.
-- Sports: FIFA World Cup 2026 (48 nations, 104 fixtures), EPL, IPL, NBA, La Liga and more.
+- Sports: EPL, IPL, La Liga, NBA and more, year-round, plus big tournaments such as the FIFA World Cup.
 - How a match works: four pre-match questions, answers lock at kickoff, automatic settlement at full-time, XP for every correct answer.
-- Platforms: Android (Google Play) and iOS (App Store). Age 18+.`;
+- Platforms: Android (Google Play), iOS (App Store) and web browser (${WEB_APP_URL}, no install needed). Age 18+.`;
 
-const DOWNLOAD = `## Download
+const DOWNLOAD = `## Download or play
 
 - [Google Play (Android)](${PLAY_STORE_URL})
 - [App Store (iPhone, iPad)](${APP_STORE_URL})
+- [Web app](${WEB_APP_URL}): play in any browser on desktop or mobile, no install
 - [download.statoz.in](https://download.statoz.in): opens the right store for the visitor's device`;
 
 const PAGES = `## Pages
@@ -67,6 +69,7 @@ const PAGES = `## Pages
 - [FAQ](${link(ROUTES.faq)}): common questions about pricing, coins, XP and gambling
 - [About](${link(ROUTES.about)}): the company and its no-gambling stance
 - [Download](${link(ROUTES.download)}): get the app on Android or iOS
+${LEAGUE_PAGES.map((league) => `- [${league.title}](${link(league.href)}): ${league.lead}`).join("\n")}
 - [Blog](${link(ROUTES.blog)}): product guides and community reports ([RSS](${link("/blog/rss.xml")}))
 ${BLOG_POSTS.map((post) => `- [${post.title}](${link(post.href)}): ${post.summary}`).join("\n")}`;
 
@@ -104,6 +107,9 @@ export function buildLlmsFullTxt() {
     (post) =>
       `### ${post.title}\n\nURL: ${link(post.href)} · Published ${post.published} · Updated ${post.updated}\n\n${postToMarkdown(post)}`,
   ).join("\n\n");
+  const leagues = LEAGUE_PAGES.map(
+    (league) => `### ${league.title}\n\nURL: ${link(league.href)}\n\n${leagueToMarkdown(league)}`,
+  ).join("\n\n");
 
   return `${INTRO}
 
@@ -122,6 +128,10 @@ ${questions}
 Source: ${link(ROUTES.faq)}
 
 ${faq}
+
+## Leagues
+
+${leagues}
 
 ## About StatOz
 

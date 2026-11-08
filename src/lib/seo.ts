@@ -68,7 +68,7 @@ export const KEYWORDS = {
     "prediction game vs fantasy sports",
     "prediction game without betting",
   ],
-  brand: ["StatOz", "Statoz", "Stat Oz", "StatOz app"],
+  brand: ["StatOz", "Statoz", "Stat Oz", "StatOz app", "StatOz web app"],
 } as const;
 
 export const KEYWORD_GROUP_LABELS: Record<keyof typeof KEYWORDS, string> = {
@@ -94,6 +94,8 @@ type PageMetadataInput = {
   shareDescription?: string;
   publishedTime?: string;
   modifiedTime?: string;
+  /** A 1200×630 share image for this page; defaults to the site card. */
+  image?: { url: string; alt: string };
 };
 
 /* One place that builds a page's head tags. A page's openGraph and twitter
@@ -109,8 +111,12 @@ export function pageMetadata({
   shareDescription = description,
   publishedTime,
   modifiedTime,
+  image,
 }: PageMetadataInput): Metadata {
   const shareTitle = absoluteTitle ? title : `${title} · ${SITE_NAME}`;
+  const images = image
+    ? [{ url: image.url, width: 1200, height: 630, alt: image.alt }]
+    : SHARED_OPEN_GRAPH.images;
   const allKeywords = [...new Set([...keywords, ...KEYWORDS.brand.slice(0, 2)])];
 
   return {
@@ -124,13 +130,14 @@ export function pageMetadata({
       title: shareTitle,
       description: shareDescription,
       url: path,
+      images,
       ...(type === "article" && { publishedTime, modifiedTime }),
     },
     twitter: {
       card: "summary_large_image",
       title: shareTitle,
       description: shareDescription,
-      images: SHARED_OPEN_GRAPH.images,
+      images,
     },
   };
 }

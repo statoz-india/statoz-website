@@ -10,7 +10,7 @@ export const SITE_NAME = "StatOz";
 export const BRAND_NAMES = ["StatOz", "Statoz", "Stat Oz"] as const;
 
 export const SITE_DESCRIPTION =
-  "Free sports prediction game. Predict World Cup 2026 and EPL fixtures, win Oz Coins, build accuracy streaks and climb the global leaderboard. No cash, not gambling.";
+  "Free sports prediction game. Predict EPL, IPL, La Liga and NBA fixtures, win Oz Coins, build accuracy streaks and climb the global leaderboard. No cash, not gambling.";
 
 /* India-first site: html lang, schema inLanguage and Open Graph locale. */
 export const SITE_LANGUAGE = "en-IN";
