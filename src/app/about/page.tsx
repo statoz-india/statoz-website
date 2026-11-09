@@ -1,7 +1,6 @@
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ABOUT_LEAD, ABOUT_SECTIONS, type AboutBlock } from "@/lib/about";
-import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
 import { KEYWORDS, pageMetadata } from "@/lib/seo";
 import { SUPPORT_EMAIL } from "@/lib/site";
@@ -35,16 +34,9 @@ function Block({ block }: { block: AboutBlock }) {
   return <p>{block.p}</p>;
 }
 
-type AboutPageProps = {
-  searchParams?: Promise<{ layout?: string | string[] }>;
-};
-
-export default async function AboutPage({ searchParams }: AboutPageProps) {
-  const resolvedSearchParams = await searchParams;
-  const showLayout = shouldShowLayout(resolvedSearchParams);
-
+export default function AboutPage() {
   return (
-    <BlogChrome showLayout={showLayout}>
+    <BlogChrome>
       <article className="legal-page">
         <header className="article-hero legal-hero">
           <div className="article-hero__grid" aria-hidden />

@@ -10,9 +10,9 @@ const CARDS = [
     p: "Sharpen your reads in Oz Coin markets. Every stake builds a track record of calls made under pressure.",
   },
   {
-    no: "03 / STRATEGIST",
-    h: "The streak builder",
-    p: "You see systems, not vibes. Stack streaks, defend your tier and out-climb the table one call at a time.",
+    no: "03 / COMPETITOR",
+    h: "The game-mode grinder",
+    p: "You want to win, not just watch. Pitch Duel, Penalty Shootout and the arcade give you a rival every time you open the app.",
   },
 ];
 

@@ -167,6 +167,12 @@ svg {
 }
 
 /* ---------- header ---------- */
+/* ?layout=false on embeddable pages (see src/lib/layoutMode.ts) */
+html[data-layout="bare"] .site-head,
+html[data-layout="bare"] .site-foot {
+  display: none;
+}
+
 .site-head {
   position: sticky;
   top: 0;
@@ -2149,6 +2155,10 @@ svg {
   padding: 6px 11px;
   border-radius: 0 0 8px 0;
   corner-shape: bevel;
+}
+.soon-badge--live {
+  color: var(--mag);
+  box-shadow: 0 0 18px -8px var(--mag);
 }
 .soon-badge--sm {
   font-size: 8px;

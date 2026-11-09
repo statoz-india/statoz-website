@@ -8,7 +8,7 @@ export const metadata = pageMetadata({
   title: "Download StatOz – Free Sports Prediction Game",
   absoluteTitle: true,
   description:
-    "Get StatOz free on Android and iOS, or play in your browser. Predict fixtures, win Oz Coins, build streaks and climb the global leaderboard. No cash, not gambling.",
+    "Get StatOz free on Android and iOS, or play in your browser. Predict fixtures, win Oz Coins, play arcade games and climb the global leaderboard. No cash, not gambling.",
   path: ROUTES.download,
   keywords: [
     "download StatOz",

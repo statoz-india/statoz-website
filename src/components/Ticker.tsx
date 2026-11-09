@@ -4,9 +4,9 @@ const ITEMS = [
   "FREE TO PLAY",
   "PREDICT EVERY FIXTURE",
   "EARN XP & OZ COINS",
-  "BUILD YOUR STREAK",
+  "PLAY ARCADE GAMES",
   "CLIMB THE GLOBAL BOARD",
-  "GAMES COMING SOON",
+  "STREAKS COMING SOON",
 ];
 
 export default function Ticker() {

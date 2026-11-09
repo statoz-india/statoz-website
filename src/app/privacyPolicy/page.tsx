@@ -1,6 +1,5 @@
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
 
@@ -25,18 +24,9 @@ const TOC = [
   { id: "contact", t: "Contact Us" },
 ];
 
-type PrivacyPolicyPageProps = {
-  searchParams?: Promise<{ layout?: string | string[] }>;
-};
-
-export default async function PrivacyPolicyPage({
-  searchParams,
-}: PrivacyPolicyPageProps) {
-  const resolvedSearchParams = await searchParams;
-  const showLayout = shouldShowLayout(resolvedSearchParams);
-
+export default function PrivacyPolicyPage() {
   return (
-    <BlogChrome showLayout={showLayout}>
+    <BlogChrome>
       <article className="legal-page">
         <header className="article-hero legal-hero">
           <div className="article-hero__grid" aria-hidden />

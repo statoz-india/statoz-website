@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Script from "next/script";
 import { Orbitron, Onest, Space_Mono } from "next/font/google";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import JsonLd from "@/components/JsonLd";
+import LayoutModeSync from "@/components/LayoutModeSync";
+import { BARE_LAYOUT_SCRIPT } from "@/lib/layoutMode";
 import { KEYWORDS } from "@/lib/seo";
 import {
   SITE_URL,
@@ -104,11 +107,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    // suppressHydrationWarning: the <head> script below may add data-layout
+    // to <html> before React hydrates.
     <html
       lang={SITE_LANGUAGE}
+      suppressHydrationWarning
       className={`${disp.variable} ${ui.variable} ${mono.variable}`}
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: BARE_LAYOUT_SCRIPT }} />
         <script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
@@ -147,6 +154,9 @@ export default function RootLayout({
           `}
         </Script>
         <AnalyticsEvents />
+        <Suspense fallback={null}>
+          <LayoutModeSync />
+        </Suspense>
         {children}
       </body>
     </html>

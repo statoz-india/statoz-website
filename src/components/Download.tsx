@@ -99,11 +99,11 @@ export default function Download({ asPageTitle = false }: { asPageTitle?: boolea
 
           <div className="download__meta">
             <div className="download__rating">
-              <span className="stars" aria-label="4.8 star rating">
+              <span className="stars" aria-label="4.8 star rating on Google Play">
                 ★★★★<span className="half">★</span>
               </span>
               <span>
-                <strong>4.8</strong> rating · 5K+ predictors
+                <strong>4.8</strong> on Google Play · 25K+ downloads
               </span>
             </div>
             <ul className="download__badges">

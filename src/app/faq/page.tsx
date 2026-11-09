@@ -2,7 +2,6 @@ import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { FAQ_ITEMS } from "@/lib/faqData";
-import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
 import { KEYWORDS, pageMetadata } from "@/lib/seo";
 import { faqJsonLd } from "@/lib/structuredData";
@@ -24,16 +23,9 @@ export const metadata = pageMetadata({
   ],
 });
 
-type FaqPageProps = {
-  searchParams?: Promise<{ layout?: string | string[] }>;
-};
-
-export default async function FaqPage({ searchParams }: FaqPageProps) {
-  const resolvedSearchParams = await searchParams;
-  const showLayout = shouldShowLayout(resolvedSearchParams);
-
+export default function FaqPage() {
   return (
-    <BlogChrome showLayout={showLayout}>
+    <BlogChrome>
       <JsonLd data={faqJsonLd(FAQ_ITEMS)} />
       <section className="blog-hero">
         <div className="blog-hero__orb blog-hero__orb--one" aria-hidden />

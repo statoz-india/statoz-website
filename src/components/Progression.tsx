@@ -4,7 +4,7 @@ export default function Progression() {
       <div className="coming-soon-banner reveal">
         <span className="coming-soon-banner__label">COMING SOON</span>
         <span className="coming-soon-banner__text">
-          Streaks & XP Progression is coming soon. Here&apos;s a preview.
+          Accuracy Streaks and Levels are coming soon. XP is live today. Here&apos;s a preview.
         </span>
       </div>
 

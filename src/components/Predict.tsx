@@ -1,9 +1,9 @@
 import { QUIZ_STEPS } from "@/lib/data";
 
 const OPTS = [
-  { label: "L. MESSI", vote: 64, sel: true },
-  { label: "J. ÁLVAREZ", vote: 21, sel: false },
-  { label: "OWN GOAL / NONE", vote: 15, sel: false },
+  { label: "B. SAKA", vote: 41, sel: true },
+  { label: "M. SALAH", vote: 34, sel: false },
+  { label: "OTHER / NO GOAL", vote: 25, sel: false },
 ];
 
 const RULES = [
@@ -46,7 +46,7 @@ export default function Predict() {
             aria-label="Example prediction quiz"
           >
             <div className="quizcard__top">
-              <span className="quizcard__fix">GROUP J · ARG vs AUT</span>
+              <span className="quizcard__fix">EPL · ARS vs LIV</span>
               <span className="quizcard__xp">
                 POTENTIAL XP{" "}
                 <b data-count={420} data-prefix="+">
@@ -71,7 +71,7 @@ export default function Predict() {
               ))}
             </ul>
             <div className="quizcard__foot">
-              <span className="quizcard__crowd">12,480 predicted</span>
+              <span className="quizcard__crowd">Sample quiz</span>
             </div>
           </aside>
 

@@ -6,14 +6,14 @@ export default function Shop() {
       <div className="wrap">
         <header className="sec-head sec-head--row reveal">
           <div>
-            <span className="sec-head__tag">// SHOP · COMING SOON</span>
+            <span className="sec-head__tag">// SHOP · LIVE</span>
             <h2 className="sec-head__title">
               SPEND YOUR <span className="grad-gold">OZ COINS</span>
             </h2>
           </div>
           <p className="sec-head__lead sec-head__lead--right">
-            Card packs, avatars and banners -all cosmetic, earned with the Oz
-            Coins you win. <strong>No pay-to-win, ever.</strong>
+            Avatars and profile banners, unlocked with the Oz Coins you win.
+            Card packs are coming soon. <strong>All cosmetic, no pay-to-win.</strong>
           </p>
         </header>
 
@@ -26,7 +26,9 @@ export default function Shop() {
             <div className="shop__row">
               {group.items.map((it) => (
                 <article className="shopitem reveal" data-hud key={it.name}>
-                  <span className="soon-badge soon-badge--sm">SOON</span>
+                  {group.soon && (
+                    <span className="soon-badge soon-badge--sm">SOON</span>
+                  )}
                   <div
                     className={`shopitem__img${
                       group.h === "Avatars" ? " shopitem__img--av" : ""
@@ -50,7 +52,6 @@ export default function Shop() {
           <div className="shop__banners">
             {SHOP_BANNERS.map((b, i) => (
               <article className="shopbanner reveal" data-hud key={b}>
-                <span className="soon-badge soon-badge--sm">SOON</span>
                 <img src={b} alt={`Profile banner ${i + 1}`} loading="lazy" />
               </article>
             ))}

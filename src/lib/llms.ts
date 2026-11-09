@@ -52,9 +52,11 @@ const KEY_FACTS = `## Key facts
 
 - Price: free. No deposits, entry fees or cash payouts.
 - Not gambling: Oz Coins and XP are virtual, earned in-app, and have no cash value.
-- Sports: EPL, IPL, La Liga, NBA and more, year-round, plus big tournaments such as the FIFA World Cup.
+- Sports: EPL, La Liga, Serie A, the Champions League, NBA and IPL (in season), plus dozens more football leagues and F1.
+- Arcade games (live): Pitch Duel, Penalty Shootout, 5v5 Football Chess, Final Over, Hoop Duel, Grand Prix Dash, Tennis Rally and sports trivia quizzes.
+- Coming soon: Accuracy Streaks, Levels, private friend leagues and card packs.
 - How a match works: four pre-match questions, answers lock at kickoff, automatic settlement at full-time, XP for every correct answer.
-- Platforms: Android (Google Play), iOS (App Store) and web browser (${WEB_APP_URL}, no install needed). Age 18+.`;
+- Platforms: Android (Google Play), iOS (App Store) and web browser (${WEB_APP_URL}, no install needed). Age 13+ (under-18s need a parent or guardian's consent).`;
 
 const DOWNLOAD = `## Download or play
 

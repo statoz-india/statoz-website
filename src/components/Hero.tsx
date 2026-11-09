@@ -102,15 +102,15 @@ export default function Hero() {
           </div>
 
           <div className="hero__trust">
-            <div className="stars" aria-label="4.8 star rating">
+            <div className="stars" aria-label="4.8 star rating on Google Play">
               ★★★★<span className="half">★</span>
             </div>
             <span>
-              <strong>4.8</strong> rating
+              <strong>4.8</strong> on Google Play
             </span>
             <span className="dot">·</span>
             <span>
-              <strong>5K+</strong> predictors playing
+              <strong>25K+</strong> downloads
             </span>
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function Hero() {
             ✓ +250 XP <small>BEAT 64% OF PREDICTORS</small>
           </div>
           <div className="toast toast--odds" aria-hidden="true">
-            <i>🔥</i> STREAK 12
+            <i>🎯</i> 3/4 CORRECT
           </div>
 
           <article

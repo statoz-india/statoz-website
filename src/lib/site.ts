@@ -1,6 +1,5 @@
-/* Canonical production origin -used for metadataBase, canonical URLs,
-   sitemap and robots. TODO: confirm the live domain (App Store listing is
-   India `/in/`, so this defaults to .in). */
+/* Canonical production origin, used for metadataBase, canonical URLs,
+   sitemap and robots. Live on Vercel; the apex statoz.in 308-redirects here. */
 export const SITE_URL = "https://www.statoz.in";
 
 export const SITE_NAME = "StatOz";
@@ -10,7 +9,7 @@ export const SITE_NAME = "StatOz";
 export const BRAND_NAMES = ["StatOz", "Statoz", "Stat Oz"] as const;
 
 export const SITE_DESCRIPTION =
-  "Free sports prediction game. Predict EPL, IPL, La Liga and NBA fixtures, win Oz Coins, build accuracy streaks and climb the global leaderboard. No cash, not gambling.";
+  "Free sports prediction game. Predict EPL, La Liga, UCL, NBA and IPL matches, win Oz Coins, play arcade games and climb the leaderboard. No cash, not gambling.";
 
 /* India-first site: html lang, schema inLanguage and Open Graph locale. */
 export const SITE_LANGUAGE = "en-IN";

@@ -31,7 +31,7 @@ export default function Leaderboard() {
       <div className="wrap">
         <header className="sec-head sec-head--row reveal">
           <div>
-            <span className="sec-head__tag">// GLOBAL LEADERBOARD · LIVE</span>
+            <span className="sec-head__tag">// GLOBAL LEADERBOARD · SAMPLE BOARD</span>
             <h2 className="sec-head__title">
               KNOW WHERE YOU <span className="grad">STAND.</span>
             </h2>

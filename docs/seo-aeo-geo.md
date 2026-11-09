@@ -123,16 +123,16 @@ Every page also carries the site-wide Organization, WebSite, MobileApplication a
 | `/` | Static | FAQPage | Yes (8) | Yes, priority 1.0 | Yes |
 | `/predictions/epl`, `/predictions/ipl` | Static | FAQPage, BreadcrumbList | Yes (3) | Yes, 0.8 | Yes, in full |
 | `/download` | Static | — | — | Yes, 0.8 | Yes |
-| `/faq` | Server | FAQPage, BreadcrumbList | Yes (8) | Yes, 0.8 | Yes, in full |
-| `/about` | Server | BreadcrumbList | — | Yes, 0.7 | Yes, in full |
+| `/faq` | Static | FAQPage, BreadcrumbList | Yes (8) | Yes, 0.8 | Yes, in full |
+| `/about` | Static | BreadcrumbList | — | Yes, 0.7 | Yes, in full |
 | `/blog` | Static | Blog, BreadcrumbList | — | Yes, 0.7 | Yes |
 | `/blog/[slug]` | Static | BlogPosting, FAQPage, BreadcrumbList | Yes (3–4) | Yes, 0.7, with lastmod | Yes, in full |
-| `/termsAndConditions`, `/privacyPolicy` | Server | BreadcrumbList | — | Yes, 0.3 | Linked |
+| `/termsAndConditions`, `/privacyPolicy` | Static | BreadcrumbList | — | Yes, 0.3 | Linked |
 | `/[section]` (e.g. `/picks`) | 308 redirect | — | — | No | No |
 | `/get` | Device redirect | — | — | No (blocked in robots.txt, noindex) | Via download.statoz.in |
 | Any unknown URL | 404 page | — | — | No (noindex) | No |
 
-"Server" pages render on each request because they read a `?layout=false` parameter for the in-app webview. They still deliver full HTML.
+FAQ, About and the legal pages also accept `?layout=false` for the in-app webview, which hides the site header and footer. They stay static: a small `<head>` script sets `<html data-layout="bare">` before first paint and CSS hides the chrome (see [layoutMode.ts](../src/lib/layoutMode.ts)).
 
 ---
 
@@ -141,11 +141,11 @@ Every page also carries the site-wide Organization, WebSite, MobileApplication a
 ### Rendering
 Next.js prerenders these to static HTML at build time:
 
-- homepage, Download, blog index;
+- homepage, Download, blog index, FAQ, About and the legal pages;
 - every blog post and its share image;
 - every league page.
 
-About, FAQ and the legal pages render on the server per request. Either way, crawlers that don't run JavaScript (most AI bots) get the full content.
+Crawlers that don't run JavaScript (most AI bots) get the full content.
 
 ### Per-page head tags
 Every page builds its metadata through `pageMetadata()` in [seo.ts](../src/lib/seo.ts), which sets:
@@ -185,9 +185,8 @@ They are linked from the footer and the 404 page.
 | Group | Examples |
 | --- | --- |
 | Core | sports prediction game, free sports prediction game, match prediction quiz, football / soccer prediction game, prediction game India |
-| Leagues | EPL predictions, Premier League prediction game, IPL prediction game, La Liga predictions, NBA predictions, cricket prediction game |
-| FIFA World Cup 2026 | World Cup 2026 predictions, World Cup prediction app (kept for a future World Cup report; not used in page meta) |
-| How the game works | Oz Coins, XP leaderboard, prediction streaks, prediction boosters |
+| Leagues | EPL predictions, Premier League prediction game, IPL prediction game, La Liga, Champions League and Serie A predictions, NBA predictions, cricket prediction game |
+| How the game works | Oz Coins, XP leaderboard, prediction boosters, sports arcade games, Pitch Duel |
 | Free and not gambling | no real money, not gambling, not a betting app, no deposits, skill-based game |
 | Audience | football fans, cricket fans, sports fans in India, fantasy sports players |
 | Comparisons | free alternative to fantasy sports, prediction game vs fantasy sports |
@@ -196,7 +195,7 @@ They are linked from the footer and the 404 page.
 Each page picks the groups that fit it. The full list appears as "Topics" in llms-full.txt.
 
 ### Current-season copy
-The site description, FAQ, AI answers, llms files, footer and share image lead with competitions that are on now: EPL, IPL, La Liga and NBA. The FIFA World Cup 2026 ended in July 2026 and is no longer presented as upcoming in these places.
+The site description, FAQ, AI answers, llms files, footer and share image lead with competitions the app covers now: EPL, La Liga, Serie A, the Champions League, NBA and IPL (in season). The FIFA World Cup 2026 ended in July 2026; the homepage no longer mentions it and its keyword group was removed. The league list was checked against the 1 Nov 2026 production backup.
 
 ### Language
 `<html lang="en-IN">`, schema `inLanguage: "en-IN"` and Open Graph `en_IN` all tell search engines the site is for India.
@@ -251,7 +250,7 @@ Entities reference each other by `@id`, so search engines and AI models resolve 
 | Organization | Every page | Name, alternate names, description, email, customer-support ContactPoint, `knowsAbout` topics, `sameAs` links (Instagram, YouTube, Reddit, LinkedIn, Google Play, App Store) |
 | Logo (ImageObject) | Inside Organization | `statoz-logo.png`, 1200×1200 PNG, plus `app-icon.png` as `image` |
 | WebSite | Every page | Name, alternate names, description, `en-IN` |
-| MobileApplication | Every page | GameApplication on Android and iOS, free (₹0), 18+, install URLs, aggregate rating |
+| MobileApplication | Every page | GameApplication on Android and iOS, free (₹0), 13+, install URLs, aggregate rating (Google Play: 4.8 from 42 reviews, as of 9 Nov 2026) |
 | WebApplication | Every page | The browser version at `https://web.statoz.in/`: GameApplication, any OS, free (₹0), browser requirements |
 | FAQPage | Homepage, `/faq`, every blog post, every league page | The questions and answers shown on that page |
 | BreadcrumbList | Every inner page | Emitted automatically by the `Breadcrumbs` component |
@@ -486,11 +485,11 @@ After deploying:
 ## Open issues
 
 ### Need a decision
-- [ ] **Age rule conflicts.** The Terms say users can be 13+ (with parental consent under 18). The FAQ, footer ("18+ Only"), llms files and the schema's `contentRating` say 18+. Decide which is right and make every place match. AI assistants and app reviewers will see the conflict.
-- [ ] **Prizes conflict.** The Terms describe giveaways with gift cards. The About page and FAQ say no real-money prizes can be won. Gift cards have real value, so reword one side.
-- [ ] **App rating in schema.** MobileApplication claims a 4.8 rating from 5,000 ratings. The hero's "5K+ predictors playing" counts players, not ratings. Match it to the real store numbers or remove `aggregateRating`, or Google may issue a manual action.
-- [ ] **World Cup sections on the homepage.** The Nations marquee ("48 NATIONS · WORLD CUP 2026") and the "World Cup 2026 — outright winner" Pick in [data.ts](../src/lib/data.ts) still present the finished tournament.
-- [ ] **World Cup FAQ claim.** The "Which tournaments" answer says big tournaments like the FIFA World Cup get their own fixtures and quizzes. Confirm this is true for the app.
+- [x] **Age rule conflicts.** Settled on 13+ (parental consent under 18), matching the Terms and the App Store rating. FAQ, footer, llms files and schema now say 13+.
+- [x] **Prizes conflict.** StatOz runs no giveaways, so the Terms' gift-card giveaway section was removed (Terms v1.5, November 2026).
+- [x] **App rating in schema.** Now 4.8 from 42 reviews (the real Google Play numbers). The hero and download block say "4.8 on Google Play · 25K+ downloads". Update `aggregateRating` in [structuredData.ts](../src/lib/structuredData.ts) when the listing changes.
+- [x] **World Cup sections on the homepage.** The marquee now lists the leagues the app covers, the sample quiz is an EPL match, and the futures Pick is the Champions League 2026/27 winner.
+- [x] **World Cup FAQ claim.** The "Which tournaments" answer now names the leagues the app actually covers.
 - [ ] **Desktop visitors to download.statoz.in.** `/get` sends any non-Apple device, including Windows and Linux desktops, to Google Play. Sending desktop browsers to the web app instead would convert better.
 - [ ] **Responsible Play page.** The footer link points to the About page's "Not Gambling" section. A dedicated page (age rules, playing in moderation, support contact) would be better once the age rule is settled.
 

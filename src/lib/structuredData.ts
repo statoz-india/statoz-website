@@ -69,10 +69,13 @@ export const SITE_GRAPH = {
         "StatOz is a gaming-first sports entertainment company building free-to-play sports prediction games. It is not a gambling platform.",
       knowsAbout: [
         "Sports prediction games",
-        "FIFA World Cup 2026",
         "Premier League",
+        "La Liga",
+        "UEFA Champions League",
+        "NBA",
         "Indian Premier League",
         "Football",
+        "Basketball",
         "Cricket",
       ],
       sameAs: [...SOCIAL_PROFILES, PLAY_STORE_URL, APP_STORE_URL],
@@ -99,15 +102,18 @@ export const SITE_GRAPH = {
       operatingSystem: "Android, iOS",
       installUrl: [PLAY_STORE_URL, APP_STORE_URL],
       inLanguage: SITE_LANGUAGE,
-      contentRating: "18+",
+      contentRating: "13+",
       isAccessibleForFree: true,
       publisher: { "@id": ORG_ID },
       offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
       // Must match the real store ratings, or Google can issue a manual action.
+      // Google Play listing as of 9 Nov 2026: 4.8 from 42 reviews. Update it
+      // when the listing changes.
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "4.8",
-        ratingCount: "5000",
+        ratingCount: "42",
+        bestRating: "5",
       },
     },
     {

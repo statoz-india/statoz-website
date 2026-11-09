@@ -1,6 +1,5 @@
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
 
@@ -20,7 +19,6 @@ const TOC = [
   { id: "eligibility", t: "Eligibility" },
   { id: "registration", t: "Account Registration" },
   { id: "economy", t: "Virtual Economy: Oz Coins & XP" },
-  { id: "giveaways", t: "Giveaways & Rewards" },
   { id: "predictions", t: "Prediction Markets & Quizzes" },
   { id: "acceptable-use", t: "Acceptable Use Policy" },
   { id: "ip", t: "Intellectual Property" },
@@ -34,16 +32,9 @@ const TOC = [
   { id: "contact", t: "Contact Us" },
 ];
 
-type TermsPageProps = {
-  searchParams?: Promise<{ layout?: string | string[] }>;
-};
-
-export default async function TermsPage({ searchParams }: TermsPageProps) {
-  const resolvedSearchParams = await searchParams;
-  const showLayout = shouldShowLayout(resolvedSearchParams);
-
+export default function TermsPage() {
   return (
-    <BlogChrome showLayout={showLayout}>
+    <BlogChrome>
       <article className="legal-page">
         <header className="article-hero legal-hero">
           <div className="article-hero__grid" aria-hidden />
@@ -59,8 +50,8 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
               Terms &amp; <span className="grad">Conditions</span>
             </h1>
             <p className="legal-hero__meta">
-              Platform: StatOz -Sports Prediction Gaming Platform · Version 1.4
-              · Effective March 2026 · Jurisdiction: Republic of India
+              Platform: StatOz -Sports Prediction Gaming Platform · Version 1.5
+              · Effective November 2026 · Jurisdiction: Republic of India
             </p>
             <p className="article-hero__lead">
               Please read these Terms carefully before using StatOz. By
@@ -267,56 +258,8 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
               </p>
             </section>
 
-            <section className="legal-section" id="giveaways">
-              <h2>5. Giveaways and Rewards</h2>
-              <h3>Gift Card Giveaways</h3>
-              <p>
-                StatOz may, at its sole discretion, conduct periodic giveaways
-                and reward events for top-performing users, leaderboard
-                finishers, or event winners. All such rewards are issued
-                exclusively in the form of gift cards (e.g. Amazon, Swiggy,
-                Zomato, or similar). No cash prizes, bank transfers, or monetary
-                compensation of any kind will ever be awarded.
-              </p>
-              <h3>No Guarantee of Rewards</h3>
-              <p>
-                Participation in any StatOz giveaway or reward event does not
-                guarantee a prize. Giveaways are conducted at StatOz&apos;s
-                discretion, subject to availability, and may be discontinued at
-                any time without notice.
-              </p>
-              <h3>Eligibility for Giveaways</h3>
-              <p>To be eligible for any giveaway or reward, you must:</p>
-              <ul>
-                <li>
-                  (a) have a verified, active StatOz account in good standing,
-                </li>
-                <li>(b) not be in violation of these Terms, and</li>
-                <li>
-                  (c) meet any additional eligibility criteria communicated at
-                  the time of the specific event.
-                </li>
-              </ul>
-              <h3>Gift Card Terms</h3>
-              <p>
-                Gift cards issued as rewards are subject to the terms and
-                conditions of the respective issuing brand. StatOz is not
-                responsible for expired, lost, or misused gift cards once
-                delivered to the winner. Gift cards are non-transferable and
-                cannot be exchanged for cash.
-              </p>
-              <h3>Winner Verification</h3>
-              <p>
-                StatOz reserves the right to verify the eligibility of any
-                winner before issuing a reward. If a winner is found to have
-                violated these Terms, exploited the Platform, or provided false
-                information, the reward will be forfeited without liability to
-                StatOz.
-              </p>
-            </section>
-
             <section className="legal-section" id="predictions">
-              <h2>6. Prediction Markets and Quizzes</h2>
+              <h2>5. Prediction Markets and Quizzes</h2>
               <h3>Nature of Predictions</h3>
               <p>
                 StatOz offers virtual prediction markets and match quizzes.
@@ -367,7 +310,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="acceptable-use">
-              <h2>7. Acceptable Use Policy</h2>
+              <h2>6. Acceptable Use Policy</h2>
               <h3>Permitted Use</h3>
               <p>
                 StatOz is provided for personal, non-commercial entertainment
@@ -429,7 +372,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="ip">
-              <h2>8. Intellectual Property</h2>
+              <h2>7. Intellectual Property</h2>
               <h3>Our Content</h3>
               <p>
                 All content on StatOz, including the &quot;StatOz&quot; name,
@@ -469,7 +412,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="privacy">
-              <h2>9. Privacy and Data</h2>
+              <h2>8. Privacy and Data</h2>
               <p>
                 Your use of StatOz is subject to our Privacy Policy,
                 incorporated into these Terms by reference.
@@ -495,7 +438,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
               <h3>How We Use Your Data</h3>
               <ul>
                 <li>To operate, personalise, and improve the Platform</li>
-                <li>To manage leaderboard rankings and reward eligibility</li>
+                <li>To manage leaderboard rankings</li>
                 <li>To deliver relevant advertising on the Platform</li>
                 <li>
                   To comply with legal obligations and prevent fraud or abuse
@@ -511,11 +454,11 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="third-party">
-              <h2>10. Third-Party Services</h2>
+              <h2>9. Third-Party Services</h2>
               <h3>Affiliate Partners</h3>
               <p>
                 StatOz may feature third-party brands within the Platform in
-                relation to giveaways or community events. The terms of any such
+                relation to community events. The terms of any such
                 offers are governed by the respective brand&apos;s own policies.
                 StatOz is not liable for any disputes arising from third-party
                 brand offers.
@@ -530,7 +473,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="disclaimers">
-              <h2>11. Disclaimers</h2>
+              <h2>10. Disclaimers</h2>
               <h3>&quot;As Is&quot; Provision</h3>
               <p>
                 StatOz is provided on an &quot;as is&quot; and &quot;as
@@ -565,7 +508,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="liability">
-              <h2>12. Limitation of Liability</h2>
+              <h2>11. Limitation of Liability</h2>
               <p>
                 To the fullest extent permitted by applicable Indian law,
                 StatOz, its directors, employees, partners, and licensors shall
@@ -596,7 +539,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="termination">
-              <h2>13. Account Termination</h2>
+              <h2>12. Account Termination</h2>
               <h3>By You</h3>
               <p>
                 You may delete your StatOz account at any time through the
@@ -623,7 +566,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="law">
-              <h2>14. Governing Law and Dispute Resolution</h2>
+              <h2>13. Governing Law and Dispute Resolution</h2>
               <p>
                 These Terms are governed by and construed in accordance with the
                 laws of the Republic of India, without regard to conflict of law
@@ -647,7 +590,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="amendments">
-              <h2>15. Amendments</h2>
+              <h2>14. Amendments</h2>
               <p>
                 StatOz reserves the right to update or modify these Terms at any
                 time. When changes are made, we will:
@@ -674,7 +617,7 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <section className="legal-section" id="contact">
-              <h2>16. Contact Us</h2>
+              <h2>15. Contact Us</h2>
               <p>
                 General Support, Privacy Queries, Legal and Compliance:{" "}
                 <a href="mailto:support@statoz.in">support@statoz.in</a>
@@ -692,10 +635,10 @@ export default async function TermsPage({ searchParams }: TermsPageProps) {
             </section>
 
             <p className="legal-foot-note">
-              Version 1.4 · Effective March 2026. StatOz is a 100% free-to-play
-              entertainment platform. StatOz does not accept money from users.
-              No real money is ever involved. All giveaways and rewards are
-              issued exclusively in the form of gift cards.
+              Version 1.5 · Effective November 2026. StatOz is a 100%
+              free-to-play entertainment platform. StatOz does not accept money
+              from users. No real money is ever involved, and no prizes of any
+              kind are awarded.
             </p>
           </div>
         </div>

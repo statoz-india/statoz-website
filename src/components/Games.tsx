@@ -6,14 +6,14 @@ export default function Games() {
       <div className="wrap">
         <header className="sec-head sec-head--row reveal">
           <div>
-            <span className="sec-head__tag">// GAMES · COMING SOON</span>
+            <span className="sec-head__tag">// GAMES · LIVE</span>
             <h2 className="sec-head__title">
               MORE WAYS TO <span className="grad">PLAY</span>
             </h2>
           </div>
           <p className="sec-head__lead sec-head__lead--right">
-            Predictions are just the start. A full arcade of skill games is in
-            the build -here&apos;s what&apos;s next.
+            Predictions are just the start. A full arcade of quick skill games
+            is already in the app, free to play.
           </p>
         </header>
 
@@ -33,7 +33,7 @@ export default function Games() {
                   : undefined
               }
             >
-              <span className="soon-badge">COMING SOON</span>
+              <span className="soon-badge soon-badge--live">LIVE</span>
               <div className="game__body">
                 <span className="game__tag">{g.tag}</span>
                 <h3>{g.name}</h3>
@@ -49,11 +49,11 @@ export default function Games() {
 
           <article className="game game--more reveal" data-hud>
             <div className="game__body">
-              <span className="game__tag">// AND MORE</span>
-              <h3>New modes incoming</h3>
+              <span className="game__tag">// TRIVIA GAUNTLETS</span>
+              <h3>Sports quizzes</h3>
               <p>
-                We&apos;re building the arcade out match by match -tournaments,
-                co-op and seasonal events next.
+                Football, cricket, basketball, racing and tennis trivia. Answer
+                fast, answer right, earn Oz Coins.
               </p>
             </div>
           </article>

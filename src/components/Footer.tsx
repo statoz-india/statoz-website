@@ -53,7 +53,7 @@ const COLS = [
       // Point at the existing policy sections until a dedicated
       // Responsible Play page exists.
       { t: "Responsible Play", href: `${ROUTES.about}#not-gambling` },
-      { t: "18+ Only", href: `${ROUTES.terms}#eligibility` },
+      { t: "Ages 13+", href: `${ROUTES.terms}#eligibility` },
     ],
   },
 ];
@@ -65,8 +65,8 @@ export default function Footer() {
         <div className="site-foot__brand">
           <BrandMark />
           <p>
-            StatOz is the free sports prediction game for the EPL, IPL, La
-            Liga and more. Answer the quiz, back your picks, climb the board.
+            StatOz is the free sports prediction game for the EPL, La Liga,
+            Champions League, NBA, IPL and more. Answer the quiz, back your picks, climb the board.
             No cash, not gambling.
           </p>
           <div className="socials">
@@ -114,7 +114,7 @@ export default function Footer() {
         ))}
       </div>
       <div className="wrap site-foot__base">
-        <span>© 2026 StatOz. Skill-based prediction gaming. Play responsibly · 18+.</span>
+        <span>© 2026 StatOz. Skill-based prediction gaming. Play responsibly · 13+.</span>
         <span className="site-foot__made">Made for fans who read the game.</span>
       </div>
     </footer>

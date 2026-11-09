@@ -1,9 +1,7 @@
-import { PLAY_STORE_URL } from "@/lib/storeLinks";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
 
 /* Smart download link: iPhone / iPad -> App Store, everything else -> Play Store.
    download.statoz.in points here through a Cloudflare redirect rule. */
-
-const APP_STORE_URL = "https://apps.apple.com/us/app/statoz/id6761310455";
 
 // The answer depends on the device, so never let a cache reuse it.
 const NO_CACHE = { "Cache-Control": "no-store", Vary: "User-Agent" };

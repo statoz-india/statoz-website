@@ -8,13 +8,13 @@ export default function Squad() {
       <div className="wrap">
         <header className="sec-head sec-head--row reveal">
           <div>
-            <span className="sec-head__tag">// CARD POOL · PREVIEW</span>
+            <span className="sec-head__tag">// CARD POOL</span>
             <h2 className="sec-head__title">
               MEET THE <span className="grad-gold">COLLECTION</span>
             </h2>
           </div>
           <p className="sec-head__lead sec-head__lead--right">
-            The cards behind the Daily Card Drop and the upcoming Pitch Duel —
+            The cards behind the Daily Card Drop and your Pitch Duel deck —
             graded by rarity from Bronze to Platinum.
           </p>
         </header>
