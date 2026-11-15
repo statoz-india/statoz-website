@@ -1,7 +1,7 @@
 /* ============================================================
    StatOz -site data
    Mirrors the real app: Prediction Quiz, Picks, Leaderboard,
-   XP / Oz Coins / arcade Games / Shop. Streaks + Levels soon.
+   XP / Levels / Oz Coins / Accuracy Streaks, games and shop data.
    ============================================================ */
 
 export type Rarity = "platinum" | "gold" | "silver" | "bronze";
@@ -289,7 +289,7 @@ export const QUIZ_STEPS: QuizStep[] = [
     no: "01",
     icon: "M3 5h18v2H3Zm0 6h18v2H3Zm0 6h12v2H3Z",
     h: "Pick a fixture",
-    p: "Browse fixtures by league -EPL, La Liga, UCL, NBA, IPL. Tap one to open its quiz.",
+    p: "Browse fixtures by league -FIFA, EPL, IPL, NBA. Tap one to open its quiz.",
   },
   {
     no: "02",
@@ -340,39 +340,38 @@ export const PICK_MARKETS: PickMarket[] = [
     ],
   },
   {
-    league: "LaLiga",
+    league: "IPL",
     type: "Event",
-    q: "3 or more goals in Barcelona vs Real Madrid?",
-    close: "Closes Sun · 20:45",
-    vol: "6.3K Oz",
+    q: "A century scored in MI vs CSK?",
+    close: "Closes Tomorrow · 19:30",
+    vol: "9.7K Oz",
     outs: [
-      { label: "Yes", price: "1.70" },
-      { label: "No", price: "2.15" },
+      { label: "Yes", price: "2.30" },
+      { label: "No", price: "1.55" },
     ],
   },
   {
-    league: "UCL",
+    league: "WC 2026",
     type: "Futures",
-    q: "Champions League 2026/27 -winner",
-    close: "Closes Jan 27",
-    vol: "4.2K Oz",
+    q: "World Cup 2026 -outright winner",
+    close: "Closes Jun 11",
+    vol: "44.2K Oz",
     outs: [
-      { label: "Bayern", price: "4.0" },
-      { label: "Barcelona", price: "5.5" },
-      { label: "Liverpool", price: "7.0" },
-      { label: "Arsenal", price: "8.0" },
+      { label: "Brazil", price: "5.0" },
+      { label: "France", price: "5.5" },
+      { label: "Argentina", price: "6.0" },
+      { label: "England", price: "7.0" },
     ],
   },
 ];
 
 export const PICK_FILTERS = [
   "All",
+  "IPL",
   "EPL",
-  "UCL",
+  "NBA",
   "LaLiga",
   "Serie A",
-  "NBA",
-  "IPL",
 ] as const;
 export const PICK_TYPES = ["All Picks", "Matches", "Event", "Futures"] as const;
 
@@ -705,7 +704,7 @@ export const BOARDS: LbBoard[] = [
     you: {
       rank: "—",
       tag: "YOU",
-      loc: "Win a game-mode match to get on the board",
+      loc: "Play a game to claim your rank",
       av: "rodri",
       val: "0",
       mv: "new",
@@ -713,7 +712,66 @@ export const BOARDS: LbBoard[] = [
   },
 ];
 
-export const LB_SPORTS = ["EPL", "UCL", "LaLiga", "NBA", "IPL"] as const;
+export const LB_SPORTS = ["IPL", "UCL", "NBA", "F1", "EPL"] as const;
+
+/* ---------- Fixtures (predict / picks teaser) ---------- */
+export interface Fixture {
+  g: string;
+  a: string;
+  b: string;
+  ca: string;
+  cb: string;
+  p: [number, number, number];
+  when: string;
+}
+
+export const FIX: Fixture[] = [
+  {
+    g: "GROUP J",
+    a: "ARGENTINA",
+    b: "AUSTRIA",
+    ca: "ARG",
+    cb: "AUT",
+    p: [64, 22, 14],
+    when: "Tonight · 22:30",
+  },
+  {
+    g: "GROUP C",
+    a: "BRAZIL",
+    b: "MOROCCO",
+    ca: "BRA",
+    cb: "MAR",
+    p: [52, 26, 22],
+    when: "Tomorrow · 18:00",
+  },
+  {
+    g: "GROUP K",
+    a: "PORTUGAL",
+    b: "COLOMBIA",
+    ca: "POR",
+    cb: "COL",
+    p: [48, 27, 25],
+    when: "Sat · 20:45",
+  },
+  {
+    g: "GROUP L",
+    a: "ENGLAND",
+    b: "CROATIA",
+    ca: "ENG",
+    cb: "CRO",
+    p: [57, 24, 19],
+    when: "Sat · 23:00",
+  },
+  {
+    g: "GROUP I",
+    a: "FRANCE",
+    b: "SENEGAL",
+    ca: "FRA",
+    cb: "SEN",
+    p: [61, 23, 16],
+    when: "Sun · 19:30",
+  },
+];
 
 /* ---------- Features bento ---------- */
 export interface FeatureCell {
@@ -743,7 +801,8 @@ export const FEATURES: FeatureCell[] = [
   {
     icon: "M13 2 3 14h7l-1 8 10-12h-7Z",
     h: "Accuracy Streaks",
-    p: "Coming soon: stack correct calls Warm → Inferno to multiply your XP up to 2×.",
+    p: "Stack correct calls Warm → Inferno to multiply your XP up to 2×.",
+    live: true,
   },
   {
     cls: "bento__cell--wide",
@@ -757,91 +816,32 @@ export const FEATURES: FeatureCell[] = [
     cls: "bento__cell--wide",
     icon: "M5 4h14v3a4 4 0 0 1-3 3.9A4 4 0 0 1 13 14v2h3v3H8v-3h3v-2a4 4 0 0 1-3-3.1A4 4 0 0 1 5 7Z",
     h: "Challenge Friends",
-    p: "Coming soon: spin up a private league and settle who reads the game best.",
+    p: "Spin up a private league and settle who reads the game best.",
   },
   {
     icon: "M3 13h2l2-5 3 9 3-12 3 9 2-4h3",
-    h: "XP",
-    p: "One honest number. Every correct read earns XP; a miss never takes it away. Levels are coming soon.",
+    h: "XP & Levels",
+    p: "One honest number. Every correct read levels you up; losses never wipe your XP.",
     live: true,
   },
   {
     icon: "M20 7h-3.1A3 3 0 0 0 12 3.2 3 3 0 0 0 7.1 7H4v4h16Zm-9 0a1 1 0 1 1 1-1 1 1 0 0 1-1 1Zm3 0a1 1 0 1 1 1-1 1 1 0 0 1-1 1ZM4 13v6a2 2 0 0 0 2 2h5v-8Zm9 8h5a2 2 0 0 0 2-2v-6h-7Z",
     h: "Daily Card Drop",
-    p: "A free card every 24 hours to build your Pitch Duel deck.",
-    live: true,
+    p: "A free card every 24 hours -fresh fuel for your live Pitch Duel squad.",
   },
 ];
 
-/* ---------- Games (live in the app) ---------- */
-export interface GameTeaser {
-  name: string;
-  tag: string;
-  desc: string;
-  bg?: string;
-  meta: string[];
-}
-
-export const GAMES: GameTeaser[] = [
-  {
-    name: "Pitch Duel",
-    tag: "Tactical Card Game",
-    desc: "Draft an 11-card deck and out-think a rival over four tactical rounds, with penalties to settle a draw.",
-    bg: "/assets/bg/match_stadium.png",
-    meta: ["11-card deck", "4 rounds + pens"],
-  },
-  {
-    name: "Penalty Shootout",
-    tag: "Nerves & Timing",
-    desc: "You versus the keeper. Read the dive, pick your corner, hold your nerve.",
-    bg: "/assets/bg/penalty_arena.png",
-    meta: ["Best of 5", "sudden death"],
-  },
-  {
-    name: "5v5 Football Chess",
-    tag: "Tactical Squad Duel",
-    desc: "Pick a five-player squad and out-think a rival move by move.",
-    meta: ["5v5", "turn-based"],
-  },
-  {
-    name: "Final Over",
-    tag: "Cricket Chase",
-    desc: "Six balls, one target. Chase it down in the last over.",
-    meta: ["6 balls", "cricket"],
-  },
-  {
-    name: "Hoop Duel",
-    tag: "Arcade Hoops",
-    desc: "Street one-on-one basketball. Beat your rival to the score.",
-    meta: ["1-on-1", "basketball"],
-  },
-  {
-    name: "Grand Prix Dash",
-    tag: "Arcade Racer",
-    desc: "One flat-out lap. Hit your lines and beat the clock.",
-    meta: ["1 lap", "racing"],
-  },
-  {
-    name: "Tennis Rally",
-    tag: "Arcade Tennis",
-    desc: "Keep the rally alive across 20 arcade sets and 5 modes.",
-    meta: ["20 sets", "5 modes"],
-  },
-];
-
-/* ---------- Shop (avatars + banners live, packs soon) ---------- */
+/* ---------- Shop (coming soon) ---------- */
 export interface ShopGroup {
   h: string;
   tag: string;
-  soon?: boolean;
   items: { name: string; img: string; sub: string }[];
 }
 
 export const SHOP_GROUPS: ShopGroup[] = [
   {
     h: "Card Packs",
-    tag: "// PACKS · SOON",
-    soon: true,
+    tag: "// PACKS",
     items: [
       {
         name: "Bronze Pack",

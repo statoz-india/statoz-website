@@ -1,32 +1,33 @@
+import type { Metadata } from "next";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import JsonLd from "@/components/JsonLd";
 import { FAQ_ITEMS } from "@/lib/faqData";
+import { shouldShowLayout } from "@/lib/layoutSearchParam";
 import { ROUTES } from "@/lib/routes";
-import { KEYWORDS, pageMetadata } from "@/lib/seo";
-import { faqJsonLd } from "@/lib/structuredData";
 
-export const metadata = pageMetadata({
+export const metadata: Metadata = {
   title: "FAQ",
   description:
     "Answers about StatOz — free sports predictions, Oz Coins, XP, and how the game works. No real money, not gambling.",
-  shareDescription:
-    "Answers about StatOz — free sports predictions, Oz Coins, XP, and how the game works.",
-  path: ROUTES.faq,
-  keywords: [
-    "is StatOz free",
-    "is StatOz gambling",
-    "what are Oz Coins",
-    ...KEYWORDS.trust,
-    KEYWORDS.core[0],
-    KEYWORDS.leagues[0],
-  ],
-});
+  alternates: { canonical: ROUTES.faq },
+  openGraph: {
+    title: "FAQ · StatOz",
+    description:
+      "Answers about StatOz — free sports predictions, Oz Coins, XP, and how the game works.",
+    url: ROUTES.faq,
+  },
+};
 
-export default function FaqPage() {
+type FaqPageProps = {
+  searchParams?: Promise<{ layout?: string | string[] }>;
+};
+
+export default async function FaqPage({ searchParams }: FaqPageProps) {
+  const resolvedSearchParams = await searchParams;
+  const showLayout = shouldShowLayout(resolvedSearchParams);
+
   return (
-    <BlogChrome>
-      <JsonLd data={faqJsonLd(FAQ_ITEMS)} />
+    <BlogChrome showLayout={showLayout}>
       <section className="blog-hero">
         <div className="blog-hero__orb blog-hero__orb--one" aria-hidden />
         <div className="blog-hero__orb blog-hero__orb--two" aria-hidden />
@@ -55,7 +56,7 @@ export default function FaqPage() {
           </header>
           <div className="faq__list reveal">
             {FAQ_ITEMS.map((item) => (
-              <details className="qa" key={item.q} data-faq-location="faq_page">
+              <details className="qa" key={item.q}>
                 <summary>
                   {item.q}
                   <i />

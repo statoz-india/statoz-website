@@ -1,0 +1,87 @@
+[
+  {
+    "route": "/about",
+    "status": 200,
+    "heading": "About StatOz",
+    "headingSize": "76px",
+    "stylesheets": [
+      "http://127.0.0.1:4410/_next/static/chunks/268xaq3_mfffs.css",
+      "http://127.0.0.1:4410/_next/static/chunks/3nk8m61w7ezry.css",
+      "http://127.0.0.1:4410/_next/static/chunks/2ofxjy5j5e0l-.css"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "route": "/blog",
+    "status": 200,
+    "heading": "Stories behind the predictions.",
+    "headingSize": "76px",
+    "stylesheets": [
+      "http://127.0.0.1:4410/_next/static/chunks/268xaq3_mfffs.css",
+      "http://127.0.0.1:4410/_next/static/chunks/3nk8m61w7ezry.css",
+      "http://127.0.0.1:4410/_next/static/chunks/2ofxjy5j5e0l-.css"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "route": "/faq",
+    "status": 200,
+    "heading": "Before you kick off",
+    "headingSize": "76px",
+    "stylesheets": [
+      "http://127.0.0.1:4410/_next/static/chunks/268xaq3_mfffs.css",
+      "http://127.0.0.1:4410/_next/static/chunks/3nk8m61w7ezry.css",
+      "http://127.0.0.1:4410/_next/static/chunks/2ofxjy5j5e0l-.css"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "route": "/download",
+    "status": 200,
+    "heading": "DOWNLOAD STATOZ.",
+    "headingSize": "58px",
+    "stylesheets": [
+      "http://127.0.0.1:4410/_next/static/chunks/268xaq3_mfffs.css",
+      "http://127.0.0.1:4410/_next/static/chunks/3nk8m61w7ezry.css",
+      "http://127.0.0.1:4410/_next/static/chunks/2ofxjy5j5e0l-.css"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "route": "/games/pitch-duel",
+    "status": 200,
+    "heading": "Pitch DuelBuild your deck. Own the moment.",
+    "headingSize": "70px",
+    "stylesheets": [
+      "http://127.0.0.1:4410/_next/static/chunks/268xaq3_mfffs.css",
+      "http://127.0.0.1:4410/_next/static/chunks/0kcpum7hl5z8c.css",
+      "http://127.0.0.1:4410/_next/static/chunks/3nk8m61w7ezry.css",
+      "http://127.0.0.1:4410/_next/static/chunks/2ofxjy5j5e0l-.css"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "route": "/privacyPolicy",
+    "status": 200,
+    "heading": "Privacy Policy",
+    "headingSize": "76px",
+    "stylesheets": [
+      "http://127.0.0.1:4410/_next/static/chunks/268xaq3_mfffs.css",
+      "http://127.0.0.1:4410/_next/static/chunks/3nk8m61w7ezry.css",
+      "http://127.0.0.1:4410/_next/static/chunks/2ofxjy5j5e0l-.css"
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "route": "/termsAndConditions",
+    "status": 200,
+    "heading": "Terms & Conditions",
+    "headingSize": "76px",
+    "stylesheets": [
+      "http://127.0.0.1:4410/_next/static/chunks/268xaq3_mfffs.css",
+      "http://127.0.0.1:4410/_next/static/chunks/3nk8m61w7ezry.css",
+      "http://127.0.0.1:4410/_next/static/chunks/2ofxjy5j5e0l-.css"
+    ],
+    "horizontalOverflow": false
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "name": "sports",
+    "url": "https://pai45.github.io/statoz-next-sports-web/",
+    "status": 200,
+    "title": "StatOz Sports Demo",
+    "capturedAt": "2026-11-13T17:49:59.183Z"
+  },
+  {
+    "name": "games",
+    "url": "https://pai45.github.io/statoz-next-games-web/",
+    "status": 200,
+    "title": "StatOz Games Demo",
+    "capturedAt": "2026-11-13T17:50:05.006Z"
+  },
+  {
+    "name": "hoop-legacy",
+    "url": "https://pai45.github.io/statoz-next-games-web/play/hoop-legacy/",
+    "status": 200,
+    "title": "HOOP LEGACY"
+  },
+  {
+    "name": "pitch-rush",
+    "url": "https://pai45.github.io/statoz-next-games-web/play/pitch-rush/",
+    "status": 200,
+    "title": "PITCH RUSH"
+  },
+  {
+    "name": "cricketer",
+    "url": "https://pai45.github.io/statoz-next-games-web/play/cricketer/",
+    "status": 200,
+    "title": "CRICKETER"
+  },
+  {
+    "name": "portfolio-formula",
+    "url": "https://pai45.github.io/statoz-next-games-web/play/portfolio-formula/",
+    "status": 200,
+    "title": "FORMULA"
+  },
+  {
+    "name": "longbow",
+    "url": "https://pai45.github.io/statoz-next-games-web/play/longbow/",
+    "status": 200,
+    "title": "LONGBOW"
+  },
+  {
+    "name": "open-golf",
+    "url": "https://pai45.github.io/statoz-next-games-web/play/open-golf/",
+    "status": 200,
+    "title": "OPEN GOLF"
+  },
+  {
+    "url": "https://pai45.github.io/statoz-next-sports-web/quiz/",
+    "status": 200,
+    "title": "Quiz"
+  },
+  {
+    "url": "https://play.google.com/store/apps/details?id=com.statoz.app",
+    "status": 200,
+    "title": "StatOz: Sports Prediction Game - Apps on Google Play"
+  },
+  {
+    "url": "https://apps.apple.com/in/app/statoz/id6761310455",
+    "status": 200,
+    "title": "‎StatOz App - App Store"
+  }
+]

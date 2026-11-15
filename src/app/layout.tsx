@@ -1,164 +1,24 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-import Script from "next/script";
-import { Orbitron, Onest, Space_Mono } from "next/font/google";
-import AnalyticsEvents from "@/components/AnalyticsEvents";
-import JsonLd from "@/components/JsonLd";
-import LayoutModeSync from "@/components/LayoutModeSync";
-import { BARE_LAYOUT_SCRIPT } from "@/lib/layoutMode";
-import { KEYWORDS } from "@/lib/seo";
-import {
-  SITE_URL,
-  SITE_NAME,
-  SITE_DESCRIPTION,
-  SITE_LANGUAGE,
-  SHARED_OPEN_GRAPH,
-  APP_ICON_PATH,
-} from "@/lib/site";
-import { SITE_GRAPH } from "@/lib/structuredData";
-import "./globals.css";
-
-const disp = Orbitron({
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
-  variable: "--font-disp",
-  display: "swap",
-});
-const ui = Onest({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-ui",
-  display: "swap",
-});
-const mono = Space_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-mono",
-  display: "swap",
-});
-
-const GTM_ID = "GTM-T436Z2PL";
-const GA_MEASUREMENT_ID = "G-7KH0GEDEFX";
-const ADSENSE_CLIENT = "ca-pub-6501993109896836";
-
-const TITLE = "StatOz – Free Sports Prediction Game";
-
-// iOS Safari shows Apple's "Open in App Store" banner for this app id.
-const APP_STORE_ID = "6761310455";
-
-// Search Console / Bing Webmaster verification. Set these env vars at build
-// time to emit the meta tags; skip them if the domain is verified by DNS.
-const GOOGLE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION;
-const BING_VERIFICATION = process.env.BING_SITE_VERIFICATION;
-const DESCRIPTION = SITE_DESCRIPTION;
-
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import localFont from 'next/font/local';
+import AnalyticsEvents from '@/components/AnalyticsEvents';
+import { SITE_URL, SITE_NAME } from '@/lib/site';
+import './globals.css';
+const displayFont = localFont({src:'../../public/assets/fonts/orbitron-latin-variable.woff2',variable:'--font-disp',display:'swap',weight:'400 900'});
+const bodyFont = localFont({src:'../../public/assets/fonts/space-grotesk-variable.woff2',variable:'--font-ui',display:'swap',weight:'300 700'});
+const title = 'StatOz — Your daily home for sport';
+const description = 'Your daily home for sport. Explore StatOz City: discover basketball, cricket, football and racing, follow Sports, play Games, and visit the StatOz newsroom.';
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: { default: TITLE, template: "%s · StatOz" },
-  description: DESCRIPTION,
-  applicationName: SITE_NAME,
-  keywords: [
-    ...KEYWORDS.core,
-    ...KEYWORDS.leagues,
-    "not gambling",
-    "no real money",
-    ...KEYWORDS.brand,
-  ],
-  alternates: {
-    canonical: "/",
-    types: { "application/rss+xml": "/blog/rss.xml" },
-  },
-  category: "games",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-  icons: { icon: APP_ICON_PATH, apple: APP_ICON_PATH },
-  itunes: { appId: APP_STORE_ID },
-  verification: {
-    ...(GOOGLE_VERIFICATION && { google: GOOGLE_VERIFICATION }),
-    ...(BING_VERIFICATION && { other: { "msvalidate.01": BING_VERIFICATION } }),
-  },
-  openGraph: {
-    ...SHARED_OPEN_GRAPH,
-    type: "website",
-    url: SITE_URL,
-    title: TITLE,
-    description: DESCRIPTION,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
-    images: SHARED_OPEN_GRAPH.images,
-  },
+  metadataBase:new URL(SITE_URL),title:{default:title,template:'%s | StatOz'},description,applicationName:SITE_NAME,
+  alternates:{canonical:'/'},icons:{icon:'/favicon.ico',apple:'/icon-192.png'},
+  openGraph:{type:'website',url:SITE_URL,siteName:SITE_NAME,title,description,images:[{url:'/assets/city/city-social.jpg',width:1200,height:630,alt:'StatOz City — Your daily home for sport'}]},
+  twitter:{card:'summary_large_image',title,description,images:['/assets/city/city-social.jpg']},
 };
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    // suppressHydrationWarning: the <head> script below may add data-layout
-    // to <html> before React hydrates.
-    <html
-      lang={SITE_LANGUAGE}
-      suppressHydrationWarning
-      className={`${disp.variable} ${ui.variable} ${mono.variable}`}
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: BARE_LAYOUT_SCRIPT }} />
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body>
-        <JsonLd data={SITE_GRAPH} />
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-        <Script id="google-tag-manager" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
-          `}
-        </Script>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
-        <AnalyticsEvents />
-        <Suspense fallback={null}>
-          <LayoutModeSync />
-        </Suspense>
-        {children}
-      </body>
-    </html>
-  );
+const schema = {'@context':'https://schema.org','@type':'WebSite',name:SITE_NAME,url:SITE_URL,description};
+export default function RootLayout({children}:{children:React.ReactNode}) {
+  return <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}><body>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}} />
+    {process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true' && <><Script src="https://www.googletagmanager.com/gtag/js?id=G-7KH0GEDEFX" strategy="afterInteractive" /><Script id="google-analytics" strategy="afterInteractive">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7KH0GEDEFX');`}</Script></>}
+    <AnalyticsEvents />{children}
+  </body></html>;
 }

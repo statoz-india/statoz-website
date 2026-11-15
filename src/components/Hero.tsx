@@ -1,5 +1,5 @@
-import PixelBlast from "./DeferredPixelBlast";
-import { APP_STORE_URL, PLAY_STORE_URL, WEB_APP_URL } from "@/lib/storeLinks";
+import PixelBlast from "./PixelBlast";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
 import StoreIcon from "./StoreIcon";
 
 export default function Hero() {
@@ -30,22 +30,14 @@ export default function Hero() {
 
       <div className="wrap hero__inner">
         <div className="hero__copy">
-          {/* The kicker sits inside the h1 so the page's main heading names
-              what StatOz is. .hero__h1 is display: contents, so both lines
-              keep their own look. */}
-          <h1 className="hero__h1">
-            <span className="kicker">
-              <i className="live-dot" />
-              <span>
-                FREE SPORTS PREDICTION GAME
-                <span className="kicker__more"> · NO CASH · JUST SKILL</span>
-              </span>
-            </span>
-            <span className="hero__title">
-              PREDICT EVERY MATCH.
-              <br />
-              <span className="grad">PROVE YOUR READ.</span>
-            </span>
+          <span className="kicker">
+            <i className="live-dot" />
+            FREE TO PLAY · NO CASH · JUST SKILL
+          </span>
+          <h1 className="hero__title">
+            PREDICT EVERY MATCH.
+            <br />
+            <span className="grad">PROVE YOUR READ.</span>
           </h1>
           <p className="hero__sub">
             The free <strong>sports prediction game</strong>. Predict a{" "}
@@ -84,33 +76,18 @@ export default function Hero() {
                 <small>DOWNLOAD ON</small>App Store
               </span>
             </a>
-            <a
-              className="btn btn--ghost btn--lg btn--store btn--web"
-              href={WEB_APP_URL}
-              target="_blank"
-              rel="noopener"
-              data-analytics-event="download_cta_click"
-              data-analytics-cta-label="Web app"
-              data-analytics-cta-location="hero"
-              data-analytics-store="web_app"
-            >
-              <StoreIcon store="web" className="btn__i" />
-              <span className="store">
-                <small>PLAY ONLINE</small>Web App
-              </span>
-            </a>
           </div>
 
           <div className="hero__trust">
-            <div className="stars" aria-label="4.8 star rating on Google Play">
+            <div className="stars" aria-label="4.8 star rating">
               ★★★★<span className="half">★</span>
             </div>
             <span>
-              <strong>4.8</strong> on Google Play
+              <strong>4.8</strong> rating
             </span>
             <span className="dot">·</span>
             <span>
-              <strong>25K+</strong> downloads
+              <strong>5K+</strong> predictors playing
             </span>
           </div>
         </div>
@@ -122,7 +99,7 @@ export default function Hero() {
             ✓ +250 XP <small>BEAT 64% OF PREDICTORS</small>
           </div>
           <div className="toast toast--odds" aria-hidden="true">
-            <i>🎯</i> 3/4 CORRECT
+            <i>🔥</i> STREAK 12
           </div>
 
           <article

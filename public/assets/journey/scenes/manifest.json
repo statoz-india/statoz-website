@@ -1,0 +1,12 @@
+{
+  "source": "Local captures of the actual StatOz Three.js city",
+  "script": "scripts/capture-journey.mjs",
+  "logo": "Unmodified StatOz Sports app_logo.png",
+  "chapters": [
+    "welcome",
+    "predict",
+    "knowledge",
+    "games",
+    "city"
+  ]
+}

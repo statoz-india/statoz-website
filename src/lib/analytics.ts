@@ -1,10 +1,15 @@
 export type AnalyticsEventName =
+  | "web_launch"
+  | "product_select"
   | "download_cta_click"
   | "section_view"
+  | "city_location_select"
+  | "city_navigation_mode"
   | "blog_post_click"
-  | "faq_open"
-  | "social_click"
-  | "email_click";
+  | "journey_chapter_view"
+  | "journey_sample_interaction"
+  | "journey_skip"
+  | "journey_replay";
 
 export type AnalyticsParams = Record<
   string,

@@ -1,0 +1,48 @@
+{
+  "frames": [
+    {
+      "viewport": 1440,
+      "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "visibility": "visible",
+      "cityScene": "true",
+      "mode": "tour",
+      "quality": "desktop",
+      "people": "336",
+      "athletes": "24",
+      "stands": "12",
+      "activityPaused": "false",
+      "activityTime": "10.047",
+      "fps": "75.0",
+      "drawCalls": "576",
+      "triangles": "529943"
+    },
+    {
+      "viewport": 390,
+      "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "visibility": "visible",
+      "cityScene": "true",
+      "mode": "tour",
+      "quality": "mobile",
+      "people": "323",
+      "athletes": "24",
+      "stands": "12",
+      "activityPaused": "false",
+      "activityTime": "10.045",
+      "fps": "75.0",
+      "drawCalls": "361",
+      "triangles": "341518"
+    }
+  ],
+  "note": "Local desktop browser lab measurements. Mobile widths are emulation, not physical-phone benchmarks.",
+  "lighthouse": {
+    "scores": {
+      "performance": 0.7,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "LCP": 1064.2047,
+    "CLS": 0,
+    "TBT": 1452
+  }
+}

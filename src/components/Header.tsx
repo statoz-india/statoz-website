@@ -1,72 +1,25 @@
-"use client";
-
-import { useState } from "react";
-import Link from "next/link";
-import { PRIMARY_NAV_LINKS, ROUTES } from "@/lib/routes";
-import BrandMark from "./BrandMark";
-
-export default function Header() {
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { BrandIcon } from '@statoz/design-system/web/icons/brand';
+import { PRIMARY_NAV_LINKS } from '@/lib/routes';
+import styles from './site-chrome.module.css';
+export default function Header({ stadium = false }: { stadium?: boolean }) {
   const [open, setOpen] = useState(false);
-
-  return (
-    <header className="site-head" id="top">
-      <div className="wrap site-head__inner">
-        <BrandMark image />
-
-        <nav className="nav" aria-label="Primary">
-          {PRIMARY_NAV_LINKS.map((l) => (
-            <Link key={l.href} href={l.href}>
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="head-cta">
-          <Link className="btn btn--ghost btn--sm" href={ROUTES.predict}>
-            How It Works
-          </Link>
-          <Link
-            className="btn btn--primary btn--sm"
-            href={ROUTES.download}
-            data-analytics-event="download_cta_click"
-            data-analytics-cta-label="Get the App"
-            data-analytics-cta-location="header_desktop"
-            data-analytics-store="app_landing"
-          >
-            Get the App
-          </Link>
-        </div>
-
-        <button
-          className="burger"
-          aria-label="Menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-
-      <div className="mobile-nav" hidden={!open}>
-        {PRIMARY_NAV_LINKS.map((l) => (
-          <Link key={l.href} href={l.href} onClick={() => setOpen(false)}>
-            {l.label}
-          </Link>
-        ))}
-        <Link
-          className="btn btn--primary"
-          href={ROUTES.download}
-          data-analytics-event="download_cta_click"
-          data-analytics-cta-label="Get the App"
-          data-analytics-cta-location="header_mobile"
-          data-analytics-store="app_landing"
-          onClick={() => setOpen(false)}
-        >
-          Get the App
-        </Link>
-      </div>
-    </header>
-  );
+  const button = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const close = (event: KeyboardEvent) => { if (event.key === 'Escape') { setOpen(false); button.current?.focus(); } };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [open]);
+  return <header className={`${styles.header} ${stadium ? styles.overHero : ''}`}>
+    <div className={styles.headerInner}>
+      <Link href="/#top" className={styles.brand} aria-label="StatOz home"><BrandIcon name="logo" size={30} alt="" priority /><span className={styles.brandName}>Stat<span>Oz</span><small>YOUR HOME GROUND</small></span></Link>
+      <nav className={styles.desktopNav} aria-label="Primary">{PRIMARY_NAV_LINKS.map(link => <Link key={link.href} href={link.href}>{link.label}</Link>)}</nav>
+      <Link href="/#play" className={styles.enter}>Step inside <span aria-hidden="true">↗</span></Link>
+      <button ref={button} type="button" className={styles.menuButton} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span aria-hidden="true">{open ? '×' : '☰'}</span></button>
+    </div>
+    <nav className={styles.mobileNav} id="mobile-navigation" aria-label="Mobile primary" hidden={!open}>{PRIMARY_NAV_LINKS.map(link => <Link key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}<span aria-hidden="true">↗</span></Link>)}<Link href="/#play" onClick={() => setOpen(false)}>Play on web</Link><Link href="/#download" onClick={() => setOpen(false)}>Get the app</Link></nav>
+  </header>;
 }

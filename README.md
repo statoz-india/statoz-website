@@ -1,95 +1,21 @@
 # StatOz website
+A scrollable opening journey into an explorable 3D sports city. “Welcome home, Sports Wizard” introduces predictions, sports knowledge challenges, and 15 games before opening the city for exploration. Scroll backwards to revisit any chapter. Basketball, cricket, football, and racing venues connect to the products; city landmarks house supporting information. Local project with no production deployment configured.
 
-Marketing site for **StatOz**, the free sports prediction game (EPL, IPL, La Liga, NBA):
-predict fixtures, earn XP and Oz Coins, play arcade games and climb the leaderboard.
-No cash, not gambling. Live at <https://www.statoz.in> (hosted on Vercel).
+City architecture, controls, free asset sources, and rebuilding instructions: [docs/CITY.md](docs/CITY.md). Current validation and screenshots: [docs/CITY-QA.md](docs/CITY-QA.md).
 
-Built with **Next.js 16 (App Router) + React 19 + TypeScript**, styled with plain global CSS.
+## Run
+Node 22+. Run `npm ci`, then `npm run dev`. Open http://127.0.0.1:4410.
+From the parent StatOz folder use `npm run website`. In PowerShell with blocked scripts use `npm.cmd`.
 
-## Run it
+## Verify
+`npm run check` checks TypeScript. `npm run build` creates the production build. `npm test` runs browser checks and starts the production server when needed; build first. Install the browser with `npx playwright install chromium` if needed. `npm run start` serves production on port 4410. Set `CITY_TEST_PORT=4411` to test alongside development. With production running, set `CITY_TEST_URL` to its local address and run `node scripts/performance-city.mjs` for a Lighthouse mobile audit and scene measurements.
+Homepage locations and destinations: src/features/home/city-config.ts. Opening copy, camera stops and game destinations: src/features/home/city-journey-config.ts. The city and opening share one Three.js renderer; chapter content uses semantic HTML and normal document scrolling. Journey interaction, assets and checks: docs/JOURNEY.md. Original website provenance: docs/SOURCE.md.
+Analytics are off for local review. Set NEXT_PUBLIC_ENABLE_ANALYTICS=true at build time only for an authorized production deployment. Existing GA property is retained with one loader. Events include web_launch, product_select, download_cta_click, section_view, blog_post_click, city_location_select, and city_navigation_mode.
+Web previews are separate from the store app; they use demo data and local progress. The website does not host games or provide live scores.
 
-```bash
-npm install
-npm run dev        # http://localhost:3000
-```
+## Dependencies and assets
+Next.js is pinned to 16.4.6. The vendored design-system archive is unchanged; a scoped npm override permits the patched Next.js version instead of its older exact peer pin. Playwright and playwright-core are aligned to prevent incompatible browser-test types. Commit package-lock.json with dependency updates.
 
-| Script | What it does |
-| --- | --- |
-| `npm run build` | Production build |
-| `npm run start` | Serve the production build |
-| `npm run indexnow` | After a deploy: submit every sitemap URL to IndexNow (Bing, Yandex…) |
+City assets use free CC0 Kenney and Quaternius models, optimized into local Meshopt/KTX2 GLB kits. [docs/CITY.md](docs/CITY.md) documents the acquisition and preparation scripts. `node scripts/capture-city.mjs` creates city posters and social artwork from the actual scene. The previous `npm run assets:prepare` stadium-image workflow remains available. `npm run capture:products` refreshes product screenshots and checks external destinations; it requires internet access. Body typography uses a WOFF2 conversion of the source Space Grotesk variable font, with its license retained. Previous artwork prompts remain in docs/image-prompts.md.
 
-## Structure
-
-```
-src/
-  app/
-    layout.tsx            root layout: fonts, metadata, site JSON-LD, GTM / GA4 / AdSense
-    page.tsx              homepage: composes the sections below in order
-    globals.css           the whole design system (tokens, cards, HUD chrome, responsive)
-    faq/ about/           FAQ and company pages
-    termsAndConditions/   legal pages
-    privacyPolicy/
-    download/             download page
-    blog/                 blog index, /blog/[slug] posts, RSS feed, per-post share images
-    predictions/[league]  league landing pages (/predictions/epl, /predictions/ipl)
-    [section]/            short URLs (/picks, /predict…) that 308 to homepage sections
-    get/                  device redirect behind download.statoz.in (App Store / Play Store)
-    llms.txt/ llms-full.txt/   plain-text site summaries for AI assistants
-    sitemap.ts robots.ts manifest.ts opengraph-image.tsx twitter-image.tsx not-found.tsx
-  components/
-    Ticker Header ScrollRail          top marquee, sticky nav, section progress rail
-    Hero Nations Predict Picks        homepage sections…
-    Progression Leaderboard Features
-    Squad Games Shop WhoFor Download Faq
-    Footer
-    BlogChrome                        header/footer wrapper for non-home pages
-    ArticleView FaqList Breadcrumbs   shared layouts for posts, league pages and FAQs
-    JsonLd                            renders structured data safely
-    Effects                           DOM effects: cursor glow, scroll-reveal, count-up,
-                                      card tilt, hero parallax, header shadow
-    DeferredPixelBlast + PixelBlast   hero WebGL background (three.js), loaded when idle
-    AnalyticsEvents                   delegated click tracking -> GA4 events
-    LayoutModeSync                    keeps ?layout=false mode right on client navigation
-  lib/
-    data.ts             homepage content: cards, quiz steps, picks, leaderboards, shop…
-    blog.ts             blog posts (one object per post)
-    leagues.ts          league landing pages
-    faqData.ts about.ts FAQ and About copy
-    site.ts             domain, brand names, description, shared Open Graph
-    routes.ts           every internal URL + nav link lists
-    storeLinks.ts       App Store / Play Store / web app URLs
-    seo.ts              keywords + pageMetadata() used by every page
-    structuredData.ts   schema.org graph and FAQ/breadcrumb helpers
-    llms.ts             content for llms.txt / llms-full.txt
-    analytics.ts        trackEvent()
-    layoutMode.ts       ?layout=false (in-app webview) support
-public/
-  assets/               player portraits, avatars, packs, icons, backgrounds, brand marks
-  ads.txt app-ads.txt   ad network declarations
-  <key>.txt             IndexNow key file
-docs/seo-aeo-geo.md     how search, AI-answer and structured-data work is set up
-```
-
-## How it's wired
-
-- **Styling** is plain global CSS with custom properties, no Tailwind. Fonts come from
-  `next/font/google` (Orbitron, Onest, Space Mono) and are exposed as `--font-disp`,
-  `--font-ui` and `--font-mono`.
-- **Server components by default.** Only `Header`, `ScrollRail`, `Leaderboard`, `Effects`,
-  `AnalyticsEvents`, `LayoutModeSync` and `DeferredPixelBlast` run in the browser.
-- **Everything is prerendered** except `/get`, which has to read the visitor's user agent.
-- **Content is data-driven.** Edit `src/lib/*.ts` rather than the components. A new blog
-  post is one object in `BLOG_POSTS`; the sitemap, RSS feed, llms files and schema pick it
-  up automatically. A new card is a `PLAYERS` entry plus `public/assets/players/<id>.webp`.
-- **In-app webview mode.** FAQ, About, Terms and Privacy accept `?layout=false`, which hides
-  the site header and footer. A small script in `<head>` sets `<html data-layout="bare">`
-  before first paint, so the pages stay static. See `src/lib/layoutMode.ts`.
-- **SEO / AI search.** Every page builds metadata through `pageMetadata()` in `seo.ts`.
-  `robots.ts` names the major search and AI crawlers. See `docs/seo-aeo-geo.md`.
-
-## Notes
-
-- Player art uses plain `<img>` because the cards rely on CSS `object-fit` and masking.
-- Scroll-reveal elements start hidden and fade in via IntersectionObserver; visitors with
-  `prefers-reduced-motion` see everything immediately.
+Current validation results and screenshot links: [docs/CITY-QA.md](docs/CITY-QA.md). [docs/QA.md](docs/QA.md) retains the previous stadium validation. Secondary page copy remains from the source website; the Clubhouse and City Hall link to the company and legal pages.

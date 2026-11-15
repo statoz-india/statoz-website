@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "licenses": [
+    "/assets/city/licenses/Kenney.txt",
+    "/assets/city/licenses/Quaternius.txt"
+  ],
+  "assets": [
+    {
+      "id": "building-a",
+      "sourceFile": "city-kit-commercial/Models/GLB format/building-a.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/city-kit-commercial",
+      "license": "CC0-1.0",
+      "sourceSha256": "5cf220f90ee3f21e7abe38055ca409a48aa8ef1d5ffab6e2deb99e5a5e1ed5e0",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "building-d",
+      "sourceFile": "city-kit-commercial/Models/GLB format/building-d.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/city-kit-commercial",
+      "license": "CC0-1.0",
+      "sourceSha256": "40605608e9aca0c98e294acff4af0f74afa417a51d589be490ca98f33ce4c2f5",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "building-g",
+      "sourceFile": "city-kit-commercial/Models/GLB format/building-g.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/city-kit-commercial",
+      "license": "CC0-1.0",
+      "sourceSha256": "9a28fa2fdfac07492ee95589882213cfd6eb32d6752cb3b2f5404604c676d27a",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "building-k",
+      "sourceFile": "city-kit-commercial/Models/GLB format/building-k.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/city-kit-commercial",
+      "license": "CC0-1.0",
+      "sourceSha256": "afd36f573b9d6a6a890675aa0fbe762b29efb6258f322990752d79d9f0da42c6",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "building-tower-a",
+      "sourceFile": "city-kit-commercial/Models/GLB format/building-skyscraper-a.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/city-kit-commercial",
+      "license": "CC0-1.0",
+      "sourceSha256": "d8339bbb75944ff91d1ec9a70ec6dead71bd98b94a42d3dd0fc1f3b107ddbe85",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "building-tower-d",
+      "sourceFile": "city-kit-commercial/Models/GLB format/building-skyscraper-d.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/city-kit-commercial",
+      "license": "CC0-1.0",
+      "sourceSha256": "5c524ec13be53fff85ace8b328bc2587cba4e93962230e4a0ba98998e53d30b5",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "streetlight",
+      "sourceFile": "city-kit-roads/Models/GLB format/light-square.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/city-kit-roads",
+      "license": "CC0-1.0",
+      "sourceSha256": "6230d136c8883d7f9bc1b86f0309077e452e26e5e1e587ef1b77abef3c5f047c",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "grandstand",
+      "sourceFile": "racing-kit/Models/GLTF format/grandStandCovered.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/racing-kit",
+      "license": "CC0-1.0",
+      "sourceSha256": "48fc8e7eace9969a849805bddd5dce2bf1244129f46ae18f7dc8499fe1792b50",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "pit-garage",
+      "sourceFile": "racing-kit/Models/GLTF format/pitsGarage.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/racing-kit",
+      "license": "CC0-1.0",
+      "sourceSha256": "db73d2ebd70763380ef872ffd2a399eb72c979f96c5a3c1ab377d93670204a23",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "tree",
+      "sourceFile": "racing-kit/Models/GLTF format/treeLarge.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/racing-kit",
+      "license": "CC0-1.0",
+      "sourceSha256": "3fcba4474bc490a5e589ce4924e972ca629029f2ade17a20f4ca3a7f253a3168",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "race-car",
+      "sourceFile": "racing-kit/Models/GLTF format/raceCarOrange.glb",
+      "creator": "Kenney",
+      "source": "https://kenney.nl/assets/racing-kit",
+      "license": "CC0-1.0",
+      "sourceSha256": "3f7d799e54e0f64c846db3764f04ccfcddfbfe48d7d59f366495d4585a35a980",
+      "output": "/assets/city/city-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "downtown-large",
+      "sourceFile": "downtown-city-megakit/Exports/glTF (Godot)/Building_Large_2.gltf",
+      "creator": "Quaternius",
+      "source": "https://quaternius.com/packs/downtowncitymegakit.html",
+      "license": "CC0-1.0",
+      "sourceSha256": "903209b63ad4e151190dce32ccab47a2c0dc256c09d999835984a0459ef2bd91",
+      "output": "/assets/city/downtown-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "downtown-medium",
+      "sourceFile": "downtown-city-megakit/Exports/glTF (Godot)/Building_Medium_2_001.gltf",
+      "creator": "Quaternius",
+      "source": "https://quaternius.com/packs/downtowncitymegakit.html",
+      "license": "CC0-1.0",
+      "sourceSha256": "423f4b3e709ef5633eac4a94a8a1ce25750aa42fe34e3b983d7aac39846f9a1c",
+      "output": "/assets/city/downtown-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    },
+    {
+      "id": "downtown-small",
+      "sourceFile": "downtown-city-megakit/Exports/glTF (Godot)/Building_Small_1.gltf",
+      "creator": "Quaternius",
+      "source": "https://quaternius.com/packs/downtowncitymegakit.html",
+      "license": "CC0-1.0",
+      "sourceSha256": "3c864724fffd016ca440191bca169d6ba486e14617bb3cafa09ddbac7532f3d7",
+      "output": "/assets/city/downtown-kit.glb",
+      "modifications": "Selected, normalized at runtime, deduplicated, reduced textures, Meshopt compressed. Quaternius exteriors simplified for the aerial view."
+    }
+  ]
+}

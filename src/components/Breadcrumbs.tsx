@@ -1,6 +1,4 @@
 import Link from "next/link";
-import JsonLd from "./JsonLd";
-import { breadcrumbJsonLd } from "@/lib/structuredData";
 
 interface BreadcrumbItem {
   label: string;
@@ -10,7 +8,6 @@ interface BreadcrumbItem {
 export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
     <nav className="breadcrumbs" aria-label="Breadcrumb">
-      <JsonLd data={breadcrumbJsonLd(items)} />
       <ol>
         {items.map((item, index) => {
           const current = index === items.length - 1;

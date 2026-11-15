@@ -1,0 +1,52 @@
+[
+  {
+    "file": "stadium-desktop.png",
+    "source": "C:/Users/priya/.codex/generated_images/01a1d4f7-d9d4-7441-9e7a-611766a6c82a/exec-62f0b9a4-c357-4924-8030-165c1b418659.png",
+    "sha256": "4518e9154af5264dc6105b7dcab17ee38b2be94d7317cd180f78cd9fc1d4d178"
+  },
+  {
+    "file": "stadium-mobile.png",
+    "source": "C:/Users/priya/.codex/generated_images/01a1d4f7-d9d4-7441-9e7a-611766a6c82a/exec-90ddf9c2-909c-4532-95a4-da107350c833.png",
+    "sha256": "e69bd50430678b0ffb631e80eb4f643df120210f6713dfad4e367fe9bff6bc89"
+  },
+  {
+    "file": "hoop-legacy.webp",
+    "source": "statoz-games-web/public/assets/games/covers/launch-2026-11-06/hoop-legacy.webp",
+    "sha256": "5cb9371d5e0e67eb25860bb718c0924429ff63a45e711fb009a557f92b5ab1e9"
+  },
+  {
+    "file": "pitch-rush.webp",
+    "source": "statoz-games-web/public/assets/games/home/covers/pitch-rush.webp",
+    "sha256": "2052a92f8fb8d95d7fbd4aad43eafc3247e1c8247354e62ec7e34fd9f746c09f"
+  },
+  {
+    "file": "cricketer.webp",
+    "source": "statoz-games-web/public/assets/games/covers/launch-2026-11-01/cricketer.webp",
+    "sha256": "1a84ec3f0e8369e81354b2a5a5c0ebd1bc1be7c43a2720badac910cc21116ab3"
+  },
+  {
+    "file": "formula.webp",
+    "source": "statoz-games-web/public/assets/games/covers/formula-2026-11-06/formula.webp",
+    "sha256": "051911d00c963a8f5e638d8b3f3985833275197831edb1fd5083729f31c0144f"
+  },
+  {
+    "file": "longbow.webp",
+    "source": "statoz-games-web/public/assets/games/covers/launch-2026-11-06/longbow.webp",
+    "sha256": "0582c53f1aba1f22818da57f06b143dd9ec9d62e30e93fdf4e3fa8e801cea4e7"
+  },
+  {
+    "file": "open-golf.webp",
+    "source": "statoz-games-web/public/assets/games/covers/launch-2026-11-01/open-golf.webp",
+    "sha256": "5d208aff952cc0e69fc9d11451a23cfba6649bbaa6d89beb2962e623b9e39fb8"
+  },
+  {
+    "file": "sports-preview.webp",
+    "source": "https://pai45.github.io/statoz-next-sports-web/",
+    "sha256": "3b8ab6f9b337d965ac8bf53d9e47342a9aef5bec2345537ca37ac9830a0d68ee"
+  },
+  {
+    "file": "games-preview.webp",
+    "source": "https://pai45.github.io/statoz-next-games-web/",
+    "sha256": "9e8aa26136c3190593f2e63934738373e2bb035401dc9f6e4f433f2926469390"
+  }
+]

@@ -6,6 +6,9 @@ import { trackEvent, type AnalyticsEventName } from "@/lib/analytics";
 
 const SECTION_NAMES: Record<string, string> = {
   home: "Home",
+  sports: "Sports",
+  play: "Choose experience",
+  "how-it-works": "Daily ritual",
   nations: "Nations",
   predict: "Predict",
   picks: "Picks",
@@ -21,9 +24,10 @@ const SECTION_NAMES: Record<string, string> = {
 };
 
 const TRACKED_CLICK_EVENTS = new Set<AnalyticsEventName>([
+  "web_launch",
+  "product_select",
   "download_cta_click",
   "blog_post_click",
-  "social_click",
 ]);
 
 function currentPagePath() {
@@ -50,16 +54,6 @@ export default function AnalyticsEvents() {
         return;
       }
 
-      const mailLink = target.closest<HTMLAnchorElement>('a[href^="mailto:"]');
-
-      if (mailLink) {
-        trackEvent("email_click", {
-          email: mailLink.href.replace(/^mailto:/, "").split("?")[0],
-          page_path: currentPagePath(),
-        });
-        return;
-      }
-
       const trackedElement = target.closest<HTMLElement>(
         "[data-analytics-event]",
       );
@@ -72,6 +66,11 @@ export default function AnalyticsEvents() {
         .analyticsEvent as AnalyticsEventName;
 
       if (!TRACKED_CLICK_EVENTS.has(eventName)) {
+        return;
+      }
+
+      if (eventName === 'web_launch' || eventName === 'product_select') {
+        trackEvent(eventName, { product: trackedElement.dataset.analyticsProduct, game: trackedElement.dataset.analyticsGame, location_id: trackedElement.dataset.analyticsLocation, cta_location: trackedElement.dataset.analyticsCtaLocation, destination_url: linkDestination(trackedElement), page_path: currentPagePath() });
         return;
       }
 
@@ -95,43 +94,11 @@ export default function AnalyticsEvents() {
           destination_url: linkDestination(trackedElement),
           page_path: currentPagePath(),
         });
-        return;
       }
-
-      if (eventName === "social_click") {
-        trackEvent(eventName, {
-          network: trackedElement.dataset.analyticsNetwork,
-          location: trackedElement.dataset.analyticsLocation,
-          link_url: linkDestination(trackedElement),
-          page_path: currentPagePath(),
-        });
-      }
-    }
-
-    // Which questions fans open tells us what to answer better (AEO).
-    // `toggle` does not bubble, so listen in the capture phase.
-    function onToggle(event: Event) {
-      const details = event.target;
-      if (!(details instanceof HTMLDetailsElement) || !details.open) {
-        return;
-      }
-      if (!details.matches("details.qa")) {
-        return;
-      }
-
-      trackEvent("faq_open", {
-        question: details.querySelector("summary")?.textContent?.trim(),
-        faq_location: details.dataset.faqLocation,
-        page_path: currentPagePath(),
-      });
     }
 
     document.addEventListener("click", onClick);
-    document.addEventListener("toggle", onToggle, true);
-    return () => {
-      document.removeEventListener("click", onClick);
-      document.removeEventListener("toggle", onToggle, true);
-    };
+    return () => document.removeEventListener("click", onClick);
   }, []);
 
   useEffect(() => {

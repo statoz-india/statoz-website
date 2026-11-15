@@ -1,26 +1,16 @@
+import type { Metadata } from "next";
 import Download from "@/components/Download";
 import Effects from "@/components/Effects";
 import Header from "@/components/Header";
-import { ROUTES } from "@/lib/routes";
-import { KEYWORDS, pageMetadata } from "@/lib/seo";
+import ReturnToCity from '@/features/home/return-to-city';
+import '@/app/legacy-styles.css';
 
-export const metadata = pageMetadata({
-  title: "Download StatOz – Free Sports Prediction Game",
-  absoluteTitle: true,
+export const metadata: Metadata = {
+  title: "Download StatOz -Free sports prediction game",
   description:
-    "Get StatOz free on Android and iOS, or play in your browser. Predict fixtures, win Oz Coins, play arcade games and climb the global leaderboard. No cash, not gambling.",
-  path: ROUTES.download,
-  keywords: [
-    "download StatOz",
-    "StatOz app download",
-    "prediction game app Android",
-    "prediction game app iPhone",
-    "StatOz web app",
-    "play StatOz online",
-    ...KEYWORDS.core.slice(0, 4),
-    KEYWORDS.leagues[2],
-  ],
-});
+    "Get StatOz free on Android and iOS. Predict football fixtures, win Oz Coins, build streaks and climb the global leaderboard. No cash, not gambling.",
+  alternates: { canonical: "/download" },
+};
 
 export default function DownloadPage() {
   return (
@@ -32,10 +22,11 @@ export default function DownloadPage() {
       <Header />
 
       <main>
-        <Download asPageTitle />
+        <Download />
       </main>
 
       <Effects />
+      <ReturnToCity />
     </>
   );
 }
