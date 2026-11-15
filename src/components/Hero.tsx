@@ -113,7 +113,7 @@ export default function Hero() {
               <div className="fcard__pos">ST</div>
             </div>
             <div className="fcard__img">
-              <img src="/assets/players/ronaldo.webp" alt="" loading="lazy" />
+              <img src="/statoz-website/assets/players/ronaldo.webp" alt="" loading="lazy" />
             </div>
             <div className="fcard__plate">
               <div className="fcard__name">RONALDO</div>
@@ -134,7 +134,7 @@ export default function Hero() {
             </div>
             <div className="fcard__img">
               <img
-                src="/assets/players/messi.webp"
+                src="/statoz-website/assets/players/messi.webp"
                 alt="Lionel Messi player card"
               />
             </div>
@@ -154,7 +154,7 @@ export default function Hero() {
               <div className="fcard__pos">ST</div>
             </div>
             <div className="fcard__img">
-              <img src="/assets/players/haaland.webp" alt="" loading="lazy" />
+              <img src="/statoz-website/assets/players/haaland.webp" alt="" loading="lazy" />
             </div>
             <div className="fcard__plate">
               <div className="fcard__name">HAALAND</div>

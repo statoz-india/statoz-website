@@ -107,7 +107,7 @@ export default function Download() {
                 </div>
                 <div className="fcard__img">
                   <img
-                    src={`/assets/players/${card.id}.webp`}
+                    src={`/statoz-website/assets/players/${card.id}.webp`}
                     alt=""
                     loading="lazy"
                   />

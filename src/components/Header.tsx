@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { BrandIcon } from '@statoz/design-system/web/icons/brand';
+import { BrandIcon } from '@/components/PagesBrandIcon';
 import { PRIMARY_NAV_LINKS } from '@/lib/routes';
 import styles from './site-chrome.module.css';
 export default function Header({ stadium = false }: { stadium?: boolean }) {

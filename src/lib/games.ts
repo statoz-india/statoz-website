@@ -62,7 +62,7 @@ export const GAMES: GameDetail[] = [
       "Turn your collection into an 11-card squad, read four football scenarios and strike when the moment is right.",
     homeMeta: ["11-card deck", "4 rounds + pens"],
     theme: "duel",
-    background: "/assets/bg/match_stadium.png",
+    background: "/statoz-website/assets/bg/match_stadium.png",
     seo: {
       title: "Pitch Duel Football Card Game",
       description:
@@ -159,7 +159,7 @@ export const GAMES: GameDetail[] = [
       "Trade spot kicks with a level-matched rival, read the patterns and survive sudden death when five kicks are not enough.",
     homeMeta: ["Best of 5", "No draws"],
     theme: "shootout",
-    background: "/assets/bg/penalty_arena.png",
+    background: "/statoz-website/assets/bg/penalty_arena.png",
     seo: {
       title: "Penalty Shootout Football Game",
       description:
@@ -256,7 +256,7 @@ export const GAMES: GameDetail[] = [
       "Choose a formation, move one piece at a time and turn positioning, ratings and momentum into goals before full time.",
     homeMeta: ["3 x 4 board", "2-minute match"],
     theme: "chess",
-    background: "/assets/bg/home_stadium.png",
+    background: "/statoz-website/assets/bg/home_stadium.png",
     seo: {
       title: "5v5 Football Chess Tactical Game",
       description:

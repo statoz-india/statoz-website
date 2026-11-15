@@ -23,7 +23,7 @@ type FaqPageProps = {
 };
 
 export default async function FaqPage({ searchParams }: FaqPageProps) {
-  const resolvedSearchParams = await searchParams;
+  const resolvedSearchParams = undefined;
   const showLayout = shouldShowLayout(resolvedSearchParams);
 
   return (

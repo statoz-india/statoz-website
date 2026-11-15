@@ -38,7 +38,7 @@ type PrivacyPolicyPageProps = {
 export default async function PrivacyPolicyPage({
   searchParams,
 }: PrivacyPolicyPageProps) {
-  const resolvedSearchParams = await searchParams;
+  const resolvedSearchParams = undefined;
   const showLayout = shouldShowLayout(resolvedSearchParams);
 
   return (

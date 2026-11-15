@@ -25,7 +25,7 @@ export function buildGateway(kit: CityKit) {
   box(25.2, .2, .2, x, 18.45, z + 2.1, neon);
   box(19, .16, .2, x, 14.65, z + 2.1, neon);
   kit.sign('STATOZ CITY', 'YOUR HOME GROUND', x + 1.9, 16.5, z + 2.14, 15, 2.5, P.cyan, 0);
-  const texture = new THREE.TextureLoader().load('/assets/icons/app_logo.png');
+  const texture = new THREE.TextureLoader().load('/statoz-website/assets/icons/app_logo.png');
   texture.colorSpace = THREE.SRGBColorSpace;
   const logo = new THREE.Mesh(new THREE.PlaneGeometry(2.5, 2.5), new THREE.MeshBasicMaterial({ map: texture, transparent: true, toneMapped: false }));
   logo.position.set(x - 7.7, 16.5, z + 2.2); kit.details.add(logo);

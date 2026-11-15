@@ -42,7 +42,7 @@ export async function buildCityWorld(scene: THREE.Scene, renderer: THREE.WebGLRe
   await kit.rebatch();
 
   // The CC0 kits supply street buildings and cars. At night their facades carry a little of their own light.
-  const ktxLoader = new KTX2Loader().setTranscoderPath('/assets/city/basis/').setWorkerLimit(1).detectSupport(renderer);
+  const ktxLoader = new KTX2Loader().setTranscoderPath('/statoz-website/assets/city/basis/').setWorkerLimit(1).detectSupport(renderer);
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).setKTX2Loader(ktxLoader);
   const litFacades = new Map<THREE.Material, THREE.Material>();
   const lit = (original: THREE.Material) => {
@@ -60,7 +60,7 @@ export async function buildCityWorld(scene: THREE.Scene, renderer: THREE.WebGLRe
     kit.source.add(holder); return holder;
   }
   const traffic: THREE.Group[] = [];
-  const assetReady = loader.loadAsync('/assets/city/city-kit.glb').then(async gltf => {
+  const assetReady = loader.loadAsync('/statoz-website/assets/city/city-kit.glb').then(async gltf => {
     if (disposed) { disposeObject(gltf.scene); return; }
     assets.push(gltf.scene);
     const templates = gltf.scene.children;
@@ -82,7 +82,7 @@ export async function buildCityWorld(scene: THREE.Scene, renderer: THREE.WebGLRe
     await kit.rebatch();
     if (disposed) return;
     document.documentElement.dataset.cityAssets = 'base-loaded';
-    const downtown = await loader.loadAsync('/assets/city/downtown-kit.glb');
+    const downtown = await loader.loadAsync('/statoz-website/assets/city/downtown-kit.glb');
     if (disposed) { disposeObject(downtown.scene); return; }
     assets.push(downtown.scene);
     NORTH_PLOTS.forEach(([x, z, height, width, depth], index) => placeModel(downtown.scene.children[index % downtown.scene.children.length], x, z, height, index % 2 ? 0 : Math.PI, width, depth));

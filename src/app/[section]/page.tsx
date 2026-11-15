@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { ROUTES } from "@/lib/routes";
 
 const SECTION_ROUTES: Record<string, string> = {
@@ -35,5 +35,6 @@ export default async function SectionRedirect({
     notFound();
   }
 
-  redirect(route);
+  const destination = `/statoz-website${route}`;
+  return <><meta httpEquiv="refresh" content={`0;url=${destination}`} /><a href={destination}>Continue to StatOz</a></>;
 }

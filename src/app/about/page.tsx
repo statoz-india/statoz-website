@@ -33,7 +33,7 @@ type AboutPageProps = {
 };
 
 export default async function AboutPage({ searchParams }: AboutPageProps) {
-  const resolvedSearchParams = await searchParams;
+  const resolvedSearchParams = undefined;
   const showLayout = shouldShowLayout(resolvedSearchParams);
 
   return (

@@ -47,7 +47,7 @@ export default function Squad() {
               </div>
               <div className="fcard__img">
                 <img
-                  src={`/assets/players/${p.id}.webp`}
+                  src={`/statoz-website/assets/players/${p.id}.webp`}
                   alt={`${p.n} card`}
                   loading="lazy"
                 />

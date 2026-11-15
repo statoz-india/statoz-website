@@ -69,7 +69,7 @@ export default function Picks() {
                 <span className="pick__vol">
                   <img
                     className="oz-i"
-                    src="/assets/icons/oz_coins.svg"
+                    src="/statoz-website/assets/icons/oz_coins.svg"
                     alt=""
                     width={14}
                     height={14}

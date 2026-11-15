@@ -11,8 +11,8 @@ const description = 'Your daily home for sport. Explore StatOz City: discover ba
 export const metadata: Metadata = {
   metadataBase:new URL(SITE_URL),title:{default:title,template:'%s | StatOz'},description,applicationName:SITE_NAME,
   alternates:{canonical:'/'},icons:{icon:'/favicon.ico',apple:'/icon-192.png'},
-  openGraph:{type:'website',url:SITE_URL,siteName:SITE_NAME,title,description,images:[{url:'/assets/city/city-social.jpg',width:1200,height:630,alt:'StatOz City — Your daily home for sport'}]},
-  twitter:{card:'summary_large_image',title,description,images:['/assets/city/city-social.jpg']},
+  openGraph:{type:'website',url:SITE_URL,siteName:SITE_NAME,title,description,images:[{url:'/statoz-website/assets/city/city-social.jpg',width:1200,height:630,alt:'StatOz City — Your daily home for sport'}]},
+  twitter:{card:'summary_large_image',title,description,images:['/statoz-website/assets/city/city-social.jpg']},
 };
 const schema = {'@context':'https://schema.org','@type':'WebSite',name:SITE_NAME,url:SITE_URL,description};
 export default function RootLayout({children}:{children:React.ReactNode}) {

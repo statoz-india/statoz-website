@@ -81,7 +81,7 @@ export default function Leaderboard() {
                 >
                   <span className="pod__rank">{place}</span>
                   <span className="pod__av">
-                    <img src={`/assets/avatars/${r.av}.webp`} alt="" />
+                    <img src={`/statoz-website/assets/avatars/${r.av}.webp`} alt="" />
                   </span>
                   <span className="pod__tag">{r.tag}</span>
                   <span className="pod__val">
@@ -99,7 +99,7 @@ export default function Leaderboard() {
               <li className="lbrow" key={r.tag}>
                 <span className="lbrow__rank">{i + 4}</span>
                 <span className="lbrow__av">
-                  <img src={`/assets/avatars/${r.av}.webp`} alt="" />
+                  <img src={`/statoz-website/assets/avatars/${r.av}.webp`} alt="" />
                 </span>
                 <span className="lbrow__who">
                   <span className="lbrow__tag">{r.tag}</span>

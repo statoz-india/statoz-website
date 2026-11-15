@@ -37,7 +37,7 @@ export function placeContent(place: CityLocation): { actions: Action[]; note?: s
     const actions: Action[] = [
       { id: 'sports', tone: 'primary', kicker: 'StatOz Sports', label: 'Explore Sports', detail: 'Matches, predictions and quizzes', href: CITY_LINKS.sports,
         analytics: { event: 'web_launch', product: 'sports', location: place.id, 'cta-location': 'city_venue' } },
-      { id: 'games', tone: 'secondary', kicker: 'StatOz Games', label: 'Play Games', detail: game ? 'Featuring ' + game.name : 'Find your next game', image: game ? '/assets/stadium/' + game.image + '.webp' : undefined, href: CITY_LINKS.games,
+      { id: 'games', tone: 'secondary', kicker: 'StatOz Games', label: 'Play Games', detail: game ? 'Featuring ' + game.name : 'Find your next game', image: game ? '/statoz-website/assets/stadium/' + game.image + '.webp' : undefined, href: CITY_LINKS.games,
         analytics: { event: 'web_launch', product: 'games', location: place.id, 'cta-location': 'city_venue' } },
     ];
     if (place.id === 'football') actions.push({ id: 'guides', tone: 'quiet', label: 'Game guides', href: '/games/pitch-duel' });

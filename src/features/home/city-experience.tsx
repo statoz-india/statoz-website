@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { FilterChips } from '@statoz/design-system/web/components/navigation/filter-chips';
-import { BrandIcon } from '@statoz/design-system/web/icons/brand';
+import { BrandIcon } from '@/components/PagesBrandIcon';
 import { trackEvent } from '@/lib/analytics';
 import { homeFaq } from './content';
 import { CITY_LINKS, CITY_LOCATIONS, CITY_PALETTE, cityHref, locationById, locationFromHash, type CityLocationId, type CityMode } from './city-config';
@@ -39,7 +39,7 @@ function CityMap({ selected, onSelect, large = false }: { selected: CityLocation
 }
 
 function Credits() {
-  return <div className={s.credits}><p>Free CC0 models, adapted for StatOz.</p><a href="https://quaternius.com/packs/downtowncitymegakit.html">Quaternius Downtown City MegaKit</a><a href="https://kenney.nl/assets/city-kit-commercial">Kenney City Kit</a><a href="https://kenney.nl/assets/city-kit-roads">Kenney Roads</a><a href="https://kenney.nl/assets/racing-kit">Kenney Racing Kit</a><a href="/assets/city/manifest.json">Asset sources and licenses</a><p>Built with Three.js and GSAP, with original venues, landmarks, people and signage.</p></div>;
+  return <div className={s.credits}><p>Free CC0 models, adapted for StatOz.</p><a href="https://quaternius.com/packs/downtowncitymegakit.html">Quaternius Downtown City MegaKit</a><a href="https://kenney.nl/statoz-website/assets/city-kit-commercial">Kenney City Kit</a><a href="https://kenney.nl/statoz-website/assets/city-kit-roads">Kenney Roads</a><a href="https://kenney.nl/statoz-website/assets/racing-kit">Kenney Racing Kit</a><a href="/statoz-website/assets/city/manifest.json">Asset sources and licenses</a><p>Built with Three.js and GSAP, with original venues, landmarks, people and signage.</p></div>;
 }
 
 export default function CityExperience() {
@@ -185,7 +185,7 @@ export default function CityExperience() {
   return <div className={`${s.city} ${j.shell}`} data-enhanced={enhanced} data-scene-status={sceneStatus} data-simple={simple} data-place={place?.id} data-journey={inJourney}>
     <a href="#city-explore" className={s.skipLink} onClick={event => { if (enhanced) { event.preventDefault(); scrollToJourney('city', false); document.getElementById('city-explore')?.focus({ preventScroll: true }); trackEvent('journey_skip', { chapter_id: chapter }); } }}>Skip to destinations</a>
     <div className={j.stage}>
-    <div className={s.poster} aria-hidden="true"><picture><source media="(max-width: 700px)" srcSet="/assets/journey/scenes/welcome-mobile.webp" /><img src="/assets/journey/scenes/welcome.webp" width="1600" height="1000" alt="" fetchPriority="high" /></picture></div>
+    <div className={s.poster} aria-hidden="true"><picture><source media="(max-width: 700px)" srcSet="/statoz-website/assets/journey/scenes/welcome-mobile.webp" /><img src="/statoz-website/assets/journey/scenes/welcome.webp" width="1600" height="1000" alt="" fetchPriority="high" /></picture></div>
     {!simple && enhanced && sceneStatus !== 'failed' && <CityScene key={retry} apiRef={scene} mode={mode} focused={focused} journey={inJourney} panelOpen={!!sheet} activityPaused={activityPaused} force3D={force3D} onSelect={selectLocation} onReady={() => setSceneStatus('ready')} onFailure={() => { setSceneStatus('failed'); setSimple(true); }} onLightweight={() => { setSceneStatus('ready'); setSimple(true); }} onTourStop={tourStopChanged} onLeave={driftedAway} />}
     <div className={s.atmosphere} data-city-atmosphere aria-hidden="true" />
     </div>

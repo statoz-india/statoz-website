@@ -21,10 +21,10 @@ export default function StadiumHome() {
     <main id="main">
       <section className={s.hero} id="home" aria-labelledby="hero-title">
         <picture className={s.heroImage}>
-          <source media="(max-width: 600px)" srcSet="/assets/stadium/stadium-mobile.avif" type="image/avif" />
-          <source media="(max-width: 600px)" srcSet="/assets/stadium/stadium-mobile.webp" />
-          <source srcSet="/assets/stadium/stadium-desktop.avif" type="image/avif" />
-          <img src="/assets/stadium/stadium-desktop.webp" width="1672" height="941" alt="" fetchPriority="high" />
+          <source media="(max-width: 600px)" srcSet="/statoz-website/assets/stadium/stadium-mobile.avif" type="image/avif" />
+          <source media="(max-width: 600px)" srcSet="/statoz-website/assets/stadium/stadium-mobile.webp" />
+          <source srcSet="/statoz-website/assets/stadium/stadium-desktop.avif" type="image/avif" />
+          <img src="/statoz-website/assets/stadium/stadium-desktop.webp" width="1672" height="941" alt="" fetchPriority="high" />
         </picture>
         <div className={s.heroShade} />
         <div className={s.heroContent}>
@@ -60,7 +60,7 @@ export default function StadiumHome() {
         </div>
         <figure className={s.productFrame}>
           <div className={s.frameBar}><span><i /> INSIDE STATOZ SPORTS</span><span>PREVIEW</span></div>
-          <Image src="/assets/stadium/sports-preview.webp" alt="StatOz Sports preview showing match discovery, prediction cards and sports navigation" width={1200} height={900} sizes="(max-width: 850px) 92vw, 55vw" />
+          <Image src="/statoz-website/assets/stadium/sports-preview.webp" alt="StatOz Sports preview showing match discovery, prediction cards and sports navigation" width={1200} height={900} sizes="(max-width: 850px) 92vw, 55vw" />
           <figcaption>The matchday view. Your next call starts here.<span>Product preview · Sample data</span></figcaption>
         </figure>
       </section>
@@ -68,7 +68,7 @@ export default function StadiumHome() {
       <section className={`${s.section} ${s.games}`} id="games" aria-labelledby="games-title">
         <div className={s.sectionHeading}><div><SectionLabel number="02">STATOZ GAMES</SectionLabel><h2 id="games-title">The final whistle?<br /><span>Just the beginning.</span></h2></div><div className={s.sectionAside}><p>From the blacktop to the back nine. Find a game, chase a personal best, and make time for one more round.</p><a className={s.textLink} href={products.games.href} data-analytics-event="web_launch" data-analytics-product="games" data-analytics-cta-location="games">Explore the arcade <Arrow diagonal /></a><span className={s.previewNote}>WEB PREVIEW</span></div></div>
         <div className={s.gameGrid}>{featuredGames.map((game, i) => <a key={game.slug} className={s.gameCard} href={`${products.games.href}play/${game.slug}/`} data-analytics-event="web_launch" data-analytics-product="games" data-analytics-game={game.slug} data-analytics-cta-location="game_card">
-          <div className={s.gameArt}><Image src={`/assets/stadium/${game.image}.webp`} alt={`${game.name} artwork`} width={720} height={480} sizes="(max-width: 600px) 92vw, (max-width: 1000px) 45vw, 30vw" /><span className={s.playBadge}>PLAY PREVIEW <Arrow diagonal /></span></div>
+          <div className={s.gameArt}><Image src={`/statoz-website/assets/stadium/${game.image}.webp`} alt={`${game.name} artwork`} width={720} height={480} sizes="(max-width: 600px) 92vw, (max-width: 1000px) 45vw, 30vw" /><span className={s.playBadge}>PLAY PREVIEW <Arrow diagonal /></span></div>
           <div className={s.gameMeta}><span>{game.sport}</span><span>0{i + 1}</span></div><h3>{game.name}</h3><p>{game.description}</p>
         </a>)}</div>
       </section>

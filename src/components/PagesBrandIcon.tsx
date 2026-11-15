@@ -1,0 +1,1 @@
+export function BrandIcon({ size = 30, alt = "" }: { name?: string; size?: number; alt?: string; priority?: boolean }) { return <img src="/statoz-website/assets/icons/app_logo.png" width={size} height={size} alt={alt} />; }

@@ -44,21 +44,21 @@ export const JOURNEY_CHAPTERS: readonly JourneyChapter[] = [
 // Snapshot of the enabled Games catalogue. Assets are local, optimized cover copies;
 // names and destinations follow the product registry, including Rally Dash's legacy id.
 export const JOURNEY_GAMES = [
-  { name: 'Hoop Legacy', slug: 'hoop-legacy', sport: 'Basketball', image: '/assets/stadium/hoop-legacy.webp' },
-  { name: 'Cricketer', slug: 'cricketer', sport: 'Cricket', image: '/assets/stadium/cricketer.webp' },
-  { name: 'Pitch Rush', slug: 'pitch-rush', sport: 'Football', image: '/assets/stadium/pitch-rush.webp' },
-  { name: 'Formula', slug: 'portfolio-formula', sport: 'Motorsport', image: '/assets/stadium/formula.webp' },
-  { name: 'Longbow', slug: 'longbow', sport: 'Archery', image: '/assets/stadium/longbow.webp' },
-  { name: 'Open Golf', slug: 'open-golf', sport: 'Golf', image: '/assets/stadium/open-golf.webp' },
-  { name: 'Penalty Cup', slug: 'penalty-cup', sport: 'Football', image: '/assets/journey/penalty-cup.webp' },
-  { name: 'Yorker', slug: 'yorker', sport: 'Cricket', image: '/assets/journey/yorker.webp' },
-  { name: 'Rim Rush', slug: 'rim-rush', sport: 'Basketball', image: '/assets/journey/rim-rush.webp' },
-  { name: 'Racer', slug: 'racer', sport: 'Motorsport', image: '/assets/journey/racer.webp' },
-  { name: '5v5 Football Chess', slug: 'football-chess', sport: 'Football', image: '/assets/journey/football-chess.webp' },
-  { name: 'Fot Duel', slug: 'pitch-duel', sport: 'Football', image: '/assets/journey/pitch-duel.webp' },
-  { name: 'Rally Dash', slug: 'rally', sport: 'Motorsport', image: '/assets/journey/rally.webp' },
-  { name: 'Vibe Basketball', slug: 'vibe-basketball', sport: 'Basketball', image: '/assets/journey/vibe-basketball.webp' },
-  { name: 'Holdover', slug: 'holdover', sport: 'Precision', image: '/assets/journey/holdover.webp' },
+  { name: 'Hoop Legacy', slug: 'hoop-legacy', sport: 'Basketball', image: '/statoz-website/assets/stadium/hoop-legacy.webp' },
+  { name: 'Cricketer', slug: 'cricketer', sport: 'Cricket', image: '/statoz-website/assets/stadium/cricketer.webp' },
+  { name: 'Pitch Rush', slug: 'pitch-rush', sport: 'Football', image: '/statoz-website/assets/stadium/pitch-rush.webp' },
+  { name: 'Formula', slug: 'portfolio-formula', sport: 'Motorsport', image: '/statoz-website/assets/stadium/formula.webp' },
+  { name: 'Longbow', slug: 'longbow', sport: 'Archery', image: '/statoz-website/assets/stadium/longbow.webp' },
+  { name: 'Open Golf', slug: 'open-golf', sport: 'Golf', image: '/statoz-website/assets/stadium/open-golf.webp' },
+  { name: 'Penalty Cup', slug: 'penalty-cup', sport: 'Football', image: '/statoz-website/assets/journey/penalty-cup.webp' },
+  { name: 'Yorker', slug: 'yorker', sport: 'Cricket', image: '/statoz-website/assets/journey/yorker.webp' },
+  { name: 'Rim Rush', slug: 'rim-rush', sport: 'Basketball', image: '/statoz-website/assets/journey/rim-rush.webp' },
+  { name: 'Racer', slug: 'racer', sport: 'Motorsport', image: '/statoz-website/assets/journey/racer.webp' },
+  { name: '5v5 Football Chess', slug: 'football-chess', sport: 'Football', image: '/statoz-website/assets/journey/football-chess.webp' },
+  { name: 'Fot Duel', slug: 'pitch-duel', sport: 'Football', image: '/statoz-website/assets/journey/pitch-duel.webp' },
+  { name: 'Rally Dash', slug: 'rally', sport: 'Motorsport', image: '/statoz-website/assets/journey/rally.webp' },
+  { name: 'Vibe Basketball', slug: 'vibe-basketball', sport: 'Basketball', image: '/statoz-website/assets/journey/vibe-basketball.webp' },
+  { name: 'Holdover', slug: 'holdover', sport: 'Precision', image: '/statoz-website/assets/journey/holdover.webp' },
 ] as const;
 
 export const journeyAnchor = (id: JourneyChapterId) => id === 'city' ? 'city-explore' : 'journey-' + id;

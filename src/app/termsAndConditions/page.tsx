@@ -43,7 +43,7 @@ type TermsPageProps = {
 };
 
 export default async function TermsPage({ searchParams }: TermsPageProps) {
-  const resolvedSearchParams = await searchParams;
+  const resolvedSearchParams = undefined;
   const showLayout = shouldShowLayout(resolvedSearchParams);
 
   return (

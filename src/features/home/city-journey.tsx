@@ -89,7 +89,7 @@ export default function CityJourney({ active, enhanced, cityFocused, map, paused
       <button type="button" onClick={onPause} aria-pressed={paused} disabled={!enhanced}><CityIcon name={paused ? 'play' : 'pause'} />{paused ? 'Resume motion' : 'Pause motion'}</button>
     </div>
     {JOURNEY_CHAPTERS.map((chapter, i) => <section key={chapter.id} id={journeyAnchor(chapter.id)} data-journey-chapter={chapter.id} data-active={active === chapter.id || undefined} data-focused={chapter.id === 'city' && cityFocused || undefined} className={j.chapter} tabIndex={-1} aria-labelledby={chapter.id + '-title'} style={{ '--journey-accent': `var(--ds-color-accent-${chapter.accent})` } as CSSProperties}>
-      <picture className={j.chapterPoster} data-chapter-poster aria-hidden="true"><source media="(max-width:700px)" srcSet={'/assets/journey/scenes/' + chapter.poster + '-mobile.webp'} /><img src={'/assets/journey/scenes/' + chapter.poster + '.webp'} alt="" width="1440" height="950" fetchPriority={i === 0 ? 'high' : 'auto'} loading={i === 0 ? 'eager' : 'lazy'} /></picture>
+      <picture className={j.chapterPoster} data-chapter-poster aria-hidden="true"><source media="(max-width:700px)" srcSet={'/statoz-website/assets/journey/scenes/' + chapter.poster + '-mobile.webp'} /><img src={'/statoz-website/assets/journey/scenes/' + chapter.poster + '.webp'} alt="" width="1440" height="950" fetchPriority={i === 0 ? 'high' : 'auto'} loading={i === 0 ? 'eager' : 'lazy'} /></picture>
       <div className={j.chapterInner} data-chapter-copy>
         <div className={j.copy} data-city-heading>
           <p className={j.eyebrow}><span className={j.chapterNumber}>0{i + 1}</span>{chapter.eyebrow}</p>

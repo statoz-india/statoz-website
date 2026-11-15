@@ -31,7 +31,7 @@ export default function Progression() {
           <header className="profile__head">
             <span className="profile__user">
               <img
-                src="/assets/avatars/rodri.webp"
+                src="/statoz-website/assets/avatars/rodri.webp"
                 alt=""
                 width={26}
                 height={26}
@@ -57,7 +57,7 @@ export default function Progression() {
           <div className="profile__streak">
             <img
               className="flame"
-              src="/assets/icons/streak.svg"
+              src="/statoz-website/assets/icons/streak.svg"
               alt=""
               width={40}
               height={40}
@@ -72,7 +72,7 @@ export default function Progression() {
           <div className="profile__wallet">
             <span className="profile__wlabel">
               <img
-                src="/assets/icons/oz_coins.svg"
+                src="/statoz-website/assets/icons/oz_coins.svg"
                 alt=""
                 width={18}
                 height={18}

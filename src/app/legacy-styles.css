@@ -276,12 +276,12 @@
   -webkit-mask-size: contain;
 }
 .store-icon--playstore {
-  mask-image: url("/assets/icons/playstore.svg");
-  -webkit-mask-image: url("/assets/icons/playstore.svg");
+  mask-image: url("/statoz-website/assets/icons/playstore.svg");
+  -webkit-mask-image: url("/statoz-website/assets/icons/playstore.svg");
 }
 .store-icon--apple {
-  mask-image: url("/assets/icons/apple.svg");
-  -webkit-mask-image: url("/assets/icons/apple.svg");
+  mask-image: url("/statoz-website/assets/icons/apple.svg");
+  -webkit-mask-image: url("/statoz-website/assets/icons/apple.svg");
 }
 .btn .store-icon--apple {
   width: 23px;

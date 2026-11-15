@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BrandIcon } from "@statoz/design-system/web/icons/brand";
+import { BrandIcon } from "@/components/PagesBrandIcon";
 import { ROUTES } from "@/lib/routes";
 
 type BrandMarkProps = {

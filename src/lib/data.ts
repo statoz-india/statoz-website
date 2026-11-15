@@ -845,18 +845,18 @@ export const SHOP_GROUPS: ShopGroup[] = [
     items: [
       {
         name: "Bronze Pack",
-        img: "/assets/packs/bronze.png",
+        img: "/statoz-website/assets/packs/bronze.png",
         sub: "Everyday pulls",
       },
       {
         name: "Silver Pack",
-        img: "/assets/packs/silver.png",
+        img: "/statoz-website/assets/packs/silver.png",
         sub: "Better odds",
       },
-      { name: "Gold Pack", img: "/assets/packs/gold.png", sub: "86–89 chance" },
+      { name: "Gold Pack", img: "/statoz-website/assets/packs/gold.png", sub: "86–89 chance" },
       {
         name: "Platinum Pack",
-        img: "/assets/packs/platinum.png",
+        img: "/statoz-website/assets/packs/platinum.png",
         sub: "90+ chance",
       },
     ],
@@ -867,22 +867,22 @@ export const SHOP_GROUPS: ShopGroup[] = [
     items: [
       {
         name: "Rodri",
-        img: "/assets/avatars/rodri.webp",
+        img: "/statoz-website/assets/avatars/rodri.webp",
         sub: "Profile avatar",
       },
       {
         name: "Bellingham",
-        img: "/assets/avatars/bellingham.webp",
+        img: "/statoz-website/assets/avatars/bellingham.webp",
         sub: "Profile avatar",
       },
       {
         name: "Camavinga",
-        img: "/assets/avatars/camavinga.webp",
+        img: "/statoz-website/assets/avatars/camavinga.webp",
         sub: "Profile avatar",
       },
       {
         name: "Adams",
-        img: "/assets/avatars/adams.webp",
+        img: "/statoz-website/assets/avatars/adams.webp",
         sub: "Profile avatar",
       },
     ],
@@ -890,7 +890,7 @@ export const SHOP_GROUPS: ShopGroup[] = [
 ];
 
 export const SHOP_BANNERS = [
-  "/assets/bg/profile_banner.png",
-  "/assets/bg/profile_banner_green_red.png",
-  "/assets/bg/profile_banner_korea.png",
+  "/statoz-website/assets/bg/profile_banner.png",
+  "/statoz-website/assets/bg/profile_banner_green_red.png",
+  "/statoz-website/assets/bg/profile_banner_korea.png",
 ];
