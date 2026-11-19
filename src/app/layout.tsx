@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Script from "next/script";
-import { Orbitron, Onest, Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import JsonLd from "@/components/JsonLd";
 import LayoutModeSync from "@/components/LayoutModeSync";
@@ -18,21 +18,26 @@ import {
 import { SITE_GRAPH } from "@/lib/structuredData";
 import "./globals.css";
 
-const disp = Orbitron({
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
+/* Fonts are self-hosted (latin subset from Google Fonts, OFL licensed) so the
+   build never has to download them. next/font/google fetched them at build
+   time, and when that request failed on Vercel the whole build failed. */
+const disp = localFont({
+  src: "./fonts/orbitron.woff2",
+  weight: "400 900",
   variable: "--font-disp",
   display: "swap",
 });
-const ui = Onest({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+const ui = localFont({
+  src: "./fonts/onest.woff2",
+  weight: "100 900",
   variable: "--font-ui",
   display: "swap",
 });
-const mono = Space_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const mono = localFont({
+  src: [
+    { path: "./fonts/spacemono-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/spacemono-700.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-mono",
   display: "swap",
 });

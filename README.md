@@ -78,7 +78,8 @@ docs/seo-aeo-geo.md     how search, AI-answer and structured-data work is set up
 ## How it's wired
 
 - **Styling** is plain global CSS with custom properties, no Tailwind. Fonts come from
-  `next/font/google` (Orbitron, Onest, Space Mono) and are exposed as `--font-disp`,
+  `next/font/local` (Orbitron, Onest, Space Mono, self-hosted in `src/app/fonts/` so the
+  build needs no network) and are exposed as `--font-disp`,
   `--font-ui` and `--font-mono`.
 - **Server components by default.** Only `Header`, `ScrollRail`, `Leaderboard`, `Effects`,
   `AnalyticsEvents`, `LayoutModeSync` and `DeferredPixelBlast` run in the browser.
