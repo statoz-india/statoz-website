@@ -4266,8 +4266,15 @@ html[data-layout="bare"] .site-foot {
 }
 
 @media (max-width: 900px) {
+  /* minmax(0, 1fr), not 1fr: a plain 1fr column grows to its widest child,
+     so a wide table pushed the whole page sideways instead of scrolling. */
   .article-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+  .article-copy,
+  .article-stats {
+    min-width: 0;
   }
   .article-stats {
     position: static;
@@ -4275,11 +4282,11 @@ html[data-layout="bare"] .site-foot {
   }
   .article-stats dl {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0 18px;
   }
   .legal-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .legal-toc {
     position: static;
@@ -4289,16 +4296,86 @@ html[data-layout="bare"] .site-foot {
   .blog-card {
     grid-template-columns: 1fr;
   }
+  .blog-card {
+    min-height: 0;
+  }
   .blog-card__visual {
-    min-height: 270px;
+    min-height: 200px;
+    padding: 28px 24px;
   }
   .blog-card__body {
-    padding: 32px 24px 38px;
+    padding: 28px 24px 34px;
+  }
+  .blog-card h3 {
+    font-size: 22px;
+    overflow-wrap: anywhere;
+  }
+
+  /* Post pages */
+  .article-layout {
+    gap: 32px;
+    padding-block: 36px 56px;
+  }
+  .article-hero h1 {
+    overflow-wrap: anywhere;
+  }
+  .article-stats__panel {
+    padding: 22px 20px;
+  }
+  .article-stats h2 {
+    margin: 8px 0 14px;
+    font-size: 18px;
   }
   .article-stats dl {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .article-stats dl div {
+    padding: 12px 0;
+  }
+  .article-stats dd {
+    font-size: 21px;
+    overflow-wrap: anywhere;
+  }
+  .article-copy h2 {
+    margin: 30px 0 14px;
+    padding-top: 30px;
   }
   .article-copy blockquote {
-    padding: 24px 20px;
+    margin: 32px 0;
+    padding: 20px 18px;
+  }
+  .article-copy blockquote p {
+    font-size: 17px;
+  }
+  .article-copy a:not(.btn) {
+    overflow-wrap: anywhere;
+  }
+  .article-cta {
+    margin-top: 36px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Tables scroll sideways inside their box; the first column stays put so
+     you always know which row you are reading. */
+  .article-table table {
+    min-width: 480px;
+    font-size: 13px;
+  }
+  .article-table th,
+  .article-table td {
+    padding: 9px 11px;
+  }
+  .article-table thead th:first-child,
+  .article-table tbody th,
+  .article-table tbody td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 128px;
+    max-width: 150px;
+    white-space: normal;
+    background: var(--panel);
+    box-shadow: 1px 0 0 var(--line2);
   }
 }
