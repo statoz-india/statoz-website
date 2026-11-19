@@ -3832,11 +3832,33 @@ html[data-layout="bare"] .site-foot {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+/* The link's hit area covers the whole card (stretched link), so a click
+   anywhere opens the post while it stays one link for screen readers,
+   analytics and open-in-new-tab. */
+.blog-card__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.blog-card__link:focus-visible {
+  outline: none;
+}
+.blog-card:has(.blog-card__link:focus-visible) {
+  outline: 2px solid var(--cy);
+  outline-offset: 3px;
+}
+.blog-card {
+  transition: border-color 0.2s;
+}
+.blog-card:hover {
+  border-color: var(--line2);
+}
 .blog-card__link span {
   font-size: 20px;
   transition: transform 0.2s;
 }
-.blog-card__link:hover span {
+.blog-card:hover .blog-card__link span {
   transform: translateX(5px);
 }
 .article-hero {
