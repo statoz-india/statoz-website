@@ -1,8 +1,9 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqList, { type FaqItem } from "@/components/FaqList";
-import type { ArticleBlock, BlogStat } from "@/lib/blog";
+import type { BlogStat } from "@/lib/article";
 import { ROUTES } from "@/lib/routes";
 
 /* The article layout shared by blog posts and league pages: hero, body copy,
@@ -17,30 +18,14 @@ export type ArticleViewProps = {
   titleLead: string;
   titleGrad: string;
   lead: string;
-  body: ArticleBlock[];
+  /** The article body: <MdxContent> for posts, <ArticleBlocks> for league pages. */
+  children: ReactNode;
   faq: readonly FaqItem[];
   related: { href: string; title: string; slug: string }[];
   cta: string;
   stats: BlogStat[];
   statsPanel: { label: string; heading: string; note?: string };
 };
-
-function Block({ block }: { block: ArticleBlock }) {
-  switch (block.kind) {
-    case "intro":
-      return <p className="article-copy__intro">{block.text}</p>;
-    case "h2":
-      return <h2>{block.text}</h2>;
-    case "quote":
-      return (
-        <blockquote>
-          <p>{block.text}</p>
-        </blockquote>
-      );
-    default:
-      return <p>{block.text}</p>;
-  }
-}
 
 export default function ArticleView(props: ArticleViewProps) {
   return (
@@ -65,9 +50,7 @@ export default function ArticleView(props: ArticleViewProps) {
             className="article-copy"
             aria-label={`${props.titleLead} ${props.titleGrad}`}
           >
-            {props.body.map((block, index) => (
-              <Block block={block} key={index} />
-            ))}
+            {props.children}
 
             <FaqList items={props.faq} location={props.id} />
 

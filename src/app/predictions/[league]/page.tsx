@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import ArticleBlocks from "@/components/ArticleBlocks";
 import ArticleView from "@/components/ArticleView";
 import { getLeague, LEAGUE_PAGES } from "@/lib/leagues";
 import { ROUTES } from "@/lib/routes";
@@ -42,12 +43,13 @@ export default async function LeaguePredictionsPage({ params }: LeaguePageProps)
       titleLead={league.titleLead}
       titleGrad={league.titleGrad}
       lead={league.lead}
-      body={league.body}
       faq={league.faq}
       related={league.related}
       cta={league.cta}
       stats={league.stats}
       statsPanel={league.statsPanel}
-    />
+    >
+      <ArticleBlocks blocks={league.body} />
+    </ArticleView>
   );
 }

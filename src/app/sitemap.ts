@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { BLOG_POSTS } from "@/lib/blog";
+import { getPosts } from "@/lib/blog";
 import { LEAGUE_PAGES } from "@/lib/leagues";
 import { SITE_URL } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
@@ -25,8 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }));
 
-  // Every post in BLOG_POSTS is listed automatically.
-  const posts = BLOG_POSTS.map((post) => ({
+  // Every post in content/blog is listed automatically.
+  const posts = getPosts().map((post) => ({
     url: `${SITE_URL}${post.href}`,
     lastModified: post.updated,
     changeFrequency: "monthly" as const,

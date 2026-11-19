@@ -1,5 +1,5 @@
 import { aboutToMarkdown, ABOUT_LEAD } from "@/lib/about";
-import { BLOG_POSTS, postToMarkdown } from "@/lib/blog";
+import { getPosts, postToMarkdown } from "@/lib/blog";
 import { AI_QUESTIONS, FAQ_ITEMS } from "@/lib/faqData";
 import { LEAGUE_PAGES, leagueToMarkdown } from "@/lib/leagues";
 import { ROUTES } from "@/lib/routes";
@@ -73,7 +73,7 @@ const PAGES = `## Pages
 - [Download](${link(ROUTES.download)}): get the app on Android or iOS
 ${LEAGUE_PAGES.map((league) => `- [${league.title}](${link(league.href)}): ${league.lead}`).join("\n")}
 - [Blog](${link(ROUTES.blog)}): product guides and community reports ([RSS](${link("/blog/rss.xml")}))
-${BLOG_POSTS.map((post) => `- [${post.title}](${link(post.href)}): ${post.summary}`).join("\n")}`;
+${getPosts().map((post) => `- [${post.title}](${link(post.href)}): ${post.summary}`).join("\n")}`;
 
 const LEGAL = `## Optional
 
@@ -105,7 +105,7 @@ export function buildLlmsFullTxt() {
   const topics = (Object.keys(KEYWORDS) as (keyof typeof KEYWORDS)[])
     .map((group) => `- ${KEYWORD_GROUP_LABELS[group]}: ${KEYWORDS[group].join(" · ")}`)
     .join("\n");
-  const posts = BLOG_POSTS.map(
+  const posts = getPosts().map(
     (post) =>
       `### ${post.title}\n\nURL: ${link(post.href)} · Published ${post.published} · Updated ${post.updated}\n\n${postToMarkdown(post)}`,
   ).join("\n\n");

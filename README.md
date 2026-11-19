@@ -45,6 +45,7 @@ src/
     Footer
     BlogChrome                        header/footer wrapper for non-home pages
     ArticleView FaqList Breadcrumbs   shared layouts for posts, league pages and FAQs
+    MdxContent ArticleBlocks          article bodies: MDX for posts, block data for leagues
     JsonLd                            renders structured data safely
     Effects                           DOM effects: cursor glow, scroll-reveal, count-up,
                                       card tilt, hero parallax, header shadow
@@ -53,7 +54,8 @@ src/
     LayoutModeSync                    keeps ?layout=false mode right on client navigation
   lib/
     data.ts             homepage content: cards, quiz steps, picks, leaderboards, shop…
-    blog.ts             blog posts (one object per post)
+    blog.ts             loads and validates the blog posts in content/blog
+    article.ts          article block types used by league pages
     leagues.ts          league landing pages
     faqData.ts about.ts FAQ and About copy
     site.ts             domain, brand names, description, shared Open Graph
@@ -64,6 +66,8 @@ src/
     llms.ts             content for llms.txt / llms-full.txt
     analytics.ts        trackEvent()
     layoutMode.ts       ?layout=false (in-app webview) support
+content/
+  blog/                 one .mdx file per blog post (see content/blog/README.md)
 public/
   assets/               player portraits, avatars, packs, icons, backgrounds, brand marks
   ads.txt app-ads.txt   ad network declarations
@@ -80,8 +84,9 @@ docs/seo-aeo-geo.md     how search, AI-answer and structured-data work is set up
   `AnalyticsEvents`, `LayoutModeSync` and `DeferredPixelBlast` run in the browser.
 - **Everything is prerendered** except `/get`, which has to read the visitor's user agent.
 - **Content is data-driven.** Edit `src/lib/*.ts` rather than the components. A new blog
-  post is one object in `BLOG_POSTS`; the sitemap, RSS feed, llms files and schema pick it
-  up automatically. A new card is a `PLAYERS` entry plus `public/assets/players/<id>.webp`.
+  post is one `.mdx` file in `content/blog/` (front matter plus Markdown); the blog index,
+  sitemap, RSS feed, llms files, schema and share image pick it up automatically, and a
+  missing or malformed field fails the build. See `content/blog/README.md`. A new card is a `PLAYERS` entry plus `public/assets/players/<id>.webp`.
 - **In-app webview mode.** FAQ, About, Terms and Privacy accept `?layout=false`, which hides
   the site header and footer. A small script in `<head>` sets `<html data-layout="bare">`
   before first paint, so the pages stay static. See `src/lib/layoutMode.ts`.

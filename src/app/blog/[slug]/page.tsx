@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ArticleView from "@/components/ArticleView";
 import JsonLd from "@/components/JsonLd";
-import { BLOG_POSTS, getPost } from "@/lib/blog";
+import MdxContent from "@/components/MdxContent";
+import { getPosts, getPost } from "@/lib/blog";
 import { ROUTES } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
 import { articleJsonLd } from "@/lib/structuredData";
 
 type PostPageProps = { params: Promise<{ slug: string }> };
 
-// Only the posts in BLOG_POSTS exist; anything else is a 404.
+// Only the posts in content/blog exist; anything else is a 404.
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({ slug: post.slug }));
+  return getPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -54,13 +55,14 @@ export default async function BlogPostPage({ params }: PostPageProps) {
         titleLead={post.titleLead}
         titleGrad={post.titleGrad}
         lead={post.summary}
-        body={post.body}
         faq={post.faq}
-        related={BLOG_POSTS.filter((other) => other.slug !== post.slug)}
+        related={getPosts().filter((other) => other.slug !== post.slug)}
         cta={post.cta}
         stats={post.stats}
         statsPanel={post.statsPanel}
-      />
+      >
+        <MdxContent source={post.content} file={`content/blog/${post.slug}.mdx`} />
+      </ArticleView>
     </>
   );
 }

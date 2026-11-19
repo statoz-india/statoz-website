@@ -35,7 +35,7 @@ flowchart LR
     site["site.ts<br/>brand, domain, logo"]
     seo["seo.ts<br/>keywords, pageMetadata()"]
     faq["faqData.ts<br/>FAQ + AI questions"]
-    blog["blog.ts<br/>posts"]
+    blog["content/blog/*.mdx<br/>posts, via blog.ts"]
     leagues["leagues.ts<br/>league pages"]
     about["about.ts<br/>About copy"]
     sd["structuredData.ts<br/>schema builders"]
@@ -71,7 +71,7 @@ flowchart LR
 | [src/lib/seo.ts](../src/lib/seo.ts) | Keyword groups (`KEYWORDS`) and the `pageMetadata()` helper that builds each page's head tags |
 | [src/lib/structuredData.ts](../src/lib/structuredData.ts) | All schema.org JSON-LD: Organization, WebSite, MobileApplication, FAQPage, BreadcrumbList, Blog, BlogPosting; social profile list |
 | [src/lib/faqData.ts](../src/lib/faqData.ts) | `FAQ_ITEMS` (homepage and /faq) and `AI_QUESTIONS` (written for AI assistants, printed in llms-full.txt) |
-| [src/lib/blog.ts](../src/lib/blog.ts) | Every blog post as data: title, description, keywords, dates, body, FAQ, stats |
+| [content/blog/](../content/blog/) and [src/lib/blog.ts](../src/lib/blog.ts) | One MDX file per post: front matter (title, description, keywords, dates, FAQ, stats) and a Markdown body. `blog.ts` loads and validates them |
 | [src/lib/leagues.ts](../src/lib/leagues.ts) | League landing pages as data (EPL, IPL) |
 | [src/lib/about.ts](../src/lib/about.ts) | About page copy, shared by the page and llms-full.txt |
 | [src/lib/llms.ts](../src/lib/llms.ts) | Builds llms.txt and llms-full.txt |
@@ -341,7 +341,7 @@ Names, description, email and social profiles come from [site.ts](../src/lib/sit
 ## Content engine
 
 ### Blog
-Each post is one object in `BLOG_POSTS` in [blog.ts](../src/lib/blog.ts). One route, `/blog/[slug]`, renders all of them; unknown slugs return 404. Adding a post automatically adds it to:
+Each post is one MDX file in [content/blog/](../content/blog/), loaded and validated by [blog.ts](../src/lib/blog.ts). One route, `/blog/[slug]`, renders all of them; unknown slugs return 404. Adding a post automatically adds it to:
 
 - the blog index (`/blog`);
 - sitemap.xml;
@@ -354,6 +354,7 @@ Each post is one object in `BLOG_POSTS` in [blog.ts](../src/lib/blog.ts). One ro
 
 Current posts:
 
+- IPL 2027 Trade Window: Every Transfer So Far
 - How the StatOz Prediction Quiz Works
 - Our IPL 2026 Prediction Journey
 
@@ -399,19 +400,12 @@ To track a new click, add `data-analytics-event="…"` and its `data-analytics-*
 ## How to…
 
 ### Add a blog post
-1. Add a route constant in [routes.ts](../src/lib/routes.ts), e.g. `myPost: "/blog/my-post"`.
-2. Add a `BlogPost` object in [blog.ts](../src/lib/blog.ts) with:
-   - `slug` and `href`;
-   - `title`, `titleLead` and `titleGrad`;
-   - `summary` and an answer-first `description` (under ~160 characters);
-   - `keywords`;
-   - `published` and `updated` (YYYY-MM-DD);
-   - `visual`, `stats` and `statsPanel`;
-   - `body`, `faq` and `cta`.
-3. Put it at the top of `BLOG_POSTS` (newest first).
-4. Open the post with the answer in the first sentence. Write FAQ answers only from facts in the post.
+1. Copy a post in [content/blog/](../content/blog/) to `content/blog/my-post.mdx`. The file name is the URL: `/blog/my-post`.
+2. Fill in the front matter: `title`, `titleLead`, `titleGrad`, `eyebrow`, `summary`, an answer-first `description` (under ~160 characters), `keywords`, `published` and `updated` (YYYY-MM-DD), `visual`, `linkText`, `cta`, `stats`, `statsPanel` and `faq`. [content/blog/README.md](../content/blog/README.md) explains each one.
+3. Write the body in Markdown. Open with the answer in the first sentence. Write FAQ answers only from facts in the post.
+4. Run `npm run build`. A missing or malformed field fails the build and names the file.
 
-Everything else updates by itself, including the share image.
+Posts are sorted newest first by `published`. Everything else updates by itself, including the share image.
 
 ### Add a league page
 1. Add a route constant in [routes.ts](../src/lib/routes.ts) and, if wanted, a footer link in `FOOTER_NAV_LINKS`.

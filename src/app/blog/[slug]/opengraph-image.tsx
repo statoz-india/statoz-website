@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { BLOG_POSTS, getPost } from "@/lib/blog";
+import { getPosts, getPost } from "@/lib/blog";
 
 /* A branded 1200×630 share card per post: shown in WhatsApp, LinkedIn and X
    previews and referenced by the post's BlogPosting schema. */
@@ -11,7 +11,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({ slug: post.slug }));
+  return getPosts().map((post) => ({ slug: post.slug }));
 }
 
 export default async function PostImage({

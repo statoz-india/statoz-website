@@ -3894,7 +3894,8 @@ html[data-layout="bare"] .site-foot {
   font-size: 15px;
   line-height: 1.6;
 }
-.article-copy__intro {
+.article-copy__intro,
+.article-mdx > p:first-child {
   color: var(--txt) !important;
   font-size: clamp(17px, 2vw, 20px) !important;
   font-weight: 600;
@@ -3945,6 +3946,87 @@ html[data-layout="bare"] .site-foot {
   height: 7px;
   background: var(--cy);
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+.article-copy ol {
+  margin: 12px 0 4px;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: article-ol;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.article-copy ol li {
+  counter-increment: article-ol;
+  padding-left: 30px;
+}
+.article-copy ol li::before {
+  content: counter(article-ol, decimal-leading-zero);
+  top: 0;
+  width: auto;
+  height: auto;
+  background: none;
+  clip-path: none;
+  color: var(--cy);
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: inherit;
+}
+.article-copy strong {
+  color: #fff;
+  font-weight: 700;
+}
+.article-table {
+  margin: 22px 0 8px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--panel2), var(--panel));
+}
+.article-table:focus-visible {
+  outline: 2px solid var(--cy);
+  outline-offset: 2px;
+}
+.article-table table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.article-table caption {
+  padding: 14px 16px 10px;
+  color: var(--mut);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-align: left;
+  text-transform: uppercase;
+}
+.article-table th,
+.article-table td {
+  padding: 11px 16px;
+  border-top: 1px solid var(--line);
+  color: #b1bfd2;
+  line-height: 1.45;
+  text-align: left;
+  vertical-align: top;
+}
+.article-table thead th {
+  color: var(--cy);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.article-table tbody th,
+.article-table tbody td:first-child {
+  color: #fff;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.article-table tbody tr:hover {
+  background: rgba(92, 223, 255, 0.04);
 }
 .article-copy a:not(.btn) {
   color: var(--cy);

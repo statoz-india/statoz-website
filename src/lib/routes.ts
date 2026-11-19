@@ -14,13 +14,14 @@ export const ROUTES = {
   about: "/about",
   faq: "/faq",
   blog: "/blog",
-  iplJourney: "/blog/ipl-2026-prediction-journey",
-  predictionQuizGuide: "/blog/how-statoz-prediction-quiz-works",
   eplPredictions: "/predictions/epl",
   iplPredictions: "/predictions/ipl",
   terms: "/termsAndConditions",
   privacy: "/privacyPolicy",
 } as const;
+
+/* Blog posts live at /blog/<slug>; posts get their href from this. */
+export const blogPostPath = (slug: string) => `${ROUTES.blog}/${slug}`;
 
 export const PRIMARY_NAV_LINKS = [
   { href: ROUTES.predict, label: "Predict" },

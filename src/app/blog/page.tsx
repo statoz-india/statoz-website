@@ -2,7 +2,7 @@ import Link from "next/link";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
-import { BLOG_POSTS } from "@/lib/blog";
+import { getPosts } from "@/lib/blog";
 import { ROUTES } from "@/lib/routes";
 import { KEYWORDS, pageMetadata } from "@/lib/seo";
 import { blogJsonLd } from "@/lib/structuredData";
@@ -16,7 +16,7 @@ export const metadata = pageMetadata({
   keywords: [
     "sports prediction blog",
     "prediction game guides",
-    ...BLOG_POSTS.flatMap((post) => post.keywords.slice(0, 2)),
+    ...getPosts().flatMap((post) => post.keywords.slice(0, 2)),
     KEYWORDS.leagues[1],
   ],
 });
@@ -24,7 +24,7 @@ export const metadata = pageMetadata({
 export default function BlogPage() {
   return (
     <BlogChrome>
-      <JsonLd data={blogJsonLd(BLOG_POSTS)} />
+      <JsonLd data={blogJsonLd(getPosts())} />
       <section className="blog-hero">
         <div className="blog-hero__orb blog-hero__orb--one" aria-hidden />
         <div className="blog-hero__orb blog-hero__orb--two" aria-hidden />
@@ -54,7 +54,7 @@ export default function BlogPage() {
           </div>
 
           <div className="blog-grid">
-            {BLOG_POSTS.map((post) => (
+            {getPosts().map((post) => (
               <article className="blog-card reveal" data-hud key={post.slug}>
                 <div
                   className={`blog-card__visual blog-card__visual--${post.visual.variant}`}

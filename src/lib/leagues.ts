@@ -1,5 +1,10 @@
-import { IPL_JOURNEY_POST, PREDICTION_QUIZ_POST, type ArticleBlock, type BlogStat } from "@/lib/blog";
+import { blocksToMarkdown, type ArticleBlock, type BlogStat } from "@/lib/article";
+import { requirePost } from "@/lib/blog";
 import { ROUTES } from "@/lib/routes";
+
+const IPL_JOURNEY_POST = requirePost("ipl-2026-prediction-journey");
+const IPL_TRADES_POST = requirePost("ipl-2027-trade-window-every-transfer");
+const PREDICTION_QUIZ_POST = requirePost("how-statoz-prediction-quiz-works");
 
 /* League landing pages at /predictions/[league]. Each targets one league's
    searches ("Premier League prediction game", "IPL prediction game").
@@ -160,7 +165,7 @@ export const IPL_PAGE: LeaguePage = {
   ],
   stats: IPL_JOURNEY_POST.stats,
   statsPanel: { label: "IPL 2026 on StatOz", heading: "Season in numbers" },
-  related: [IPL_JOURNEY_POST, PREDICTION_QUIZ_POST],
+  related: [IPL_TRADES_POST, IPL_JOURNEY_POST, PREDICTION_QUIZ_POST],
   cta: "Get StatOz for the IPL",
 };
 
@@ -172,9 +177,7 @@ export function getLeague(slug: string) {
 
 /* Plain-text version for llms-full.txt. */
 export function leagueToMarkdown(league: LeaguePage) {
-  const body = league.body
-    .map((block) => (block.kind === "h2" ? `### ${block.text}` : block.text))
-    .join("\n\n");
+  const body = blocksToMarkdown(league.body);
   const faq = league.faq.map((item) => `**${item.q}** ${item.a}`).join("\n\n");
   return `${body}\n\n${faq}`;
 }

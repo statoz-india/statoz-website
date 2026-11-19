@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BlogChrome from "@/components/BlogChrome";
-import { BLOG_POSTS } from "@/lib/blog";
+import { getPosts } from "@/lib/blog";
 import { LEAGUE_PAGES } from "@/lib/leagues";
 import { ROUTES } from "@/lib/routes";
 
@@ -17,7 +17,7 @@ const LINKS = [
   ...LEAGUE_PAGES.map((league) => ({ href: league.href, t: league.title })),
   { href: ROUTES.faq, t: "FAQ" },
   { href: ROUTES.blog, t: "Blog" },
-  ...BLOG_POSTS.map((post) => ({ href: post.href, t: post.title })),
+  ...getPosts().map((post) => ({ href: post.href, t: post.title })),
 ];
 
 export default function NotFound() {

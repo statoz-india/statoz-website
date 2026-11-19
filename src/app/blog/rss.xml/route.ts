@@ -1,8 +1,8 @@
-import { BLOG_POSTS } from "@/lib/blog";
+import { getPosts } from "@/lib/blog";
 import { ROUTES } from "@/lib/routes";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 
-/* RSS 2.0 feed for readers and aggregators, built from BLOG_POSTS. */
+/* RSS 2.0 feed for readers and aggregators, built from getPosts(). */
 
 export const dynamic = "force-static";
 
@@ -18,9 +18,9 @@ const rfc822 = (isoDate: string) => new Date(`${isoDate}T00:00:00Z`).toUTCString
 
 export function GET() {
   const feedUrl = `${SITE_URL}/blog/rss.xml`;
-  const latest = BLOG_POSTS.map((post) => post.updated).sort().at(-1);
+  const latest = getPosts().map((post) => post.updated).sort().at(-1);
 
-  const items = BLOG_POSTS.map((post) => {
+  const items = getPosts().map((post) => {
     const url = `${SITE_URL}${post.href}`;
     return `    <item>
       <title>${escapeXml(post.title)}</title>
