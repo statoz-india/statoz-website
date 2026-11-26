@@ -1,5 +1,5 @@
 import { publicAsset } from '@statoz/design-system/asset';
-import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
+import { APP_STORE_URL, PLAY_STORE_URL, WEB_APP_URL } from "@/lib/storeLinks";
 import StoreIcon from "./StoreIcon";
 
 const DOWNLOAD_CARDS = [
@@ -79,6 +79,20 @@ export default function Download({ asPageTitle = false }: { asPageTitle?: boolea
               <StoreIcon store="apple" className="btn__i" />
               <span className="store">
                 <small>DOWNLOAD ON</small>App Store
+              </span>
+            </a>
+            <a
+              className="btn btn--ghost btn--lg btn--store download__web"
+              href={WEB_APP_URL}
+              target="_blank"
+              rel="noopener"
+              data-analytics-event="download_cta_click"
+              data-analytics-cta-label="Web App"
+              data-analytics-cta-location="download_section"
+              data-analytics-store="web_app"
+            >
+              <span className="store">
+                <small>PLAY ONLINE</small>Web App
               </span>
             </a>
           </div>

@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ArticleBlocks from "@/components/ArticleBlocks";
 import ArticleView from "@/components/ArticleView";
-import JsonLd from "@/components/JsonLd";
 import { getLeague, LEAGUE_PAGES } from "@/lib/leagues";
 import { ROUTES } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
-import { breadcrumbJsonLd } from "@/lib/structuredData";
 
 type LeaguePageProps = { params: Promise<{ league: string }> };
 
@@ -34,15 +32,12 @@ export default async function LeaguePredictionsPage({ params }: LeaguePageProps)
   const league = getLeague((await params).league);
   if (!league) notFound();
 
-  const breadcrumbs = [{ label: "Home", href: ROUTES.home }, { label: league.name }];
-
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       <ArticleView
         id={`league_${league.slug}`}
         variant={league.variant}
-        breadcrumbs={breadcrumbs}
+        breadcrumbs={[{ label: "Home", href: ROUTES.home }, { label: league.name }]}
         eyebrow={league.eyebrow}
         titleLead={league.titleLead}
         titleGrad={league.titleGrad}

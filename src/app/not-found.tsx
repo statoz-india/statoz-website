@@ -10,6 +10,8 @@ import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Page not found",
+  // Overrides the layout's "index, follow" so the 404 sends one clear signal.
+  robots: { index: false, follow: true },
 };
 
 const LINKS = [

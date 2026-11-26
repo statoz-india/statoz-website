@@ -1544,6 +1544,16 @@
   margin-top: 30px;
   flex-wrap: wrap;
 }
+/* Phones: the two store buttons share a row, Web App runs full width below. */
+@media (max-width: 560px) {
+  .download__actions > a {
+    flex: 1 1 0;
+    justify-content: center;
+  }
+  .download__actions > .download__web {
+    flex-basis: 100%;
+  }
+}
 .download__meta {
   display: flex;
   flex-direction: column;

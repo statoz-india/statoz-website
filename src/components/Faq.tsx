@@ -1,8 +1,11 @@
+import JsonLd from "@/components/JsonLd";
 import { FAQ_ITEMS } from "@/lib/faqData";
+import { faqJsonLd } from "@/lib/structuredData";
 
 export default function Faq() {
   return (
     <section className="section faq" id="faq">
+      <JsonLd data={faqJsonLd(FAQ_ITEMS)} />
       <div className="wrap">
         <header className="sec-head reveal">
           <span className="sec-head__tag">// BRIEFING</span>

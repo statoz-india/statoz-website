@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ROUTES } from "@/lib/routes";
 
 const SECTION_ROUTES: Record<string, string> = {
@@ -35,5 +35,6 @@ export default async function SectionRedirect({
     notFound();
   }
 
-  redirect(route);
+  // 308, so search engines pass the short URL's signals to the target.
+  permanentRedirect(route);
 }
