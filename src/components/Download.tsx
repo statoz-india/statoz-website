@@ -1,4 +1,5 @@
-import { APP_STORE_URL, PLAY_STORE_URL, WEB_APP_URL } from "@/lib/storeLinks";
+import { publicAsset } from '@statoz/design-system/asset';
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
 import StoreIcon from "./StoreIcon";
 
 const DOWNLOAD_CARDS = [
@@ -38,7 +39,7 @@ const DOWNLOAD_CARDS = [
 
 const BADGES = ["Free", "No deposits", "Skill-based"];
 
-// The /download page renders this as its main heading.
+/* On /download this section is the whole page, so its heading is the h1. */
 export default function Download({ asPageTitle = false }: { asPageTitle?: boolean }) {
   const Title = asPageTitle ? "h1" : "h2";
   return (
@@ -80,32 +81,10 @@ export default function Download({ asPageTitle = false }: { asPageTitle?: boolea
                 <small>DOWNLOAD ON</small>App Store
               </span>
             </a>
-            <a
-              className="btn btn--ghost btn--lg btn--store btn--web"
-              href={WEB_APP_URL}
-              target="_blank"
-              rel="noopener"
-              data-analytics-event="download_cta_click"
-              data-analytics-cta-label="Web app"
-              data-analytics-cta-location="download_section"
-              data-analytics-store="web_app"
-            >
-              <StoreIcon store="web" className="btn__i" />
-              <span className="store">
-                <small>PLAY ONLINE</small>Web App
-              </span>
-            </a>
           </div>
 
           <div className="download__meta">
-            <div className="download__rating">
-              <span className="stars" aria-label="4.8 star rating on Google Play">
-                ★★★★<span className="half">★</span>
-              </span>
-              <span>
-                <strong>4.8</strong> on Google Play · 25K+ downloads
-              </span>
-            </div>
+            <p>Current StatOz app · Optional in-app purchases. Features may differ from the web previews.</p>
             <ul className="download__badges">
               {BADGES.map((b) => (
                 <li key={b}>{b}</li>
@@ -116,10 +95,7 @@ export default function Download({ asPageTitle = false }: { asPageTitle?: boolea
 
         <div className="download__art">
           <div className="download__halo" aria-hidden="true" />
-          <div className="download__drop" aria-hidden="true">
-            🎁 +1,000 OZ COINS
-            <small>WELCOME BONUS</small>
-          </div>
+          
           <div className="download__orbit" aria-hidden="true">
             {DOWNLOAD_CARDS.map((card) => (
               <article
@@ -134,7 +110,7 @@ export default function Download({ asPageTitle = false }: { asPageTitle?: boolea
                 </div>
                 <div className="fcard__img">
                   <img
-                    src={`/assets/players/${card.id}.webp`}
+                    src={publicAsset(`/assets/players/${card.id}.webp`)}
                     alt=""
                     loading="lazy"
                   />

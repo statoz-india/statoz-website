@@ -1,0 +1,8 @@
+/* The ring sits above everything and never takes pointer events. The native cursor stays visible,
+   so precision and accessibility are unchanged; the ring only adds a soft trailing halo. */
+.ring { position: fixed; left: 0; top: 0; z-index: 60; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1px solid color-mix(in srgb, var(--ds-color-accent-cyan, #5cdfff) 70%, transparent); border-radius: 50%; pointer-events: none; opacity: 0; transition: opacity .25s ease, scale .25s cubic-bezier(.2, .8, .2, 1), background-color .25s ease, border-color .25s ease; will-change: transform; mix-blend-mode: screen; }
+.ring[data-visible=true] { opacity: .85; }
+.ring[data-active=true] { scale: 1.65; background: color-mix(in srgb, var(--ds-color-accent-cyan, #5cdfff) 9%, transparent); border-color: var(--ds-color-accent-cyan, #5cdfff); }
+.ring[data-pressed=true] { scale: .8; }
+:global([data-magnetic]) { transition: translate .35s cubic-bezier(.2, .8, .2, 1); }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) { .ring { display: none; } }

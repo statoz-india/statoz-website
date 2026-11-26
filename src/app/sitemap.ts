@@ -1,43 +1,78 @@
 import type { MetadataRoute } from "next";
-import { getPosts } from "@/lib/blog";
-import { LEAGUE_PAGES } from "@/lib/leagues";
 import { SITE_URL } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
-type Entry = [path: string, changeFrequency: "weekly" | "monthly" | "yearly", priority: number];
-
-// No lastModified on static pages: stamping every URL with the build time
-// teaches Google to ignore the field. Blog posts carry their real dates.
-const PAGES: Entry[] = [
-  ["/", "weekly", 1],
-  [ROUTES.download, "monthly", 0.8],
-  [ROUTES.faq, "monthly", 0.8],
-  [ROUTES.about, "monthly", 0.7],
-  [ROUTES.blog, "weekly", 0.7],
-  [ROUTES.terms, "yearly", 0.3],
-  [ROUTES.privacy, "yearly", 0.3],
-];
+export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = PAGES.map(([path, changeFrequency, priority]) => ({
-    url: `${SITE_URL}${path}`,
-    changeFrequency,
-    priority,
-  }));
-
-  // Every post in content/blog is listed automatically.
-  const posts = getPosts().map((post) => ({
-    url: `${SITE_URL}${post.href}`,
-    lastModified: post.updated,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  const leagues = LEAGUE_PAGES.map((league) => ({
-    url: `${SITE_URL}${league.href}`,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
-
-  return [...pages, ...leagues, ...posts];
+  const now = new Date();
+  return [
+    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    {
+      url: `${SITE_URL}/download`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.faq}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.about}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.blog}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.iplJourney}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.predictionQuizGuide}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.pitchDuel}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.penaltyShootout}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.footballChess}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.terms}`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}${ROUTES.privacy}`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+  ];
 }

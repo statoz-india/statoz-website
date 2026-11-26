@@ -1,17 +1,16 @@
+import JsonLd from "@/components/JsonLd";
 import { faqJsonLd } from "@/lib/structuredData";
-import JsonLd from "./JsonLd";
 
 export type FaqItem = { q: string; a: string };
 
-/* FAQ accordion (same look as the homepage FAQ) plus its FAQPage schema.
-   `location` feeds the faq_open analytics event. */
+/* The FAQ at the end of a blog post or league page, with its FAQPage schema.
+   `location` feeds the data-faq-location analytics attribute, matching the
+   /faq page's markup. */
 export default function FaqList({
   items,
-  heading = "Common questions",
   location,
 }: {
   items: readonly FaqItem[];
-  heading?: string;
   location: string;
 }) {
   if (items.length === 0) return null;
@@ -19,7 +18,7 @@ export default function FaqList({
   return (
     <>
       <JsonLd data={faqJsonLd(items)} />
-      <h2>{heading}</h2>
+      <h2>Frequently asked questions</h2>
       <div className="faq__list">
         {items.map((item) => (
           <details className="qa" key={item.q} data-faq-location={location}>

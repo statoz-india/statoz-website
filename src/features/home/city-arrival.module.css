@@ -1,0 +1,45 @@
+/* The loader sits above the canvas. While waiting it is solid; once the 3D logo renders it is clear,
+   leaving only the counter and hairline under the logo. It fades as the lights come on. */
+.loader { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; pointer-events: none; background: rgba(2, 6, 17, .9); transition: background .4s ease, opacity .6s ease .1s, visibility 0s .7s; }
+.loader[data-phase=loading] { background: transparent; }
+.loader[data-phase=reveal], .loader[data-phase=settled] { background: transparent; opacity: 0; visibility: hidden; }
+.flatLogo { position: absolute; top: 44%; left: 50%; translate: -50% -50%; opacity: .9; animation: breathe 1.6s ease-in-out infinite; }
+.flatLogo[data-hidden] { opacity: 0; visibility: hidden; animation: none; }
+.flatLogo img { display: block; width: clamp(84px, 14vmin, 130px); height: auto; filter: drop-shadow(0 0 30px rgba(92, 223, 255, .35)); }
+.meter { position: absolute; top: calc(44% + min(19vmin, 150px)); left: 50%; translate: -50% 0; display: grid; justify-items: center; gap: 12px; color: var(--ds-color-text-subtle); }
+.count { font-family: var(--font-disp), sans-serif; font-size: 13px; letter-spacing: .32em; font-variant-numeric: tabular-nums; color: #eafcff; }
+.bar { position: relative; width: min(180px, 42vw); height: 1px; background: rgba(92, 223, 255, .18); overflow: hidden; }
+.bar i { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, var(--ds-color-accent-cyan, #5cdfff)); transform-origin: left; transition: transform .2s linear; }
+.label { font-size: 9px; letter-spacing: .38em; color: var(--city-muted, #90a1b9); }
+@keyframes breathe { 50% { opacity: .55; scale: .97; } }
+
+/* The canvas is shown while it draws the loader, before the city reports ready. */
+:global([data-arrival=loading]) :is([data-chapter-poster], [data-city-scene] ~ *) { visibility: hidden !important; }
+:global([data-arrival=reveal]) [data-chapter-poster] { visibility: hidden !important; }
+:global([data-arrival=loading]) [data-city-scene] { opacity: 1 !important; transition: none !important; }
+:global([data-arrival=loading]) [data-city-scene] [data-city-label],
+:global([data-arrival=loading]) [data-city-scene] [data-city-link] { visibility: hidden !important; }
+/* The header logo waits while the 3D logo flies into its place. */
+:global([data-arrival=waiting]) [data-city-header] > a > :first-child,
+:global([data-arrival=loading]) [data-city-header] > a > :first-child,
+:global([data-arrival=reveal]:not([data-logo-landed])) [data-city-header] > a > :first-child { opacity: 0; }
+:global([data-arrival=waiting]) [data-city-header] nav,
+:global([data-arrival=loading]) [data-city-header] nav,
+:global([data-arrival=reveal]:not([data-intro-landed])) [data-city-header] nav { opacity: 0; }
+:global([data-arrival=reveal][data-intro-landed]) [data-city-header] nav { animation: header-in .8s .45s ease-out both; }
+@keyframes header-in { from { opacity: 0; transform: translateY(-8px); } }
+
+/* Sound toggle: four bars that move only while sound plays. */
+.sound { position: relative; display: inline-grid; place-items: center; width: 46px; height: 46px; border: 1px solid color-mix(in srgb, var(--ds-color-accent-cyan) 30%, transparent); background: color-mix(in srgb, var(--city-bg) 70%, transparent); clip-path: var(--ds-clip-panel); color: var(--ds-color-text-subtle); pointer-events: auto; cursor: pointer; }
+.sound:hover, .sound:focus-visible { color: var(--ds-color-accent-cyan); }
+.sound.sound > span { display: flex !important; align-items: flex-end; gap: 2px; height: 14px; }
+.sound > span > i { width: 2px; height: 35%; background: currentColor; border-radius: 1px; }
+.sound > span > i:nth-child(2) { height: 70%; } .sound > span > i:nth-child(3) { height: 50%; } .sound > span > i:nth-child(4) { height: 85%; }
+.sound[aria-pressed=true] { color: var(--ds-color-accent-cyan); }
+.sound[aria-pressed=true] > span > i { animation: level 1s ease-in-out infinite; }
+.sound[aria-pressed=true] > span > i:nth-child(2) { animation-delay: -.3s; }
+.sound[aria-pressed=true] > span > i:nth-child(3) { animation-delay: -.6s; }
+.sound[aria-pressed=true] > span > i:nth-child(4) { animation-delay: -.15s; }
+@keyframes level { 0%, 100% { height: 30%; } 50% { height: 100%; } }
+@media (max-width: 700px) { .sound { width: 44px; height: 44px; } }
+@media (prefers-reduced-motion: reduce) { .flatLogo { animation: none; } .sound[aria-pressed=true] > span > i { animation: none; height: 70%; } }

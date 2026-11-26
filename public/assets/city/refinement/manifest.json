@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "licenseSources": [
+    "https://polyhaven.com/license"
+  ],
+  "assets": [
+    {
+      "id": "contest-props",
+      "creator": "StatOz Vibe Basketball",
+      "license": "Original StatOz geometry",
+      "sourceFile": "statoz-games/src/features/games/vibe-basketball/source/public/models/contest/vibe-contest-props.glb",
+      "sourceSha256": "6cb33aa27cd03d813ca1772ee1ae2065ade1eb73f5ddc1caf5248b4857b4baf9",
+      "output": "/assets/city/refinement/contest-props.glb",
+      "outputSha256": "72b30b11b5d76bea9ed6124f6a0907c2d5cd33af729a5b12f1d5d3c6b2167682",
+      "bytes": 29704,
+      "modifications": "City LOD; deduplicated, pruned, welded, Meshopt compressed. Contest keeps LOD1 only. Athlete outfits and poses authored at runtime."
+    },
+    {
+      "id": "game-catalogue",
+      "creator": "StatOz Games",
+      "license": "Existing StatOz catalogue artwork",
+      "sourceFile": "src/features/home/city-journey-config.ts (all 15 local cover images)",
+      "output": "/assets/city/refinement/games-atlas.webp",
+      "modifications": "Fifteen covers with original game names in one 5 \u00d7 3 atlas",
+      "bytes": 465492,
+      "outputSha256": "24028550e4e280550f7874762bb6f3f76d6bed1b9fa1e25aad0b501bdab26f97"
+    },
+    {
+      "id": "asphalt-color",
+      "creator": "Rob Tuytel / Poly Haven",
+      "source": "https://polyhaven.com/a/asphalt_02",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_diff_1k.jpg",
+      "license": "CC0-1.0",
+      "sourceSha256": "1aa5ce99f58a625c71d48cfc3e68b65ca85ccb00f39e045c0a928608a0ea25ed",
+      "output": "/assets/city/refinement/asphalt-color.webp",
+      "modifications": "512px WebP, repeat at real street scale; normal map kept linear",
+      "bytes": 96670,
+      "outputSha256": "df20905d460eb895bfbf3ce352e6ea03334198657dad6792f605b100fd78300e"
+    },
+    {
+      "id": "asphalt-normal",
+      "creator": "Rob Tuytel / Poly Haven",
+      "source": "https://polyhaven.com/a/asphalt_02",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_nor_gl_1k.jpg",
+      "license": "CC0-1.0",
+      "sourceSha256": "42a1c381b53204e83a982db2864479a30bc127bbdeebb1006f8ee51bff099df3",
+      "output": "/assets/city/refinement/asphalt-normal.webp",
+      "modifications": "512px WebP, repeat at real street scale; normal map kept linear",
+      "bytes": 127482,
+      "outputSha256": "fc13996464606734cb8f6afcabaeb3ab8801107b1cacba09d4ed8071a4f621b3"
+    },
+    {
+      "id": "asphalt-roughness",
+      "creator": "Rob Tuytel / Poly Haven",
+      "source": "https://polyhaven.com/a/asphalt_02",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_rough_1k.jpg",
+      "license": "CC0-1.0",
+      "sourceSha256": "70ba3edc65525eb4dc366cf010ca7ae0bd34e0251ff0225c2dad627a873d0712",
+      "output": "/assets/city/refinement/asphalt-roughness.webp",
+      "modifications": "512px WebP, repeat at real street scale; normal map kept linear",
+      "bytes": 85484,
+      "outputSha256": "3bc221dbd30ca8419948dc0acb7cad8a3702ab680f4a541d28558fa73176c324"
+    }
+  ]
+}

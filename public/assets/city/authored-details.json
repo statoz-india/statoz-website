@@ -1,0 +1,101 @@
+{
+  "version": 2,
+  "date": "2026-11-15",
+  "provenance": "Original geometry and procedural animation authored for this StatOz website; no new third-party character assets.",
+  "assets": [
+    {
+      "id": "citizens-and-athletes",
+      "source": "src/features/home/city-life.ts",
+      "variants": [
+        "walking",
+        "basketball",
+        "football",
+        "cricket",
+        "seated spectator",
+        "pit marshal"
+      ],
+      "pivot": "ground beneath feet",
+      "height": "approximately 2.2 world units",
+      "rendering": "instanced, articulated low-poly geometry"
+    },
+    {
+      "id": "venues",
+      "source": "src/features/home/city-venues.ts",
+      "variants": [
+        "football stadium",
+        "cricket ground and pavilion",
+        "street basketball court",
+        "racing circuit and pit complex"
+      ],
+      "details": [
+        "tiered stands with bays and aisles",
+        "cantilever roofs",
+        "floodlight masts",
+        "big screen and venue signs",
+        "sight screens and boundary boards",
+        "mural wall and festoon lights",
+        "neon gates, tyre barriers and catch fencing"
+      ]
+    },
+    {
+      "id": "landmarks",
+      "source": "src/features/home/city-landmarks.ts",
+      "variants": [
+        "clubhouse",
+        "newsroom tower",
+        "app station",
+        "visitor centre",
+        "city hall",
+        "plaza banner"
+      ],
+      "details": [
+        "pitched roofs, colonnade and dome",
+        "lit windows",
+        "scrolling ticker bands",
+        "phone screen using the existing app icon"
+      ]
+    },
+    {
+      "id": "district-and-skyline",
+      "source": "src/features/home/city-district.ts",
+      "details": [
+        "streets, pavements, crossings and signals",
+        "shop row, park, kiosks, car park and billboards",
+        "lit towers, far silhouettes and distant lights",
+        "gradient night sky with stars"
+      ]
+    },
+    {
+      "id": "authoring-tools",
+      "source": "src/features/home/city-kit.ts",
+      "details": [
+        "merged static geometry",
+        "instanced windows and trees",
+        "additive light pools and beams",
+        "signs fitted to their boards"
+      ]
+    },
+    {
+      "id": "destination-symbols",
+      "source": "src/features/home/city-sport-art.tsx",
+      "format": "original SVG",
+      "palette": "vendored StatOz design-system tokens"
+    }
+  ],
+  "adaptedModels": [
+    {
+      "id": "race-car",
+      "creator": "Kenney",
+      "license": "CC0-1.0",
+      "modification": "Circuit cars use pink, cyan, and gold body panels; source wheels and glass are retained."
+    },
+    {
+      "id": "street-buildings",
+      "creator": "Kenney and Quaternius",
+      "license": "CC0-1.0",
+      "modification": "Facades carry a little of their own texture as emission so they read at night."
+    }
+  ],
+  "thirdPartyAssets": "/assets/city/manifest.json",
+  "notes": "Trees are now original instanced geometry; the Kenney tree and street light models are no longer placed."
+}

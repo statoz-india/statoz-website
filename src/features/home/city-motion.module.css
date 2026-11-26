@@ -1,0 +1,80 @@
+/* Motion for the opening's copy. Values come from --copy-opacity, which follows the eased display
+   progress, so text moves with the camera rather than with raw scroll steps. */
+.chapter { --o: var(--copy-opacity, 1); --o1: clamp(0, calc(var(--o) * 1.5 - .5), 1); --o2: clamp(0, calc(var(--o) * 1.8 - .8), 1); --o3: clamp(0, calc(var(--o) * 2.2 - 1.2), 1); }
+.copy { opacity: 1 !important; }
+.chapter .copy { transform: none; }
+.eyebrow { opacity: var(--o); letter-spacing: calc(.18em + (1 - var(--o)) * .25em); transition: none; }
+.heading > span, .heading > em { display: block; clip-path: inset(-10% -4% calc((1 - var(--o1)) * 105%) -4%); transform: translateY(calc((1 - var(--o1)) * 46%)); }
+.heading > em { clip-path: inset(-10% -4% calc((1 - var(--o2)) * 105%) -4%); transform: translateY(calc((1 - var(--o2)) * 46%)); }
+.description { opacity: var(--o2); transform: translateY(calc((1 - var(--o2)) * 18px)); }
+.actions { opacity: var(--o3); transform: translateY(calc((1 - var(--o3)) * 22px)); }
+.cue { opacity: var(--o); }
+
+/* Arrival: the headline is painted very dimly at first paint (it stays the largest-paint candidate without
+   showing through the space backdrop); the opening then shows it as solid text in space. The doubled class
+   outranks city-drive's `.welcome [data-journey-briefing] > p:first-child` opacity. */
+.welcome .description { display: block !important; margin: 26px auto 0 !important; max-width: 46ch !important; font-size: 16px !important; letter-spacing: .04em; color: var(--ds-color-text-default); }
+:global([data-arrival=waiting]) .welcome.welcome :is(.eyebrow, .description, .cue),
+:global([data-arrival=loading]) .welcome.welcome :is(.eyebrow, .description, .cue) { opacity: 0; }
+:global([data-arrival=waiting]) .welcome .heading,
+:global([data-arrival=loading]) .welcome .heading { opacity: .012; filter: blur(3px); }
+/* In the 3D city the welcome view is just the plaza and the gate: the headline shows only as solid text in
+   space during the opening (data-intro-text, set by the runtime), then zaps away. The h1 stays in the page for
+   assistive technology, and the simple and failed-WebGL views keep all their copy. */
+:global([data-arrival=reveal]:not([data-simple=true])) .welcome.welcome :is(.heading, .eyebrow, .description),
+:global([data-arrival=settled]:not([data-simple=true]):not([data-scene-status=failed])) .welcome.welcome :is(.heading, .eyebrow, .description) { opacity: 0; }
+:global([data-arrival=reveal]:not([data-intro-landed])) .welcome .cue { opacity: 0; }
+:global([data-arrival=reveal][data-intro-landed]) .welcome .cue { animation: fade-up .8s .3s ease-out both; }
+/* Solid: the h1 glows in over its own particles, holds, and a sheen crosses it. */
+:global([data-intro-text=solid]) .welcome .heading { animation: solidify .55s ease-out both; }
+/* The scroll-linked line clip would cut the glow into boxes, and the underline ornament belongs to the page. */
+:global(:is([data-intro-text=solid], [data-intro-text=zap])) .welcome .heading > :is(span, em) { clip-path: none; }
+:global(:is([data-intro-text=solid], [data-intro-text=zap])) .welcome .heading::after { display: none; }
+:global([data-intro-text=solid]) .welcome .heading > span { text-shadow: 0 0 18px color-mix(in srgb, var(--city-cyan) 45%, transparent), 0 0 46px color-mix(in srgb, var(--city-cyan) 22%, transparent); }
+:global([data-intro-text=solid]) .welcome .heading > em { animation: sheen 1.3s .5s ease-in-out both; filter: drop-shadow(0 0 16px color-mix(in srgb, var(--city-cyan) 45%, transparent)); }
+/* Zap: an electric glitch (slices, a red/cyan split), then it collapses to a line of light and goes out. */
+:global([data-intro-text=zap]) .welcome .heading { animation: zap .5s linear both; transform-origin: 50% 55%; }
+@keyframes solidify {
+  from { opacity: 0; filter: blur(10px) brightness(2.4); transform: scale(1.02); }
+  to { opacity: 1; filter: blur(0) brightness(1); transform: none; }
+}
+@keyframes zap {
+  0% { opacity: 1; transform: none; clip-path: inset(-20% -5% -20% -5%); filter: brightness(1); }
+  8% { transform: translateX(-7px) skewX(-9deg); clip-path: inset(8% -5% 58% -5%); filter: brightness(1.8) drop-shadow(5px 0 0 #ff2bd6) drop-shadow(-5px 0 0 #5cdfff); }
+  16% { transform: translateX(9px); clip-path: inset(52% -5% 6% -5%); filter: brightness(2.2) drop-shadow(-6px 0 0 #ff2bd6) drop-shadow(6px 0 0 #5cdfff); }
+  24% { transform: translateX(-4px) skewX(7deg); clip-path: inset(24% -5% 34% -5%); filter: brightness(2.6) drop-shadow(4px 0 0 #ff2bd6) drop-shadow(-4px 0 0 #5cdfff); }
+  34% { transform: none; clip-path: inset(-20% -5% -20% -5%); filter: brightness(3.2); }
+  56% { opacity: 1; transform: scale(1.05, .05); filter: brightness(5); }
+  78% { opacity: 1; transform: scale(.25, .02); filter: brightness(6); }
+  100% { opacity: 0; transform: scale(0, .02); filter: brightness(6); }
+}
+.welcome .heading > em {
+  background: linear-gradient(100deg, var(--city-cyan) 42%, #ffffff 50%, var(--city-cyan) 58%) 120% 0 / 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent !important;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 1px var(--city-bg)) drop-shadow(0 0 9px color-mix(in srgb,var(--city-cyan) 12%,transparent));
+}
+@keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes sheen { from { background-position: 120% 0; } to { background-position: -20% 0; } }
+
+/* The entry is one line, low and centred, while the camera moves to the car. */
+.entry.entry { align-items: flex-end; justify-content: center; text-align: center; padding-bottom: 150px; }
+.entry .copy { width: auto; max-width: none; }
+.entry .eyebrow { justify-content: center; margin-bottom: 14px; }
+.entry .heading { font-size: clamp(26px, 2.6vw, 40px) !important; letter-spacing: -.03em !important; }
+.entry .heading > span, .entry .heading > em { display: inline-block; margin: 0 .14em; }
+.entry .cue { left: 50%; translate: -50% 0; flex-direction: column; gap: 10px; padding-left: .32em; }
+.entry .cue > span:last-child { order: 0; height: 26px; }
+
+/* Route chrome waits for the first scroll; keyboard focus still reaches it. */
+.routeNav { opacity: 0; pointer-events: none; transition: opacity .5s ease, translate .5s ease; translate: -50% 12px; }
+:global([data-journey-moving]) .routeNav, .routeNav:focus-within { opacity: 1; pointer-events: auto; translate: -50% 0; }
+
+@media (max-width: 700px) {
+  .entry.entry { padding-bottom: 170px; }
+  .welcome .description { font-size: 14px !important; letter-spacing: .02em; max-width: 32ch !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heading > span, .heading > em { clip-path: none; transform: none; }
+  :global([data-arrival]) .welcome :is(.heading, .heading > *, .eyebrow, .description, .cue) { animation: none !important; opacity: 1; filter: none; }
+}

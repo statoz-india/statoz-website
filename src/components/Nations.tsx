@@ -1,35 +1,68 @@
 import { Fragment } from "react";
 
-/* Leagues that get quizzes in the app. Keep in step with what the app
-   actually covers (last checked against the 1 Nov 2026 backup). */
-const LEAGUES = [
-  "PREMIER LEAGUE",
-  "LA LIGA",
-  "SERIE A",
-  "CHAMPIONS LEAGUE",
-  "BUNDESLIGA",
-  "LIGUE 1",
-  "NBA",
-  "IPL",
-  "ISL",
-  "MLS",
-  "SAUDI PRO LEAGUE",
-  "F1",
+const NATIONS = [
+  "CANADA",
+  "MEXICO",
+  "USA",
+  "ARGENTINA",
+  "BRAZIL",
+  "COLOMBIA",
+  "ECUADOR",
+  "PARAGUAY",
+  "URUGUAY",
+  "FRANCE",
+  "ENGLAND",
+  "SPAIN",
+  "PORTUGAL",
+  "GERMANY",
+  "NETHERLANDS",
+  "BELGIUM",
+  "CROATIA",
+  "NORWAY",
+  "AUSTRIA",
+  "BOSNIA AND HERZEGOVINA",
+  "CZECHIA",
+  "SCOTLAND",
+  "SWEDEN",
+  "SWITZERLAND",
+  "T\u00dcRK\u0130YE",
+  "JAPAN",
+  "AUSTRALIA",
+  "IR IRAN",
+  "IRAQ",
+  "JORDAN",
+  "KOREA REPUBLIC",
+  "QATAR",
+  "SAUDI ARABIA",
+  "UZBEKISTAN",
+  "MOROCCO",
+  "SENEGAL",
+  "ALGERIA",
+  "CABO VERDE",
+  "CONGO DR",
+  "C\u00d4TE D'IVOIRE",
+  "EGYPT",
+  "GHANA",
+  "SOUTH AFRICA",
+  "TUNISIA",
+  "CURA\u00c7AO",
+  "HAITI",
+  "PANAMA",
+  "NEW ZEALAND",
 ];
 
-/* Section id stays "nations" so existing /nations and /#nations links work. */
 export default function Nations() {
   return (
     <section className="nations" id="nations">
       <div className="nations__label">
-        <span>FOOTBALL · BASKETBALL · CRICKET · F1 · A QUIZ ON EVERY BIG MATCH</span>
+        <span>48 NATIONS · WORLD CUP 2026 · A QUIZ ON EVERY MATCH</span>
       </div>
       <div className="marquee">
         <div className="marquee__track">
-          {[...LEAGUES, ...LEAGUES].map((n, i) => (
+          {[...NATIONS, ...NATIONS].map((n, i) => (
             <Fragment key={i}>
               <span>{n}</span>
-              <b>{"★"}</b>
+              <b>{"\u2605"}</b>
             </Fragment>
           ))}
         </div>

@@ -1,4 +1,6 @@
-import { GAMES } from "@/lib/data";
+import Link from "next/link";
+import { publicAsset } from '@statoz/design-system/asset';
+import { GAMES } from "@/lib/games";
 
 export default function Games() {
   return (
@@ -6,57 +8,55 @@ export default function Games() {
       <div className="wrap">
         <header className="sec-head sec-head--row reveal">
           <div>
-            <span className="sec-head__tag">// GAMES · LIVE</span>
+            <span className="sec-head__tag">// GAMES · PLAY NOW</span>
             <h2 className="sec-head__title">
               MORE WAYS TO <span className="grad">PLAY</span>
             </h2>
           </div>
           <p className="sec-head__lead sec-head__lead--right">
-            Predictions are just the start. A full arcade of quick skill games
-            is already in the app, free to play.
+            Predictions are just the start. Build a deck, face the spot-kick
+            pressure or take control of the tactical board.
           </p>
         </header>
 
         <div className="games__grid">
-          {GAMES.map((g, i) => (
+          {GAMES.map((game, index) => (
             <article
-              key={g.name}
-              className={`game reveal${i < 2 ? " game--feature" : ""}${
-                g.bg ? " game--bg" : ""
+              key={game.slug}
+              className={`game game--${game.theme} reveal${
+                index < 2 ? " game--feature" : ""
               }`}
               data-hud
-              style={
-                g.bg
-                  ? {
-                      backgroundImage: `linear-gradient(180deg, rgba(6,8,15,.55), rgba(6,8,15,.92)), url(${g.bg})`,
-                    }
-                  : undefined
-              }
+              style={{
+                backgroundImage: `linear-gradient(180deg, rgba(6,8,15,.38), rgba(6,8,15,.94)), url(${publicAsset(game.background)})`,
+              }}
             >
-              <span className="soon-badge soon-badge--live">LIVE</span>
-              <div className="game__body">
-                <span className="game__tag">{g.tag}</span>
-                <h3>{g.name}</h3>
-                <p>{g.desc}</p>
-                <div className="game__meta">
-                  {g.meta.map((m) => (
-                    <span key={m}>{m}</span>
-                  ))}
-                </div>
+              <div className="game__schematic" aria-hidden="true">
+                <i />
+                <i />
+                <i />
               </div>
+              <Link
+                className="game__link"
+                href={game.href}
+                aria-label={`Explore ${game.name}`}
+              >
+                <div className="game__body">
+                  <span className="game__tag">{game.tag}</span>
+                  <h3>{game.name}</h3>
+                  <p>{game.teaser}</p>
+                  <div className="game__meta">
+                    {game.homeMeta.map((meta) => (
+                      <span key={meta}>{meta}</span>
+                    ))}
+                  </div>
+                  <b className="game__cta">
+                    Explore game <span aria-hidden="true">-&gt;</span>
+                  </b>
+                </div>
+              </Link>
             </article>
           ))}
-
-          <article className="game game--more reveal" data-hud>
-            <div className="game__body">
-              <span className="game__tag">// TRIVIA GAUNTLETS</span>
-              <h3>Sports quizzes</h3>
-              <p>
-                Football, cricket, basketball, racing and tennis trivia. Answer
-                fast, answer right, earn Oz Coins.
-              </p>
-            </div>
-          </article>
         </div>
       </div>
     </section>

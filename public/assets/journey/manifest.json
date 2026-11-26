@@ -1,0 +1,15 @@
+{
+  "source": "Local StatOz Games product artwork; optimized copies for the opening journey.",
+  "regenerate": "node scripts/prepare-journey-assets.mjs",
+  "covers": {
+    "penalty-cup": "assets/games/covers/launch-2026-11-01/penalty-cup.webp",
+    "yorker": "assets/games/covers/launch-2026-11-06/yorker.webp",
+    "rim-rush": "assets/games/covers/launch-2026-11-06/rim-rush.webp",
+    "racer": "assets/games/covers/launch-2026-11-01/f1-racing.webp",
+    "football-chess": "assets/games/covers/launch-2026-11-06/football-chess.webp",
+    "pitch-duel": "assets/games/home/covers/fot-duel.webp",
+    "rally": "assets/games/rally-dash/cover.webp",
+    "vibe-basketball": "assets/games/covers/vibe-basketball.webp",
+    "holdover": "assets/games/covers/launch-2026-11-06/holdover.webp"
+  }
+}

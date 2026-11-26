@@ -1,0 +1,109 @@
+/* Broadcast lower-third: one surface per mission chapter, docked low over the city. The proof sits on
+   top; the footer carries its status on the left and the chapter's single next step on the right. */
+.dock { --dock-pad:16px; position:relative; isolation:isolate; width:100%; min-width:0; padding:14px var(--dock-pad) 0; color:var(--ds-color-text-default); font-family:var(--ds-font-body); text-shadow:none; opacity:var(--o2,1); transform:translateY(calc((1 - var(--o2,1)) * 16px)); }
+.dock::before,.dock::after { content:''; position:absolute; z-index:-2; pointer-events:none; clip-path:var(--ds-clip-panel); }
+.dock::before { inset:0; background:color-mix(in srgb,var(--journey-accent) 26%,var(--ds-color-border-default)); }
+/* The accent tab on the top edge is the broadcast graphic's only ornament. */
+.dock::after { inset:1px; z-index:-1; background:linear-gradient(var(--journey-accent),var(--journey-accent)) 18px 0/48px 2px no-repeat,color-mix(in srgb,var(--ds-color-background-muted) 94%,transparent); }
+.dock h3 { margin:0 0 12px; font-family:var(--ds-font-body); font-size:16px; font-weight:600; line-height:1.3; letter-spacing:-.01em; text-wrap:balance; }
+.dock button { cursor:pointer; font-family:inherit; }
+.dock :is(a,button):focus-visible { outline:2px solid var(--journey-accent); outline-offset:2px; }
+.dock a svg { width:14px; height:14px; flex:none; }
+
+.footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 16px; margin-top:14px; padding:10px 0 12px; border-top:1px solid color-mix(in srgb,var(--ds-color-border-default) 75%,transparent); }
+.status { flex:1 1 auto; min-width:0; font-size:12px; line-height:1.4; color:var(--ds-color-text-subtle); }
+.footer > :last-child { flex:none; margin:0 0 0 auto; }
+.footer [data-magnetic] { min-height:44px; gap:16px; padding:0 5px 0 16px; font-size:12px; }
+.footer [data-magnetic] > span:last-child { width:34px; height:34px; }
+.footer [data-magnetic] svg { width:18px; height:18px; }
+
+/* Follow: a scorebug. The winner reads brighter than the side that lost. */
+.meta { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; font-size:11px; line-height:1.4; letter-spacing:.02em; color:var(--ds-color-text-subtle); }
+.meta a { display:inline-flex; align-items:center; gap:4px; padding-block:12px; margin-block:-12px; color:var(--ds-color-text-subtle); text-decoration:none; transition:color .15s; }
+.meta a:hover { color:var(--journey-accent); }
+.scoreboard { display:grid; gap:8px; }
+.team { display:grid; grid-template-columns:34px minmax(0,1fr) auto; align-items:center; gap:12px; }
+.teamName { display:flex; align-items:baseline; gap:8px; min-width:0; white-space:nowrap; overflow:hidden; }
+.teamName b { font-size:14px; font-weight:500; overflow:hidden; text-overflow:ellipsis; }
+.teamName small { font-size:11px; color:var(--ds-color-text-subtle); }
+.badge { --team-color:var(--ds-color-accent-pink); position:relative; isolation:isolate; display:grid; place-items:center; width:34px; height:30px; font-family:var(--ds-font-display); font-size:9px; font-weight:700; color:var(--team-color); }
+.badge[data-team=csk] { --team-color:var(--ds-color-accent-gold); }
+.badge::before,.badge::after { content:''; position:absolute; inset:0; z-index:-2; clip-path:var(--ds-clip-chip); background:color-mix(in srgb,var(--team-color) 50%,var(--ds-color-border-default)); }
+.badge::after { inset:1px; z-index:-1; background:color-mix(in srgb,var(--team-color) 9%,var(--ds-color-background-muted)); }
+.score { display:flex; align-items:baseline; gap:8px; }
+.score strong { font-family:var(--ds-font-display); font-size:22px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
+.score strong>span { font-size:15px; color:var(--ds-color-text-subtle); }
+.score small { min-width:4.5ch; font-size:11px; color:var(--ds-color-text-subtle); font-variant-numeric:tabular-nums; }
+.team:not([data-winner]) :is(strong,.teamName b) { color:color-mix(in srgb,var(--ds-color-text-default) 70%,transparent); }
+.result { display:flex; align-items:center; gap:6px; color:var(--ds-color-text-default); }
+.result i { width:6px; height:6px; margin-right:2px; background:var(--journey-accent); }
+.result b { font-weight:500; color:var(--journey-accent); }
+
+/* Predict: one question, one honest label, one chart, three contenders. */
+.question { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:10px; }
+.question h3 { margin:0; }
+.tag { flex:none; padding:3px 7px; border:1px solid var(--ds-color-border-default); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ds-color-text-subtle); }
+.chartFrame { position:relative; }
+.chart { display:block; width:100%; height:64px; overflow:visible; }
+/* The live end of the highlighted series; drawn in HTML so the stretched SVG cannot squash it. */
+.chartEnd { position:absolute; right:0; top:var(--end); width:8px; height:8px; translate:50% -50%; background:var(--series-color); box-shadow:0 0 0 2px var(--ds-color-background-muted),0 0 10px var(--series-color); transition:top .25s cubic-bezier(.2,.7,.2,1),background-color .25s; }
+.chartGrid { fill:none; stroke:var(--ds-color-border-default); stroke-width:1; vector-effect:non-scaling-stroke; }
+.chartLine { fill:none; stroke:var(--series-color); stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round; opacity:.3; vector-effect:non-scaling-stroke; transition:opacity .2s ease-out; }
+.chartLine[data-highlighted=true] { stroke-width:2.5; opacity:1; }
+.contenders { display:flex; gap:6px; }
+.contenders button { display:flex; align-items:center; gap:8px; min-height:40px; padding:0 10px; background:transparent; border:1px solid var(--ds-color-border-default); color:var(--ds-color-text-subtle); font-size:12px; transition:border-color .15s,background-color .15s,color .15s; }
+.contenders b { color:var(--series-color); font-size:15px; font-weight:600; font-variant-numeric:tabular-nums; }
+.contenders small { font-size:10px; }
+.contenders button[aria-pressed=true] { color:var(--ds-color-text-default); border-color:color-mix(in srgb,var(--series-color) 65%,var(--ds-color-border-default)); background:color-mix(in srgb,var(--series-color) 12%,transparent); }
+@media(hover:hover) { .contenders button:hover { color:var(--ds-color-text-default); } }
+
+/* Quiz: four answers in a 2 × 2 grid; the footer gives the verdict. */
+.answers { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.answers button { display:flex; align-items:center; justify-content:space-between; gap:8px; min-height:44px; padding:0 12px; background:color-mix(in srgb,var(--ds-color-background-default,#000) 30%,transparent); border:1px solid var(--ds-color-border-default); color:var(--ds-color-text-default); font-size:13px; line-height:1.25; text-align:left; transition:border-color .15s,background-color .15s; }
+@media(hover:hover) { .answers button:hover { border-color:color-mix(in srgb,var(--journey-accent) 70%,var(--ds-color-border-default)); } }
+.answers button:active { scale:.98; }
+.answerMark { width:16px; height:16px; flex:none; stroke-width:2.2; }
+.answers button[data-result=correct] { background:var(--ds-color-accent-lime); border-color:var(--ds-color-accent-lime); color:var(--ds-color-text-inverse); }
+.answers button[data-result=incorrect] { border-color:var(--ds-color-accent-pink); background:color-mix(in srgb,var(--ds-color-accent-pink) 12%,transparent); }
+.answers button[data-result=incorrect] .answerMark { color:var(--ds-color-accent-pink); }
+.feedback { display:flex; align-items:center; gap:2px; min-height:24px; }
+.feedback[data-result=correct] { color:var(--ds-color-text-default); }
+.feedback a { display:inline-grid; place-items:center; width:32px; height:32px; margin-block:-4px; color:var(--journey-accent); }
+
+/* Play: six covers on a skewed strip; the footer counts the catalogue. */
+.games { padding-inline:0; padding-top:10px; }
+.games .footer { margin-inline:var(--dock-pad); }
+.count b { font-weight:600; color:var(--ds-color-text-default); font-variant-numeric:tabular-nums; }
+.gameStrip { display:flex; gap:3px; margin:0; padding:0 20px; list-style:none; overflow:hidden; scroll-padding-inline:20px; }
+.gameStrip>li { flex:1 1 0; min-width:0; transition:flex-grow .3s cubic-bezier(.2,.7,.2,1); }
+.gameStrip a { position:relative; isolation:isolate; display:block; height:132px; color:var(--ds-color-text-default); text-decoration:none; }
+.gameArt { position:absolute; inset:0 -9px; z-index:-1; overflow:hidden; transform:skewX(-8deg); border-inline:1px solid color-mix(in srgb,var(--journey-accent) 45%,transparent); background:var(--ds-color-background-muted); }
+.gameArt::after { content:''; position:absolute; inset:0; background:linear-gradient(0deg,color-mix(in srgb,var(--ds-color-background-muted) 96%,transparent) 8%,transparent 70%); }
+.gameArt img { width:calc(100% + 30px); max-width:none; height:100%; margin-left:-15px; object-fit:cover; transform:skewX(8deg) scale(1.08); filter:saturate(.8); transition:transform .4s cubic-bezier(.2,.7,.2,1),filter .4s; }
+.gameCaption { position:absolute; inset:auto 6px 9px; display:grid; gap:2px; }
+.gameCaption small { font-size:9px; letter-spacing:.04em; color:var(--ds-color-text-subtle); }
+.gameCaption b { font-family:var(--ds-font-display); font-size:11px; font-weight:600; line-height:1.25; }
+@media(hover:hover) { .gameStrip>li:is(:hover,:focus-within) { flex-grow:1.7; }.gameStrip a:is(:hover,:focus-visible) img { transform:skewX(8deg) scale(1.16); filter:saturate(1.05); } }
+
+@media(max-height:740px) { .chart { height:48px; }.gameStrip a { height:112px; } }
+@media(max-width:1050px) and (min-width:701px) { .teamName small { display:none; }.contenders button { padding:0 8px; }.gameStrip { overflow-x:auto; scroll-snap-type:x proximity; scrollbar-width:none; }.gameStrip>li { flex:0 0 108px; scroll-snap-align:start; } }
+@media(max-width:700px) {
+ .dock { --dock-pad:12px; padding-top:12px; }
+ .dock h3 { font-size:14px; margin-bottom:10px; }
+ .footer { margin-top:12px; padding:8px 0 10px; }
+ .meta { font-size:10px; margin-bottom:8px; }
+ .teamName small { display:none; }.teamName b { font-size:13px; }.score strong { font-size:19px; }.score strong>span { font-size:13px; }
+ .tag { font-size:9px; padding:2px 5px; }
+ .chart { height:44px; }
+ .contenders { flex:1 1 100%; }.contenders button { flex:1 1 0; justify-content:space-between; min-height:40px; padding:0 8px; font-size:11px; }.contenders b { font-size:13px; }
+ .answers button { padding:0 10px; font-size:12px; }
+ .gameStrip { overflow-x:auto; scroll-snap-type:x proximity; scrollbar-width:none; }.gameStrip::-webkit-scrollbar { display:none; }.gameStrip>li { flex:0 0 84px; scroll-snap-align:start; }.gameStrip a { height:100px; }
+}
+@media(max-height:450px) and (orientation:landscape) {
+ .dock { padding-top:10px; }.dock h3 { font-size:13px; margin-bottom:8px; }.question { margin-bottom:6px; }
+ .footer { margin-top:8px; padding:6px 0 8px; }
+ .chart { height:34px; }.contenders button { min-height:36px; padding:0 7px; font-size:11px; }
+ .answers button { min-height:38px; font-size:12px; }
+ .gameStrip a { height:88px; }
+}
+@media(prefers-reduced-motion:reduce) { .dock,.dock * { transition:none!important; }.dock { transform:none; }.gameStrip>li:hover { flex-grow:1; } }

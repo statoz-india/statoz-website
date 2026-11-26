@@ -1,19 +1,31 @@
 import type { MetadataRoute } from "next";
-import { APP_ICON_PATH, BRAND_IMAGE_SIZE, SITE_NAME } from "@/lib/site";
+import { SITE_NAME } from "@/lib/site";
+import { publicAsset } from '@statoz/design-system/asset';
+
+export const dynamic = 'force-static';
 
 export default function manifest(): MetadataRoute.Manifest {
-  const size = `${BRAND_IMAGE_SIZE}x${BRAND_IMAGE_SIZE}`;
   return {
-    name: `${SITE_NAME} – free sports prediction game`,
+    name: `${SITE_NAME} — Your daily home for sport`,
     short_name: SITE_NAME,
     description:
-      "Free sports prediction game. Predict fixtures, win Oz Coins and climb the global leaderboard.",
-    lang: "en-IN",
-    start_url: "/",
+      "Explore StatOz Sports, discover StatOz Games and find your home ground.",
+    start_url: publicAsset('/'),
+    scope: publicAsset('/'),
     display: "standalone",
     background_color: "#06080f",
     theme_color: "#06080f",
-    categories: ["games", "sports", "entertainment"],
-    icons: [{ src: APP_ICON_PATH, sizes: size, type: "image/png", purpose: "any" }],
+    icons: [
+      {
+        src: publicAsset('/icon-192.png'),
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: publicAsset('/icon-512.png'),
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
   };
 }

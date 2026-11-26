@@ -1,0 +1,15 @@
+{
+  "source": "Local captures of the actual StatOz Three.js city with city refinement",
+  "script": "scripts/capture-journey.mjs",
+  "logo": "Unmodified StatOz Sports app_logo.png on the modelled bezel and pitch floor of the loader logo, gate emblem and app phone",
+  "originalGeometry": "StatOz coupe, cockpit, mission beacons, particle lettering, gateway and city details",
+  "chapters": [
+    "welcome",
+    "entry",
+    "follow",
+    "predict",
+    "knowledge",
+    "games",
+    "city"
+  ]
+}

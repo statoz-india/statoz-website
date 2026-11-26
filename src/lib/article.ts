@@ -1,63 +1,30 @@
 import { SITE_URL } from "@/lib/site";
 
-/* Shared article types. League pages build their body from ArticleBlock data;
-   blog posts are MDX files in content/blog (see src/lib/blog.ts).
-
-   Text in intro, p, quote, list items and table cells accepts two inline marks:
-   [label](/path or https://url) for links and **text** for bold. */
+/* Shared building blocks for long-form pages: blog posts (MDX) and league
+   pages (ArticleBlock lists rendered by <ArticleBlocks>). */
 
 export interface BlogStat {
   label: string;
   value: string;
 }
 
+/* A league page body. "intro" is the answer-first opening paragraph that
+   search engines and AI assistants quote, so it gets the larger intro style. */
 export type ArticleBlock =
   | { kind: "intro"; text: string }
   | { kind: "h2"; text: string }
-  | { kind: "h3"; text: string }
-  | { kind: "p"; text: string }
-  | { kind: "quote"; text: string }
-  | { kind: "list"; items: string[]; ordered?: boolean }
-  | {
-      kind: "table";
-      /** Read aloud by screen readers and printed above the table. */
-      caption: string;
-      head: string[];
-      rows: string[][];
-    };
+  | { kind: "p"; text: string };
 
-/* Markdown links to site paths become absolute URLs, for llms-full.txt. */
-export const absoluteLinks = (text: string) =>
-  text.replace(/\]\((\/[^)\s]*)\)/g, (_, path: string) => `](${SITE_URL}${path})`);
+/* Turns site-relative Markdown links, [label](/predictions/ipl), into
+   absolute ones for plain-text outputs such as llms-full.txt. */
+export function absoluteLinks(markdown: string) {
+  return markdown.replace(/\]\((\/[^)\s]*)\)/g, `](${SITE_URL}$1)`);
+}
 
-const tableRow = (cells: string[]) => `| ${cells.map(absoluteLinks).join(" | ")} |`;
-
-/* Markdown version of article blocks for llms-full.txt. */
-export function blocksToMarkdown(blocks: ArticleBlock[]) {
+/* Plain Markdown for llms-full.txt. Headings sit one level under the page
+   title (###), which llms.ts writes for each page. */
+export function blocksToMarkdown(blocks: readonly ArticleBlock[]) {
   return blocks
-    .map((block) => {
-      switch (block.kind) {
-        case "h2":
-          return `### ${block.text}`;
-        case "h3":
-          return `#### ${block.text}`;
-        case "quote":
-          return `> ${absoluteLinks(block.text)}`;
-        case "list":
-          return block.items
-            .map((item, i) => `${block.ordered ? `${i + 1}.` : "-"} ${absoluteLinks(item)}`)
-            .join("\n");
-        case "table":
-          return [
-            `${block.caption}:`,
-            "",
-            tableRow(block.head),
-            tableRow(block.head.map(() => "---")),
-            ...block.rows.map(tableRow),
-          ].join("\n");
-        default:
-          return absoluteLinks(block.text);
-      }
-    })
+    .map((block) => (block.kind === "h2" ? `#### ${block.text}` : block.text))
     .join("\n\n");
 }

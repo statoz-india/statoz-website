@@ -1,3 +1,4 @@
+import { publicAsset } from '@statoz/design-system/asset';
 import { PICK_MARKETS, PICK_FILTERS, PICK_TYPES, PICK_STEPS } from "@/lib/data";
 
 export default function Picks() {
@@ -69,7 +70,7 @@ export default function Picks() {
                 <span className="pick__vol">
                   <img
                     className="oz-i"
-                    src="/assets/icons/oz_coins.svg"
+                    src={publicAsset("/assets/icons/oz_coins.svg")}
                     alt=""
                     width={14}
                     height={14}

@@ -1,42 +1,35 @@
+import { AboutContent } from "@/features/home/city-documents";
+import type { Metadata } from "next";
 import BlogChrome from "@/components/BlogChrome";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { ABOUT_LEAD, ABOUT_SECTIONS, type AboutBlock } from "@/lib/about";
 import { ROUTES } from "@/lib/routes";
-import { KEYWORDS, pageMetadata } from "@/lib/seo";
-import { SUPPORT_EMAIL } from "@/lib/site";
 
-export const metadata = pageMetadata({
+export const metadata: Metadata = {
   title: "About Us",
   description:
     "Learn about StatOz, a gaming-first company building fun, social, and immersive sports experiences. StatOz is not a gambling platform.",
-  shareDescription:
-    "StatOz is a gaming-first company building a unified sports gaming platform for fans. No gambling, no real money, and no real-money prizes.",
-  path: ROUTES.about,
-  type: "article",
-  keywords: [...KEYWORDS.trust, KEYWORDS.core[0], "sports gaming company India"],
-});
+  alternates: { canonical: ROUTES.about },
+  openGraph: {
+    type: "article",
+    title: "About Us - StatOz",
+    description:
+      "StatOz is a gaming-first company building a unified sports gaming platform for fans. No gambling, no real money, and no real-money prizes.",
+    url: ROUTES.about,
+  },
+};
 
 const TOC = [
-  ...ABOUT_SECTIONS.map((section) => ({ id: section.id, t: section.title })),
+  { id: "who-we-are", t: "Who We Are" },
+  { id: "not-gambling", t: "Not Gambling" },
+  { id: "what-we-are-building", t: "What We Are Building" },
+  { id: "fan-experience", t: "Fan Experience" },
+  { id: "free-to-play-economy", t: "Free-To-Play Economy" },
   { id: "contact", t: "Contact" },
 ];
 
-function Block({ block }: { block: AboutBlock }) {
-  if ("h3" in block) return <h3>{block.h3}</h3>;
-  if ("ul" in block)
-    return (
-      <ul>
-        {block.ul.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    );
-  return <p>{block.p}</p>;
-}
-
 export default function AboutPage() {
   return (
-    <BlogChrome>
+    <BlogChrome queryLayout>
       <article className="legal-page">
         <header className="article-hero legal-hero">
           <div className="article-hero__grid" aria-hidden />
@@ -55,7 +48,11 @@ export default function AboutPage() {
               Gaming-first sports experiences - Free-to-play entertainment - No
               gambling
             </p>
-            <p className="article-hero__lead">{ABOUT_LEAD}</p>
+            <p className="article-hero__lead">
+              StatOz exists to make sports more fun, social, and immersive for
+              fans. We are building a unified sports gaming platform where
+              fandom feels alive before, during, and after every match.
+            </p>
           </div>
         </header>
 
@@ -79,35 +76,7 @@ export default function AboutPage() {
           </aside>
 
           <div className="legal-body">
-            {ABOUT_SECTIONS.map((section, index) => (
-              <section className="legal-section" id={section.id} key={section.id}>
-                <h2>{`${index + 1}. ${section.title}`}</h2>
-                {section.blocks.map((block, blockIndex) => (
-                  <Block block={block} key={blockIndex} />
-                ))}
-              </section>
-            ))}
-
-            <section className="legal-section" id="contact">
-              <h2>{`${ABOUT_SECTIONS.length + 1}. Contact`}</h2>
-              <p>
-                For questions about StatOz, partnerships, support, or platform
-                safety, contact us at{" "}
-                <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
-              </p>
-              <p>
-                Platform:{" "}
-                <a href="https://statoz.in" target="_blank" rel="noopener">
-                  statoz.in
-                </a>
-              </p>
-            </section>
-
-            <p className="legal-foot-note">
-              StatOz is a gaming-first sports entertainment company. We are not
-              a gambling platform. No real money or real-money prizes can be
-              won on StatOz.
-            </p>
+            <AboutContent />
           </div>
         </div>
       </article>

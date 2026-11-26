@@ -1,10 +1,11 @@
+import { publicAsset } from '@statoz/design-system/asset';
 export default function Progression() {
   return (
     <section className="section progression" id="progression">
       <div className="coming-soon-banner reveal">
         <span className="coming-soon-banner__label">COMING SOON</span>
         <span className="coming-soon-banner__text">
-          Accuracy Streaks and Levels are coming soon. XP is live today. Here&apos;s a preview.
+          Streaks & XP Progression is coming soon. Here&apos;s a preview.
         </span>
       </div>
 
@@ -31,7 +32,7 @@ export default function Progression() {
           <header className="profile__head">
             <span className="profile__user">
               <img
-                src="/assets/avatars/rodri.webp"
+                src={publicAsset("/assets/avatars/rodri.webp")}
                 alt=""
                 width={26}
                 height={26}
@@ -57,7 +58,7 @@ export default function Progression() {
           <div className="profile__streak">
             <img
               className="flame"
-              src="/assets/icons/streak.svg"
+              src={publicAsset("/assets/icons/streak.svg")}
               alt=""
               width={40}
               height={40}
@@ -72,7 +73,7 @@ export default function Progression() {
           <div className="profile__wallet">
             <span className="profile__wlabel">
               <img
-                src="/assets/icons/oz_coins.svg"
+                src={publicAsset("/assets/icons/oz_coins.svg")}
                 alt=""
                 width={18}
                 height={18}
